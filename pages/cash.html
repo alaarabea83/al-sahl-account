@@ -43,6 +43,11 @@
         cursor: pointer;
         border-radius: 4px;
       }
+
+      .table-container {
+        padding: 16px;
+        overflow-x: auto; /* مهم للموبايل */
+      }
       table {
         width: 100%;
         border-collapse: collapse;
@@ -70,6 +75,39 @@
         margin-top: 25px;
         background-color: #0d6efd;
       }
+
+      .t-container {
+        padding: 16px; /* مسافة من حواف الشاشة */
+        max-width: 400px; /* عرض مناسب */
+        margin: 0 auto; /* مركز الجدول في الصفحة */
+        background-color: #f9f9f9; /* خلفية هادية */
+        border-radius: 8px; /* حواف مدورة */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+        overflow-x: auto; /* لو الجدول طويل على الموبايل */
+      }
+
+      h3 {
+        text-align: center;
+        margin-bottom: 12px;
+        font-family: Arial, sans-serif;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: right; /* للغة العربية */
+        font-family: Arial, sans-serif;
+      }
+
+      td:first-child {
+        font-weight: bold; /* اسم الحقل يكون بارز */
+        background-color: #f0f0f0;
+      }
     </style>
   </head>
   <body>
@@ -77,7 +115,8 @@
       <h1>🏦 الخزينة</h1>
     </header>
 
-    <h3>ملخص حركة الخزينة</h3>
+    <div class="t-container">
+      <h3>ملخص حركة الخزينة</h3>
       <table>
         <tbody>
           <tr>
@@ -98,6 +137,8 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
     <section>
       <h3>كشف حركات الخزينة</h3>
       <div class="filters">
@@ -108,18 +149,20 @@
         <button id="filterCashBtn">عرض الكشف</button>
       </div>
 
-      <table id="cashStatementTable">
-        <thead>
-          <tr>
-            <th>التاريخ</th>
-            <th>البيان</th>
-            <th>مدين</th>
-            <th>دائن</th>
-            <th>الرصيد</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div class="table-container">
+        <table id="cashStatementTable">
+          <thead>
+            <tr>
+              <th>التاريخ</th>
+              <th>البيان</th>
+              <th>مدين</th>
+              <th>دائن</th>
+              <th>الرصيد</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
 
       <a href="../index.html">🏠 عودة للرئيسية</a>
     </section>
