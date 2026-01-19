@@ -63,14 +63,28 @@
         padding: 0.6rem;
         border-bottom: 1px solid #e0e0e0;
       }
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40px;
+        width: 200px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        margin-top: 25px;
+        background-color: yellow;
+      }
     </style>
   </head>
   <body>
     <header>
-      <h1>المقبوضات</h1>
+      <h1>💰 المقبوضات</h1>
     </header>
 
     <section>
+      <h3>إضافة سند قبض</h3>
       <div class="form-row">
         <input type="text" id="incomeTitle" placeholder="البيان" />
         <input type="number" id="incomeAmount" placeholder="المبلغ" min="0" />
@@ -78,7 +92,7 @@
         <button id="addIncomeBtn">إضافة</button>
       </div>
 
-      <h3>المقبوضات السابقة</h3>
+      <h3>سجل المقبوضات</h3>
       <table id="incomeTable">
         <thead>
           <tr>

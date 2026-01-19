@@ -18,7 +18,7 @@
         padding: 1rem;
       }
       header h1::before {
-        content: "📦 ";
+        content: "🛒 ";
       }
       section {
         max-width: 800px;
@@ -51,6 +51,11 @@
         cursor: pointer;
         border-radius: 4px;
       }
+
+      .table-container {
+        padding: 16px;
+        overflow-x: auto; /* مهم للموبايل */
+      }
       table {
         width: 100%;
         border-collapse: collapse;
@@ -66,6 +71,19 @@
         padding: 0.6rem;
         border-bottom: 1px solid #e0e0e0;
       }
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40px;
+        width: 200px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        margin-top: 25px;
+        background-color: yellow;
+      }
     </style>
   </head>
   <body>
@@ -74,16 +92,11 @@
     </header>
 
     <section>
+      <h3>فاتورة جديدة</h3>
       <div class="form-row">
         <select id="purchaseCustomer"></select>
         <select id="purchaseProduct"></select>
-        <input
-          type="number"
-          id="purchaseQty"
-          placeholder="الكمية"
-          min="1"
-          value="1"
-        />
+        <input type="number" id="purchaseQty" placeholder="الكمية" min="0" />
         <input
           type="number"
           id="purchasePrice"
@@ -95,24 +108,27 @@
       </div>
 
       <h3>المشتريات السابقة</h3>
-      <table id="purchasesTable">
-        <thead>
-          <tr>
-            <th>العميل</th>
-            <th>المنتج</th>
-            <th>الكمية</th>
-            <th>سعر الوحدة</th>
-            <th>المدفوع</th>
-            <th>المتبقي</th>
-            <th>التاريخ</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div class="table-container">
+        <table id="purchasesTable">
+          <thead>
+            <tr>
+              <th>العميل</th>
+              <th>المنتج</th>
+              <th>الكمية</th>
+              <th>سعر الوحدة</th>
+              <th>المدفوع</th>
+              <th>المتبقي</th>
+              <th>التاريخ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
       <a href="../index.html">🏠 عودة للرئيسية</a>
     </section>
 
-    <<script src="../js/data.js"></script>
+    <
+    <script src="../js/data.js"></script>
     <script src="../js/purchases.js"></script>
   </body>
 </html>

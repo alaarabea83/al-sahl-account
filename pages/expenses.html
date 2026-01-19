@@ -1,56 +1,129 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>المصروفات</title>
-<link rel="stylesheet" href="../css/style.css" />
-<style>
-  body { font-family: Arial, sans-serif; background: #f9f9f9; margin:0; padding:0; }
-  header { padding:1rem; color:#fff; text-align:center; background:#f44336; }
-  section { max-width:900px; margin:2rem auto; background:#fff; padding:1.5rem; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
-  .form-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; }
-  .form-row input, .form-row select { flex:1; padding:0.5rem; font-size:1rem; border-radius:5px; border:1px solid #ccc; }
-  .form-row button { padding:0.5rem 1rem; font-size:1rem; background:#f44336; color:#fff; border:none; border-radius:5px; cursor:pointer; transition:0.3s; }
-  .form-row button:hover { background:#d32f2f; }
-  table { width:100%; border-collapse:collapse; margin-top:1rem; }
-  table th, table td { padding:0.5rem; text-align:center; border:1px solid #ccc; }
-  table th { background:#f44336; color:#fff; }
-  a { display:inline-block; margin-top:1rem; text-decoration:none; color:#f44336; font-weight:bold; }
-  a:hover { text-decoration:underline; }
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>المصروفات</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        padding: 1rem;
+        color: #fff;
+        text-align: center;
+        background: #f44336;
+      }
+      section {
+        max-width: 900px;
+        margin: 2rem auto;
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .form-row input,
+      .form-row select {
+        flex: 1;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      .form-row button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        background: #f44336;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .form-row button:hover {
+        background: #d32f2f;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+      table th,
+      table td {
+        padding: 0.5rem;
+        text-align: center;
+        border: 1px solid #ccc;
+      }
+      table th {
+        background: #f44336;
+        color: #fff;
+      }
+      a {
+        display: inline-block;
+        margin-top: 1rem;
+        text-decoration: none;
+        color: #f44336;
+        font-weight: bold;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
 
-<header>
-  <h1>المصروفات</h1>
-</header>
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40px;
+        width: 200px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        margin-top: 25px;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>💸 المصروفات</h1>
+    </header>
 
-<section>
-  <div class="form-row">
-    <input type="text" id="expenseTitle" placeholder="البيان" />
-    <input type="number" id="expenseAmount" placeholder="المبلغ" min="0" />
-    <select id="expenseCustomer"></select>
-    <button id="addExpenseBtn">إضافة</button>
-  </div>
+    <section>
+      <h3>إضافة سند دفع</h3>
+      <div class="form-row">
+        <input type="text" id="expenseTitle" placeholder="البيان" />
+        <input type="number" id="expenseAmount" placeholder="المبلغ" min="0" />
+        <select id="expenseCustomer"></select>
+        <button id="addExpenseBtn">إضافة</button>
+      </div>
 
-  <h3>المصروفات السابقة</h3>
-  <table id="expenseTable">
-    <thead>
-      <tr>
-        <th>البيان</th>
-        <th>المبلغ</th>
-        <th>العميل</th>
-        <th>التاريخ</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+      <h3>سجل المصروفات </h3>
+      <table id="expenseTable">
+        <thead>
+          <tr>
+            <th>البيان</th>
+            <th>المبلغ</th>
+            <th>العميل</th>
+            <th>التاريخ</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
 
-  <a href="../index.html">🏠 عودة للرئيسية</a>
-</section>
+      <a href="../index.html">🏠 عودة للرئيسية</a>
+    </section>
 
-<script src="../js/data.js"></script>
-<script src="../js/expenses.js"></script>
-</body>
+    <script src="../js/data.js"></script>
+    <script src="../js/expenses.js"></script>
+  </body>
 </html>

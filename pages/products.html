@@ -12,7 +12,7 @@
         margin: 0;
       }
       header {
-        background: #1f3a5f;
+        background: #198754;
         color: #f1f5f9;
         text-align: center;
         padding: 1rem;
@@ -63,25 +63,40 @@
         padding: 0.6rem;
         border-bottom: 1px solid #e0e0e0;
       }
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40px;
+        width: 200px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        margin-top: 25px;
+        background-color: yellow;
+      }
     </style>
   </head>
   <body>
     <header>
-      <h1>المنتجات</h1>
+      <h1>الأصناف</h1>
     </header>
 
     <section>
+      <h3>إضافة صنف جديد</h3>
       <div class="form-row">
-        <input type="text" id="productName" placeholder="اسم المنتج" />
-        <input type="number" id="productPrice" placeholder="سعر المنتج" />
+        <input type="text" id="productName" placeholder="اسم الصنف" />
+        <input type="number" id="productPrice" placeholder="سعر الصنف" />
         <input type="number" id="productQty" placeholder="الكمية" />
         <button id="addProductBtn">إضافة منتج</button>
       </div>
 
+      <h3>قائمة الأصناف</h3>
       <table id="productsTable">
         <thead>
           <tr>
-            <th>المنتج</th>
+            <th>الصنف</th>
             <th>الكمية</th>
             <th>السعر</th>
           </tr>

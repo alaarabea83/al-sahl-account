@@ -12,13 +12,13 @@
         margin: 0;
       }
       header {
-        background: #1f3a5f;
+        background: #198754;
         color: #f1f5f9;
         text-align: center;
         padding: 1rem;
       }
       header h1::before {
-        content: "👤 ";
+        content: "👥 ";
       }
       section {
         max-width: 700px;
@@ -63,6 +63,19 @@
         padding: 0.6rem;
         border-bottom: 1px solid #e0e0e0;
       }
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40px;
+        width: 200px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        margin-top: 25px;
+        background-color: yellow;
+      }
     </style>
   </head>
   <body>
@@ -71,6 +84,7 @@
     </header>
 
     <section>
+      <h2>إضافة عميل جديد</h2>
       <div class="form-row">
         <input type="text" id="customerName" placeholder="اسم العميل" />
         <input
@@ -81,6 +95,7 @@
         <button id="addCustomerBtn">إضافة عميل</button>
       </div>
 
+      <h2>قائمة العملاء</h2>
       <table id="customersTable">
         <thead>
           <tr>
