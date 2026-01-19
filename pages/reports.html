@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>التقارير</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background: #F4F6F8;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    header {
+      background: #1F3A5F;
+      color: #F1F5F9;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1::before {
+      content: "📊 ";
+    }
+
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      margin-bottom: 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+
+    th {
+      background: #2E86C1;
+      color: #fff;
+      padding: 0.6rem;
+    }
+
+    td {
+      padding: 0.6rem;
+      border-bottom: 1px solid #E0E0E0;
+      text-align: center;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .back-home {
+      display: block;
+      margin-top: 1rem;
+      text-align: center;
+      text-decoration: none;
+      background: #1F3A5F;
+      color: #fff;
+      padding: 0.6rem;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>التقارير</h1>
+</header>
+
+<section id="customersReport">
+  <h2>العملاء</h2>
+  <table>
+    <thead>
+      <tr><th>العميل</th><th>الرصيد الحالي</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section id="productsReport">
+  <h2>المنتجات</h2>
+  <table>
+    <thead>
+      <tr><th>المنتج</th><th>الكمية</th><th>السعر</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section id="salesReport">
+  <h2>فواتير المبيعات</h2>
+  <table>
+    <thead>
+      <tr><th>العميل</th><th>الإجمالي</th><th>المدفوع</th><th>المتبقي</th><th>التاريخ</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section id="purchasesReport">
+  <h2>فواتير المشتريات</h2>
+  <table>
+    <thead>
+      <tr><th>العميل</th><th>المنتج</th><th>الكمية</th><th>السعر</th><th>المدفوع</th><th>المتبقي</th><th>التاريخ</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section id="cashReport">
+  <h2>الخزنة</h2>
+  <table>
+    <thead>
+      <tr><th>الافتتاحي</th><th>المقبوض</th><th>المصروف</th><th>الرصيد النهائي</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="cashOpening">0</td>
+        <td id="cashIncome">0</td>
+        <td id="cashExpenses">0</td>
+        <td id="cashFinal">0</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<a href="../index.html" class="back-home">🏠 عودة للرئيسية</a>
+
+<script src="../js/data.js"></script>
+<script>
+  // Customers
+  const custTbody = document.querySelector("#customersReport tbody");
+  customers.forEach(c => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${c.name}</td><td>${c.balance.toFixed(2)}</td>`;
+    custTbody.appendChild(tr);
+  });
+
+  // Products
+  const prodTbody = document.querySelector("#productsReport tbody");
+  products.forEach(p => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${p.name}</td><td>${p.qty}</td><td>${p.price.toFixed(2)}</td>`;
+    prodTbody.appendChild(tr);
+  });
+
+  // Sales
+  const salesTbody = document.querySelector("#salesReport tbody");
+  sales.forEach(s => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${s.customer}</td><td>${s.total}</td><td>${s.paid}</td><td>${s.remaining}</td><td>${s.date}</td>`;
+    salesTbody.appendChild(tr);
+  });
+
+  // Purchases
+  const purchasesTbody = document.querySelector("#purchasesReport tbody");
+  purchases.forEach(p => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${p.customer}</td><td>${p.product}</td><td>${p.qty}</td><td>${p.price}</td><td>${p.paid}</td><td>${p.remaining}</td><td>${p.date}</td>`;
+    purchasesTbody.appendChild(tr);
+  });
+
+  // Cash
+  document.getElementById("cashOpening").innerText = cash.opening.toFixed(2);
+  document.getElementById("cashIncome").innerText = cash.income.toFixed(2);
+  document.getElementById("cashExpenses").innerText = cash.expenses.toFixed(2);
+  document.getElementById("cashFinal").innerText = (cash.opening + cash.income - cash.expenses).toFixed(2);
+</script>
+</body>
+</html>

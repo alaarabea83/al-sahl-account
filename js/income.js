@@ -1,0 +1,52 @@
+window.onload = function () {
+  loadData();
+  renderCustomerSelect();
+  renderIncome();
+
+  document.getElementById("addIncomeBtn").onclick = addIncome;
+};
+
+function renderCustomerSelect() {
+  const sel = document.getElementById("incomeCustomer");
+  if (!sel) return;
+  sel.innerHTML =
+    `<option value="">نقدي بدون عميل</option>` +
+    customers.map((c, i) => `<option value="${i}">${c.name}</option>`).join("");
+}
+
+function addIncome() {
+  const title = document.getElementById("incomeTitle").value.trim();
+  const amount = +document.getElementById("incomeAmount").value;
+  const customerIndex = document.getElementById("incomeCustomer").value;
+  const customer = customerIndex !== "" ? customers[customerIndex] : null;
+
+  if (!title || !amount) return alert("اكمل البيانات");
+
+  if (customer) customer.balance -= amount; // العميل دفع للخزنة
+  cash.income += amount; // تحديث الخزنة
+
+  incomes.push({
+    title,
+    amount,
+    customer: customer ? customer.name : "نقدي",
+    date: new Date().toLocaleDateString(),
+  });
+
+  document.getElementById("incomeTitle").value = "";
+  document.getElementById("incomeAmount").value = "";
+  document.getElementById("incomeCustomer").value = "";
+
+  saveData();
+  renderIncome();
+}
+
+function renderIncome() {
+  const tbody = document.querySelector("#incomeTable tbody");
+  if (!tbody) return;
+  tbody.innerHTML = "";
+  incomes.forEach((i) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${i.title}</td><td>${i.amount}</td><td>${i.customer}</td><td>${i.date}</td>`;
+    tbody.appendChild(tr);
+  });
+}

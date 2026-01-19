@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>المنتجات</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        margin: 0;
+      }
+      header {
+        background: #1f3a5f;
+        color: #f1f5f9;
+        text-align: center;
+        padding: 1rem;
+      }
+      header h1::before {
+        content: "📦 ";
+      }
+      section {
+        max-width: 700px;
+        margin: 2rem auto;
+        background: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      }
+      .form-row {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+      }
+      .form-row input,
+      .form-row button {
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+      .form-row input {
+        flex: 1;
+      }
+      .form-row button {
+        background: #0d6efd;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th {
+        background: #2e86c1;
+        color: #fff;
+        padding: 0.6rem;
+      }
+      td {
+        text-align: center;
+        padding: 0.6rem;
+        border-bottom: 1px solid #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>المنتجات</h1>
+    </header>
+
+    <section>
+      <div class="form-row">
+        <input type="text" id="productName" placeholder="اسم المنتج" />
+        <input type="number" id="productPrice" placeholder="سعر المنتج" />
+        <input type="number" id="productQty" placeholder="الكمية" />
+        <button id="addProductBtn">إضافة منتج</button>
+      </div>
+
+      <table id="productsTable">
+        <thead>
+          <tr>
+            <th>المنتج</th>
+            <th>الكمية</th>
+            <th>السعر</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <a href="../index.html">🏠 عودة للرئيسية</a>
+    </section>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/products.js"></script>
+  </body>
+</html>

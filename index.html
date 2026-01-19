@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لوحة التحكم الرئيسية</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        font-family: Arial;
+        background: #f4f6f8;
+        margin: 0;
+      }
+      header {
+        background: #ffc107;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+      }
+      section {
+        max-width: 600px;
+        margin: 2rem auto;
+        display: grid;
+        gap: 1rem;
+      }
+      .card {
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: 0.3s;
+        text-decoration: none;
+        color: #000;
+      }
+      .card:hover {
+        background: #ffd54f;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>بسيط للحسابات</h1>
+    </header>
+
+    <section>
+      <a class="card" href="pages/customers.html">👥 العملاء</a>
+      <a class="card" href="pages/products.html">📦 المنتجات</a>
+      <a class="card" href="pages/sales.html">🧾 فواتير المبيعات</a>
+      <a class="card" href="pages/purchases.html">🛒 فواتير المشتريات</a>
+      <a class="card" href="pages/income.html">💰 المقبوضات</a>
+      <a class="card" href="pages/expenses.html">💸 المصروفات</a>
+      <a class="card" href="pages/cash.html">🏦 كشف الخزنة</a>
+      <a class="card" href="pages/reports.html">📊 التقارير</a>
+    </section>
+  </body>
+</html>

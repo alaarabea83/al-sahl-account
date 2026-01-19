@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فواتير المشتريات</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        margin: 0;
+      }
+      header {
+        background: #ffc107;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+      }
+      header h1::before {
+        content: "📦 ";
+      }
+      section {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      }
+      .form-row {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+      }
+      .form-row input,
+      .form-row select,
+      .form-row button {
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+      .form-row input,
+      .form-row select {
+        flex: 1;
+      }
+      .form-row button {
+        background: #ff9800;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+      th {
+        background: #ff9800;
+        color: #fff;
+        padding: 0.6rem;
+      }
+      td {
+        text-align: center;
+        padding: 0.6rem;
+        border-bottom: 1px solid #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>فواتير المشتريات</h1>
+    </header>
+
+    <section>
+      <div class="form-row">
+        <select id="purchaseCustomer"></select>
+        <select id="purchaseProduct"></select>
+        <input
+          type="number"
+          id="purchaseQty"
+          placeholder="الكمية"
+          min="1"
+          value="1"
+        />
+        <input
+          type="number"
+          id="purchasePrice"
+          placeholder="سعر الوحدة"
+          min="0"
+        />
+        <input type="number" id="purchasePaid" placeholder="المدفوع" min="0" />
+        <button id="savePurchaseBtn">حفظ</button>
+      </div>
+
+      <h3>المشتريات السابقة</h3>
+      <table id="purchasesTable">
+        <thead>
+          <tr>
+            <th>العميل</th>
+            <th>المنتج</th>
+            <th>الكمية</th>
+            <th>سعر الوحدة</th>
+            <th>المدفوع</th>
+            <th>المتبقي</th>
+            <th>التاريخ</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <a href="../index.html">🏠 عودة للرئيسية</a>
+    </section>
+
+    <<script src="../js/data.js"></script>
+    <script src="../js/purchases.js"></script>
+  </body>
+</html>

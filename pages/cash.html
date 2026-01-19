@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>كشف الخزنة</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        font-family: Arial;
+        background: #f4f6f8;
+        margin: 0;
+      }
+      header {
+        background: #ffc107;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+      }
+      section {
+        max-width: 900px;
+        margin: 2rem auto;
+        background: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      }
+      .filters {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+      }
+      .filters input,
+      .filters button {
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+      .filters button {
+        background: #ffc107;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+      th {
+        background: #ffc107;
+        color: #fff;
+        padding: 0.6rem;
+      }
+      td {
+        text-align: center;
+        padding: 0.6rem;
+        border-bottom: 1px solid #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>كشف الخزنة</h1>
+    </header>
+
+    <h3>ملخص الخزنة</h3>
+      <table>
+        <tbody>
+          <tr>
+            <td>الرصيد الافتتاحي</td>
+            <td id="cashOpening">0</td>
+          </tr>
+          <tr>
+            <td>إجمالي المقبوضات</td>
+            <td id="cashIncome">0</td>
+          </tr>
+          <tr>
+            <td>إجمالي المصروفات</td>
+            <td id="cashExpenses">0</td>
+          </tr>
+          <tr>
+            <td>الرصيد النهائي</td>
+            <td id="cashFinal">0</td>
+          </tr>
+        </tbody>
+      </table>
+    <section>
+      <div class="filters">
+        <label>من:</label>
+        <input type="date" id="cashFromDate" />
+        <label>إلى:</label>
+        <input type="date" id="cashToDate" />
+        <button id="filterCashBtn">عرض الكشف</button>
+      </div>
+
+      <table id="cashStatementTable">
+        <thead>
+          <tr>
+            <th>التاريخ</th>
+            <th>البيان</th>
+            <th>مدين</th>
+            <th>دائن</th>
+            <th>الرصيد</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <a href="../index.html">🏠 عودة للرئيسية</a>
+    </section>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/cash.js"></script>
+  </body>
+</html>
