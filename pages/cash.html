@@ -26,25 +26,11 @@
         padding: 1px;
       }
 
-      /* الهيدر */
-      header {
-        font-family: "Cairo", sans-serif;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-      }
-
-      /* العناوين */
       h1,
       h2,
       h3 {
         font-family: "Cairo", sans-serif;
         font-weight: 700;
-      }
-
-      /* كروت الأقسام */
-      .card {
-        font-family: "Tajawal", sans-serif;
-        font-weight: 500;
       }
 
       section {
@@ -55,7 +41,6 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       }
 
-      /* نفس container المستخدم في كل الصفحات */
       .t-container {
         display: flex;
         flex-direction: column;
@@ -73,7 +58,6 @@
         margin-bottom: 12px;
       }
 
-      /* ملخص الخزنة */
       .summary-table {
         width: 100%;
         background: #fff;
@@ -93,7 +77,6 @@
         width: 50%;
       }
 
-      /* الفلاتر */
       .filters {
         display: flex;
         justify-content: center;
@@ -148,6 +131,10 @@
         background-color: #0d6efd;
         width: fit-content;
       }
+
+      .t-scroll {
+        overflow-x: auto;
+      }
     </style>
   </head>
 
@@ -191,6 +178,8 @@
           <input type="date" id="cashToDate" />
           <button id="filterCashBtn">عرض الكشف</button>
         </div>
+
+        <div class="t-scroll">
           <table id="cashStatementTable">
             <thead>
               <tr>
@@ -203,6 +192,7 @@
             </thead>
             <tbody></tbody>
           </table>
+        </div>
         <a href="../index.html">🏠 عودة للرئيسية</a>
       </div>
     </section>
