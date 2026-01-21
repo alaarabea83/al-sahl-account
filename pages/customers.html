@@ -82,28 +82,53 @@
     </header>
 
     <section>
-      <h3>إضافة عميل جديد</h3>
-      <div class="form-row">
-        <input type="text" id="customerName" placeholder="اسم العميل" />
-        <input
-          type="number"
-          id="openingBalance"
-          placeholder="الرصيد الإفتتاحي"
-        />
-        <button id="addCustomerBtn">إضافة عميل</button>
+      <div
+        class="add-customer"
+        style="
+          display: flex;
+          flex-direction: column;
+          background-color: #198754;
+          justify-content: center;
+          align-items: center;
+          padding: 5px;
+        "
+      >
+        <h3>إضافة عميل جديد</h3>
+        <div class="form-row">
+          <input type="text" id="customerName" placeholder="اسم العميل" />
+          <input
+            type="number"
+            id="openingBalance"
+            placeholder="الرصيد الإفتتاحي"
+          />
+          <button id="addCustomerBtn">إضافة</button>
+        </div>
       </div>
 
-      <h3>قائمة العملاء</h3>
-      <table id="customersTable">
-        <thead>
-          <tr>
-            <th>العميل</th>
-            <th>الرصيد الحالي</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <a href="../index.html">🏠 عودة للرئيسية</a>
+      <div
+        class="customer-list"
+        style="
+          display: flex;
+          flex-direction: column;
+          background-color: #198754;
+          justify-content: center;
+          align-items: center;
+          padding: 5px;
+        "
+      >
+        <h3>قائمة العملاء</h3>
+        <table id="customersTable">
+          <thead>
+            <tr>
+              <th>العميل</th>
+              <th>الرصيد الحالي</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <a href="../index.html">🏠 عودة للرئيسية</a>
+      </div>
+      
     </section>
 
     <script src="../js/data.js"></script>
