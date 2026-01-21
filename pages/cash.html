@@ -5,37 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>كشف الخزنة</title>
     <link rel="stylesheet" href="css/style.css" />
+
     <style>
       body {
-        font-family: Arial;
+        font-family: Arial, sans-serif;
         background: #f4f6f8;
         margin: 0;
       }
+
       header {
         background: #198754;
         color: #fff;
         text-align: center;
         padding: 1rem;
       }
+
       section {
         max-width: 900px;
         margin: 2rem auto;
         background: #fff;
         padding: 1rem;
-        border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       }
+
+      /* نفس container المستخدم في كل الصفحات */
+      .t-container {
+        display: flex;
+        flex-direction: column;
+        background-color: #198754;
+        justify-content: center;
+        align-items: stretch;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      .t-container h3 {
+        color: #fff;
+        text-align: center;
+        margin-bottom: 12px;
+      }
+
+      /* ملخص الخزنة */
+      .summary-table {
+        width: 100%;
+        background: #fff;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .summary-table td {
+        padding: 10px;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: right;
+      }
+
+      .summary-table td:first-child {
+        font-weight: bold;
+        background: #f4f6f8;
+        width: 50%;
+      }
+
+      /* الفلاتر */
       .filters {
         display: flex;
+        justify-content: center;
+        align-items: center;
         gap: 0.5rem;
         flex-wrap: wrap;
         margin-bottom: 1rem;
       }
+
       .filters input,
       .filters button {
         padding: 0.5rem;
         font-size: 1rem;
       }
+
       .filters button {
         background: #2e86c1;
         color: #fff;
@@ -44,20 +90,26 @@
         border-radius: 4px;
       }
 
+      /* الجدول */
       .table-container {
-        padding: 16px;
-        overflow-x: auto; /* مهم للموبايل */
+        background: #fff;
+        border-radius: 6px;
+        padding: 10px;
+        overflow-x: auto;
       }
+
       table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 1rem;
+        margin-top: 10px;
       }
+
       th {
         background: #2e86c1;
         color: #fff;
         padding: 0.6rem;
       }
+
       td {
         text-align: center;
         padding: 0.6rem;
@@ -65,105 +117,79 @@
       }
 
       a {
-        display: block;
-        text-align: center;
-        padding: 10px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 25px;
         border-radius: 15px;
         text-decoration: none;
         color: #fff;
-        margin-top: 25px;
+        margin: 25px auto 0;
         background-color: #0d6efd;
-      }
-
-      .t-container {
-        padding: 16px; /* مسافة من حواف الشاشة */
-        max-width: 900px; /* عرض مناسب */
-        margin: 10px auto; /* مركز الجدول في الصفحة */
-        background-color: #f9f9f9; /* خلفية هادية */
-        border-radius: 8px; /* حواف مدورة */
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-        overflow-x: auto; /* لو الجدول طويل على الموبايل */
-      }
-
-      h3 {
-        text-align: center;
-        margin-bottom: 12px;
-        font-family: Arial, sans-serif;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: right; /* للغة العربية */
-        font-family: Arial, sans-serif;
-      }
-
-      td:first-child {
-        font-weight: bold; /* اسم الحقل يكون بارز */
-        background-color: #f0f0f0;
+        width: fit-content;
       }
     </style>
   </head>
+
   <body>
     <header>
       <h1>🏦 الخزينة</h1>
     </header>
 
-    <div class="t-container">
-      <h3>ملخص حركة الخزينة</h3>
-      <table>
-        <tbody>
-          <tr>
-            <td>الرصيد الافتتاحي</td>
-            <td id="cashOpening">0</td>
-          </tr>
-          <tr>
-            <td>إجمالي المقبوضات</td>
-            <td id="cashIncome">0</td>
-          </tr>
-          <tr>
-            <td>إجمالي المصروفات</td>
-            <td id="cashExpenses">0</td>
-          </tr>
-          <tr>
-            <td>الرصيد النهائي</td>
-            <td id="cashFinal">0</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
     <section>
-      <h3>كشف حركات الخزينة</h3>
-      <div class="filters">
-        <label>من:</label>
-        <input type="date" id="cashFromDate" />
-        <label>إلى:</label>
-        <input type="date" id="cashToDate" />
-        <button id="filterCashBtn">عرض الكشف</button>
-      </div>
-
-      <div class="table-container">
-        <table id="cashStatementTable">
-          <thead>
+      <!-- ملخص الخزنة -->
+      <div class="t-container">
+        <h3>ملخص حركة الخزينة</h3>
+        <table class="summary-table">
+          <tbody>
             <tr>
-              <th>التاريخ</th>
-              <th>البيان</th>
-              <th>مدين</th>
-              <th>دائن</th>
-              <th>الرصيد</th>
+              <td>الرصيد الافتتاحي</td>
+              <td id="cashOpening">0</td>
             </tr>
-          </thead>
-          <tbody></tbody>
+            <tr>
+              <td>إجمالي المقبوضات</td>
+              <td id="cashIncome">0</td>
+            </tr>
+            <tr>
+              <td>إجمالي المصروفات</td>
+              <td id="cashExpenses">0</td>
+            </tr>
+            <tr>
+              <td>الرصيد النهائي</td>
+              <td id="cashFinal">0</td>
+            </tr>
+          </tbody>
         </table>
       </div>
 
-      <a href="../index.html">🏠 عودة للرئيسية</a>
+      <!-- كشف الحركات -->
+      <div class="t-container">
+        <h3>كشف حركات الخزنة</h3>
+
+        <div class="filters">
+          <label>من:</label>
+          <input type="date" id="cashFromDate" />
+          <label>إلى:</label>
+          <input type="date" id="cashToDate" />
+          <button id="filterCashBtn">عرض الكشف</button>
+        </div>
+
+        <div class="table-container">
+          <table id="cashStatementTable">
+            <thead>
+              <tr>
+                <th>التاريخ</th>
+                <th>البيان</th>
+                <th>مدين</th>
+                <th>دائن</th>
+                <th>الرصيد</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <a href="../index.html">🏠 عودة للرئيسية</a>
+      </div>
     </section>
 
     <script src="../js/data.js"></script>

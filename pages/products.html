@@ -24,8 +24,8 @@
         max-width: 900px;
         margin: 2rem auto;
         background: #fff;
+        color: #fff;
         padding: 1rem;
-        border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       }
       .form-row {
@@ -51,13 +51,13 @@
       }
 
       .t-container {
-        padding: 16px; /* مسافة من حواف الشاشة */
-        max-width: 900px; /* عرض مناسب */
-        margin: 0 auto; /* مركز الجدول في الصفحة */
-        background-color: #f9f9f9; /* خلفية هادية */
-        border-radius: 8px; /* حواف مدورة */
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-        overflow-x: auto; /* لو الجدول طويل على الموبايل */
+        display: flex;
+        flex-direction: column;
+        background-color: #198754;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        border-radius: 10px;
       }
       table {
         width: 100%;
@@ -91,30 +91,34 @@
       <h1>الأصناف</h1>
     </header>
 
-    <div class="t-container">
     <section>
-      <h3>إضافة صنف جديد</h3>
-      <div class="form-row">
-        <input type="text" id="productName" placeholder="اسم الصنف" />
-        <input type="number" id="productPrice" placeholder="سعر الصنف" />
-        <input type="number" id="productQty" placeholder="الكمية" />
-        <button id="addProductBtn">إضافة منتج</button>
+      <div class="t-container">
+        <h3>إضافة صنف جديد</h3>
+        <div class="form-row">
+          <input type="text" id="productName" placeholder="اسم الصنف" />
+          <input type="number" id="productPrice" placeholder="سعر الصنف" />
+          <input type="number" id="productQty" placeholder="الكمية" />
+          <button id="addProductBtn">إضافة</button>
+        </div>
       </div>
 
-      <h3>قائمة الأصناف</h3>
-      <table id="productsTable">
-        <thead>
-          <tr>
-            <th>الصنف</th>
-            <th>الكمية</th>
-            <th>السعر</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <a href="../index.html">🏠 عودة للرئيسية</a>
+      <div style="height: 20px"></div>
+      
+      <div class="t-container">
+        <h3>قائمة الأصناف</h3>
+        <table id="productsTable">
+          <thead>
+            <tr>
+              <th>الصنف</th>
+              <th>الكمية</th>
+              <th>السعر</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <a href="../index.html">🏠 عودة للرئيسية</a>
+      </div>
     </section>
-    </div>
 
     <script src="../js/data.js"></script>
     <script src="../js/products.js"></script>

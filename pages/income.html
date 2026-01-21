@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <style>
       body {
-        font-family: Arial;
+        font-family: Arial, sans-serif;
         background: #f4f6f8;
         margin: 0;
       }
@@ -21,15 +21,25 @@
         max-width: 900px;
         margin: 2rem auto;
         background: #fff;
+        color: #fff;
         padding: 1rem;
-        border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      }
+      .t-container {
+        display: flex;
+        flex-direction: column;
+        background-color: #198754;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        border-radius: 10px;
       }
       .form-row {
         display: flex;
         gap: 0.5rem;
         flex-wrap: wrap;
         margin-bottom: 1rem;
+        width: 100%;
       }
       .form-row input,
       .form-row select,
@@ -48,6 +58,13 @@
         cursor: pointer;
         border-radius: 4px;
       }
+
+      /* السكرول الأفقي على الجدول فقط */
+      .table-scroll {
+        overflow-x: auto;
+        width: 100%;
+      }
+
       table {
         width: 100%;
         border-collapse: collapse;
@@ -82,27 +99,35 @@
     </header>
 
     <section>
-      <h3>إضافة سند قبض</h3>
-      <div class="form-row">
-        <input type="text" id="incomeTitle" placeholder="البيان" />
-        <input type="number" id="incomeAmount" placeholder="المبلغ" min="0" />
-        <select id="incomeCustomer"></select>
-        <button id="addIncomeBtn">إضافة</button>
-      </div>
+      <div class="t-container">
+        <h3>إضافة سند قبض</h3>
+        <div class="form-row">
+          <input type="text" id="incomeTitle" placeholder="البيان" />
+          <input type="number" id="incomeAmount" placeholder="المبلغ" min="0" />
+          <select id="incomeCustomer"></select>
+          <button id="addIncomeBtn">إضافة</button>
+        </div>
+        </div>
 
-      <h3>سجل المقبوضات</h3>
-      <table id="incomeTable">
-        <thead>
-          <tr>
-            <th>البيان</th>
-            <th>المبلغ</th>
-            <th>العميل</th>
-            <th>التاريخ</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <a href="../index.html">🏠 عودة للرئيسية</a>
+        <div style="height: 20px"></div>
+        <div class="t-container">
+        <h3>سجل المقبوضات</h3>
+        <div class="table-scroll">
+          <table id="incomeTable">
+            <thead>
+              <tr>
+                <th>البيان</th>
+                <th>المبلغ</th>
+                <th>العميل</th>
+                <th>التاريخ</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <a href="../index.html">🏠 عودة للرئيسية</a>
+      </div>
     </section>
 
     <script src="../js/data.js"></script>

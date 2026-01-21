@@ -8,65 +8,87 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background: #f9f9f9;
+        background: #f4f6f8;
         margin: 0;
-        padding: 0;
       }
+
       header {
-        padding: 1rem;
+        background: #198754;
         color: #fff;
         text-align: center;
-        background: #198754;
+        padding: 1rem;
       }
+
       section {
         max-width: 900px;
         margin: 2rem auto;
         background: #fff;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: #fff;
+        padding: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       }
+
+      /* نفس container المستخدم في المقبوضات */
+      .t-container {
+        display: flex;
+        flex-direction: column;
+        background-color: #198754;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        border-radius: 10px;
+      }
+
       .form-row {
         display: flex;
-        flex-wrap: wrap;
         gap: 0.5rem;
+        flex-wrap: wrap;
         margin-bottom: 1rem;
+        width: 100%;
       }
+
+      .form-row input,
+      .form-row select,
+      .form-row button {
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+
       .form-row input,
       .form-row select {
         flex: 1;
-        padding: 0.5rem;
-        font-size: 1rem;
-        border-radius: 5px;
-        border: 1px solid #ccc;
       }
+
       .form-row button {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
         background: #2e86c1;
         color: #fff;
         border: none;
-        border-radius: 5px;
         cursor: pointer;
-        transition: 0.3s;
+        border-radius: 4px;
       }
-      .form-row button:hover {
-        background: #d32f2f;
+
+      /* سكرول أفقي للجدول فقط */
+      .table-scroll {
+        overflow-x: auto;
+        width: 100%;
       }
+
       table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 1rem;
       }
-      table th,
-      table td {
-        padding: 0.5rem;
-        text-align: center;
-        border: 1px solid #ccc;
-      }
-      table th {
+
+      th {
         background: #2e86c1;
         color: #fff;
+        padding: 0.6rem;
+      }
+
+      td {
+        text-align: center;
+        padding: 0.6rem;
+        border-bottom: 1px solid #e0e0e0;
       }
 
       a {
@@ -81,21 +103,31 @@
       }
     </style>
   </head>
+
   <body>
     <header>
       <h1>💸 المصروفات</h1>
     </header>
 
     <section>
-      <h3>إضافة سند دفع</h3>
-      <div class="form-row">
-        <input type="text" id="expenseTitle" placeholder="البيان" />
-        <input type="number" id="expenseAmount" placeholder="المبلغ" min="0" />
-        <select id="expenseCustomer"></select>
-        <button id="addExpenseBtn">إضافة</button>
-      </div>
+  <!-- صندوق إضافة سند الدفع -->
+  <div class="t-container">
+    <h3>إضافة سند دفع</h3>
+    <div class="form-row">
+      <input type="text" id="expenseTitle" placeholder="البيان" />
+      <input type="number" id="expenseAmount" placeholder="المبلغ" min="0" />
+      <select id="expenseCustomer"></select>
+      <button id="addExpenseBtn">إضافة</button>
+    </div>
+  </div>
 
-      <h3>سجل المصروفات</h3>
+  <!-- مسافة بين الصناديق -->
+  <div style="height: 20px;"></div> 
+
+  <!-- صندوق سجل المصروفات -->
+  <div class="t-container">
+    <h3>سجل المصروفات</h3>
+    <div class="table-scroll">
       <table id="expenseTable">
         <thead>
           <tr>
@@ -107,9 +139,11 @@
         </thead>
         <tbody></tbody>
       </table>
+    </div>
+    <a href="../index.html">🏠 عودة للرئيسية</a>
+  </div>
+</section>
 
-      <a href="../index.html">🏠 عودة للرئيسية</a>
-    </section>
 
     <script src="../js/data.js"></script>
     <script src="../js/expenses.js"></script>
