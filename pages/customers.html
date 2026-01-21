@@ -29,25 +29,11 @@
         content: "";
       }
 
-      /* الهيدر */
-      header {
-        font-family: "Cairo", sans-serif;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-      }
-
-      /* العناوين */
       h1,
       h2,
       h3 {
         font-family: "Cairo", sans-serif;
         font-weight: 700;
-      }
-
-      /* كروت الأقسام */
-      .card {
-        font-family: "Tajawal", sans-serif;
-        font-weight: 500;
       }
 
       section {
@@ -103,17 +89,9 @@
         border-radius: 5px;
       }
 
-      /* ===== جدول ===== */
-      .table-container {
-        width: 100%;
-        padding: 10px;
-        background-color: #fff;
-        border-radius: 8px;
-        overflow-x: auto;
-      }
-
       table {
         width: 100%;
+        background-color: #fff;
         border-collapse: collapse;
       }
 
@@ -130,7 +108,6 @@
         border-bottom: 1px solid #e0e0e0;
       }
 
-      /* ===== زر الرجوع ===== */
       .back-btn {
         display: inline-flex;
         justify-content: center;
@@ -165,22 +142,17 @@
         </div>
       </div>
 
-      <!-- قائمة العملاء -->
       <div class="t-container">
         <h3>قائمة العملاء</h3>
-
-        <div class="table-container">
-          <table id="customersTable">
-            <thead>
-              <tr>
-                <th>العميل</th>
-                <th>الرصيد الحالي</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-
+        <table id="customersTable">
+          <thead>
+            <tr>
+              <th>العميل</th>
+              <th>الرصيد الحالي</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
         <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
       </div>
     </section>
