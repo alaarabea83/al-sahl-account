@@ -3,22 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
     <title>فواتير المشتريات</title>
     <link rel="stylesheet" href="css/style.css" />
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Tajawal", Arial, sans-serif;
         background: #f4f6f8;
         margin: 0;
       }
       header {
-        background: #198754;
-        color: #fff;
+        background: #ffc107;
         text-align: center;
         padding: 1px;
       }
       header h1::before {
         content: "";
+      }
+
+      /* الهيدر */
+      header {
+        font-family: "Cairo", sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      /* العناوين */
+      h1,
+      h2,
+      h3 {
+        font-family: "Cairo", sans-serif;
+        font-weight: 700;
+      }
+
+      /* كروت الأقسام */
+      .card {
+        font-family: "Tajawal", sans-serif;
+        font-weight: 500;
       }
       section {
         max-width: 900px;
@@ -56,7 +83,7 @@
       .t-container {
         display: flex;
         flex-direction: column;
-        background-color: #198754;
+        background-color: #ffc107;
         justify-content: center;
         align-items: center;
         padding: 15px;
@@ -73,6 +100,7 @@
         width: 100%;
         border-collapse: collapse;
         margin-top: 1rem;
+        background-color: #fff;
       }
       th {
         background: #2e86c1;
@@ -81,6 +109,7 @@
       }
       td {
         text-align: center;
+        color: black;
         padding: 0.6rem;
         border-bottom: 1px solid #e0e0e0;
       }
@@ -109,13 +138,23 @@
           <select id="purchaseCustomer"></select>
           <select id="purchaseProduct"></select>
           <input type="number" id="purchaseQty" placeholder="الكمية" min="0" />
-          <input type="number" id="purchasePrice" placeholder="سعر الوحدة" min="0" />
-          <input type="number" id="purchasePaid" placeholder="المدفوع" min="0" />
-          <button id="savePurchaseBtn">حفظ</button>
+          <input
+            type="number"
+            id="purchasePrice"
+            placeholder="سعر الوحدة"
+            min="0"
+          />
+          <input
+            type="number"
+            id="purchasePaid"
+            placeholder="المدفوع"
+            min="0"
+          />
+          <button id="savePurchaseBtn">حفظ الفاتورة</button>
         </div>
-        </div>
-<div style="height: 20px"></div>
-        <div class="t-container">
+      </div>
+      <div style="height: 20px"></div>
+      <div class="t-container">
         <h3>المشتريات السابقة</h3>
         <div class="table-scroll">
           <table id="purchasesTable">

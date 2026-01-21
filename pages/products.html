@@ -3,22 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
     <title>المنتجات</title>
     <link rel="stylesheet" href="css/style.css" />
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Tajawal", Arial, sans-serif;
         background: #f4f6f8;
         margin: 0;
       }
       header {
-        background: #198754;
-        color: #fff;
+        background: #ffc107;
         text-align: center;
         padding: 1px;
       }
       header h1::before {
         content: "";
+      }
+
+      /* الهيدر */
+      header {
+        font-family: "Cairo", sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      /* العناوين */
+      h1,
+      h2,
+      h3 {
+        font-family: "Cairo", sans-serif;
+        font-weight: 700;
+      }
+
+      /* كروت الأقسام */
+      .card {
+        font-family: "Tajawal", sans-serif;
+        font-weight: 500;
       }
       section {
         max-width: 900px;
@@ -53,12 +80,21 @@
       .t-container {
         display: flex;
         flex-direction: column;
-        background-color: #198754;
+        background-color: #ffc107;
         justify-content: center;
         align-items: center;
         padding: 15px;
         border-radius: 10px;
       }
+
+      .table-container {
+        width: 100%;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+
       table {
         width: 100%;
         border-collapse: collapse;
@@ -70,6 +106,7 @@
       }
       td {
         text-align: center;
+        color: black;
         padding: 0.6rem;
         border-bottom: 1px solid #e0e0e0;
       }
@@ -88,34 +125,36 @@
   </head>
   <body>
     <header>
-      <h1>الأصناف</h1>
+      <h1>المنتجات</h1>
     </header>
 
     <section>
       <div class="t-container">
-        <h3>إضافة صنف جديد</h3>
+        <h3>إضافة منتج جديد</h3>
         <div class="form-row">
-          <input type="text" id="productName" placeholder="اسم الصنف" />
-          <input type="number" id="productPrice" placeholder="سعر الصنف" />
+          <input type="text" id="productName" placeholder="اسم المنتج" />
+          <input type="number" id="productPrice" placeholder="سعر المنتج" />
           <input type="number" id="productQty" placeholder="الكمية" />
           <button id="addProductBtn">إضافة</button>
         </div>
       </div>
 
       <div style="height: 20px"></div>
-      
+
       <div class="t-container">
-        <h3>قائمة الأصناف</h3>
-        <table id="productsTable">
-          <thead>
-            <tr>
-              <th>الصنف</th>
-              <th>الكمية</th>
-              <th>السعر</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+        <h3>قائمة المنتجات</h3>
+        <div class="table-container">
+          <table id="productsTable">
+            <thead>
+              <tr>
+                <th>المنتج</th>
+                <th>الكمية</th>
+                <th>السعر</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
         <a href="../index.html">🏠 عودة للرئيسية</a>
       </div>
     </section>
