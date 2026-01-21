@@ -3,31 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
     <title>سهل لإدارة الحسابات</title>
     <link rel="stylesheet" href="css/style.css" />
     <style>
       body {
-        font-family: Arial;
+        font-family: "Tajawal", Arial, sans-serif;
         background: #f4f6f8;
         margin: 0;
       }
+
       header {
         background: #ffc107;
         color: #fff;
         text-align: center;
         padding: 1rem;
       }
+      /* الهيدر */
+header {
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* العناوين */
+h1,
+h2,
+h3 {
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+}
+
+/* كروت الأقسام */
+.card {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 500;
+}
+
       section {
         max-width: 900px;
         margin: 2rem auto;
         display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
-        padding: 20px;
+        padding: 0 20px;
       }
+
       .card {
         background: #fff;
         padding: 1.5rem;
-        border-radius: 8px;
+        border-radius: 12px;
         text-align: center;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         font-size: 1.2rem;
@@ -35,9 +66,26 @@
         transition: 0.3s;
         text-decoration: none;
         color: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
+
+      .card img {
+        width: 60px; /* حجم الصورة */
+        height: 60px;
+        margin-bottom: 0.8rem;
+      }
+
       .card:hover {
         background: #ffd54f;
+      }
+
+      /* Responsive - يبقى كرتين على الموبايل برضه */
+      @media (max-width: 600px) {
+        section {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
     </style>
   </head>
@@ -47,13 +95,34 @@
     </header>
 
     <section>
-      <a class="card" href="pages/customers.html">👥 العملاء</a>
-      <a class="card" href="pages/products.html">📦 المنتجات</a>
-      <a class="card" href="pages/sales.html">🧾 المبيعات</a>
-      <a class="card" href="pages/purchases.html">🛒 المشتريات</a>
-      <a class="card" href="pages/income.html">💰 المقبوضات</a>
-      <a class="card" href="pages/expenses.html">💸 المصروفات</a>
-      <a class="card" href="pages/cash.html">🏦 الخزينة</a>
+      <a class="card" href="pages/customers.html">
+        <img src="icons/customers.png" alt="العملاء" />
+        العملاء
+      </a>
+      <a class="card" href="pages/products.html">
+        <img src="icons/products.png" alt="المنتجات" />
+        المنتجات
+      </a>
+      <a class="card" href="pages/sales.html">
+        <img src="icons/sales.png" alt="المبيعات" />
+        المبيعات
+      </a>
+      <a class="card" href="pages/purchases.html">
+        <img src="icons/purchases.png" alt="المشتريات" />
+        المشتريات
+      </a>
+      <a class="card" href="pages/income.html">
+        <img src="icons/income.png" alt="المقبوضات" />
+        المقبوضات
+      </a>
+      <a class="card" href="pages/expenses.html">
+        <img src="icons/expenses.png" alt="المدفوعات" />
+        المدفوعات
+      </a>
+      <a class="card" href="pages/cash.html">
+        <img src="icons/cash.png" alt="الخزينة" />
+        الخزينة
+      </a>
     </section>
   </body>
 </html>
