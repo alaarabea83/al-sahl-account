@@ -34,7 +34,11 @@ function savePurchase() {
   const customerIndex = document.getElementById("purchaseCustomer").value;
   const customer = customerIndex !== "" ? customers[customerIndex] : null;
 
-  if (!prod || qty <= 0 || price <= 0) return alert("اكمل البيانات");
+  // ✅ تحقق من البيانات
+  if (!prod || qty <= 0 || price <= 0) {
+    showModal("من فضلك أكمل جميع البيانات", "تنبيه");
+    return;
+  }
 
   // تحديث المخزون
   prod.qty += qty;
@@ -57,7 +61,7 @@ function savePurchase() {
   });
 
   // مسح القيم في الفورم
-  document.getElementById("purchaseQty").value = 1;
+  document.getElementById("purchaseQty").value = "";
   document.getElementById("purchasePrice").value = "";
   document.getElementById("purchasePaid").value = "";
   document.getElementById("purchaseCustomer").value = "";
@@ -65,6 +69,9 @@ function savePurchase() {
   saveData();
   renderProductSelect();
   renderPurchases();
+
+  // ✅ رسالة نجاح
+  showModal("تم حفظ الفاتورة بنجاح ✅", "نجاح");
 }
 
 // عرض المشتريات
@@ -77,4 +84,15 @@ function renderPurchases() {
     tr.innerHTML = `<td>${p.customer}</td><td>${p.product}</td><td>${p.qty}</td><td>${p.price}</td><td>${p.paid}</td><td>${p.remaining}</td><td>${p.date}</td>`;
     tbody.appendChild(tr);
   });
+}
+
+// ===== MODAL =====
+function showModal(message, title = "تنبيه") {
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalMessage").innerText = message;
+  document.getElementById("appModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("appModal").style.display = "none";
 }

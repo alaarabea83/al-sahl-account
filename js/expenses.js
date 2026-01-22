@@ -20,7 +20,11 @@ function addExpense() {
   const customerIndex = expenseCustomer.value;
   const customer = customerIndex !== "" ? customers[customerIndex] : null;
 
-  if (!title || !amount) return alert("اكمل البيانات");
+  if (!title || !amount) {
+  showModal("من فضلك أكمل جميع البيانات");
+  return;
+}
+
 
   // تعديل رصيد العميل و خزنة المصروفات
   if (customer) customer.balance += amount;
@@ -65,3 +69,15 @@ window.onload = function () {
   renderExpenses();
   renderCash();                 // تحديث الخزنة
 };
+
+// ===== MODAL FUNCTIONS =====
+function showModal(message, title = "تنبيه") {
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalMessage").innerText = message;
+  document.getElementById("appModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("appModal").style.display = "none";
+}
+

@@ -1,3 +1,4 @@
+// تحميل الصفحة
 window.onload = function () {
   loadData();
   renderCustomerSelect();
@@ -23,7 +24,7 @@ function addInvoiceItem() {
   container.innerHTML += `
     <div class="form-row">
       <select class="itemProduct">${products.map((p, i) => `<option value="${i}">${p.name}</option>`)}</select>
-      <input type="number" class="itemQty" placeholder="الكمية" min="1" value="1">
+      <input type="number" class="itemQty" placeholder="الكمية" min="1">
     </div>
   `;
 }
@@ -35,24 +36,46 @@ function saveSale() {
   const customerIndex = document.getElementById("invoiceCustomer").value;
   const customer = customerIndex !== "" ? customers[customerIndex] : null;
 
-  if (!container || !paidAmountEl) return;
-
-  let total = 0;
-  const paid = +paidAmountEl.value || 0;
+  // ✅ تحقق من العناصر
+  if (!container || !paidAmountEl) {
+    showModal("حدث خطأ في تحميل بيانات الفاتورة", "خطأ");
+    return;
+  }
 
   const itemProducts = container.querySelectorAll(".itemProduct");
   const itemQtys = container.querySelectorAll(".itemQty");
 
+  // ✅ تحقق من وجود منتجات
+  if (itemProducts.length === 0) {
+    showModal("من فضلك أضف منتج واحد على الأقل", "تنبيه");
+    return;
+  }
+
+  let total = 0;
+  const paid = +paidAmountEl.value || 0;
+
   itemProducts.forEach((sel, i) => {
     let qty = +itemQtys[i].value;
     const p = products[sel.value];
-    if (qty > p.qty) qty = p.qty;
+
+    // ✅ تحقق من كمية المنتج
+    if (qty <= 0) {
+      showModal(`كمية المنتج "${p.name}" يجب أن تكون أكبر من صفر`, "تنبيه");
+      return;
+    }
+
+    if (qty > p.qty) qty = p.qty; // الحد الأقصى حسب المخزون
     p.qty -= qty;
     total += qty * p.price;
   });
 
-  if (customer) customer.balance += total - paid;
+  // ✅ تحقق من المبلغ المدفوع
+  if (paid > total) {
+    showModal("المبلغ المدفوع أكبر من إجمالي الفاتورة", "تحذير");
+    return;
+  }
 
+  if (customer) customer.balance += total - paid;
   cash.income += paid;
 
   sales.push({
@@ -63,10 +86,15 @@ function saveSale() {
     date: new Date().toLocaleDateString(),
   });
 
+  // مسح الفورم
   container.innerHTML = "";
   paidAmountEl.value = "";
+
   saveData();
   renderSales();
+
+  // ✅ رسالة نجاح
+  showModal("تم حفظ الفاتورة بنجاح ✅", "نجاح");
 }
 
 // عرض الفواتير
@@ -79,4 +107,15 @@ function renderSales() {
     tr.innerHTML = `<td>${s.customer}</td><td>${s.total}</td><td>${s.paid}</td><td>${s.remaining}</td><td>${s.date}</td>`;
     tbody.appendChild(tr);
   });
+}
+
+// ===== MODAL =====
+function showModal(message, title = "تنبيه") {
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalMessage").innerText = message;
+  document.getElementById("appModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("appModal").style.display = "none";
 }

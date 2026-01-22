@@ -1,132 +1,119 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="icon" type="image/png" href="../icons/logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
 
-    <title>سهل لإدارة الحسابات</title>
-    <style>
-      body {
-        font-family: "Tajawal", Arial, sans-serif;
-        background: #f4f6f8;
-        margin: 0;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="../icons/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
+    rel="stylesheet" />
 
-      header {
-        background: #ffc107;
-        text-align: center;
-        padding: 1px;
-      }
+  <title>سهل لإدارة الحسابات</title>
+  <style>
+    body {
+      font-family: "Tajawal", Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
 
-      header h1::before {
-        content: "";
-      }
+    header {
+      background: #ffc107;
+      text-align: center;
+      padding: 1px;
+    }
 
-      h1,
-      h2,
-      h3 {
-        font-family: "Cairo", sans-serif;
-        font-weight: 700;
-      }
+    header h1::before {
+      content: "";
+    }
 
-      section {
-        max-width: 900px;
-        margin: 0 auto;
-        background: #fff;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
+    h1,
+    h2,
+    h3 {
+      font-family: "Cairo", sans-serif;
+      font-weight: 700;
+    }
 
-      .t-container {
-        display: flex;
-        flex-direction: column;
-        background-color: #ffc107;
-        justify-content: center;
-        color: #fff;
-        align-items: center;
-        padding: 15px;
-        border-radius: 10px;
-      }
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-      .t-container h3 {
-        color: black;
-        margin-bottom: 1rem;
-      }
+    .t-container {
+      display: flex;
+      flex-direction: column;
+      background-color: #ffc107;
+      justify-content: center;
+      color: #fff;
+      align-items: center;
+      padding: 15px;
+      border-radius: 10px;
+    }
 
-      .form-row {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        width: 100%;
-        justify-content: center;
-      }
+    .t-container h3 {
+      color: black;
+      margin-bottom: 1rem;
+    }
 
-      .form-row input {
-        flex: 1;
-        min-width: 180px;
-        padding: 0.5rem;
-        font-size: 1rem;
-        border-radius: 5px;
-        border: none;
-      }
+    .form-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
 
-      .form-row button {
-        padding: 0.5rem 1.2rem;
-        font-size: 1rem;
-        background: #2e86c1;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-      }
+    .form-row input {
+      flex: 1;
+      min-width: 180px;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+    }
 
-      table {
-        width: 100%;
-        background-color: #fff;
-        border-collapse: collapse;
-      }
+    .form-row button {
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      background: #2e86c1;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 
-      th {
-        background: #2e86c1;
-        color: #fff;
-        padding: 0.6rem;
-      }
+    table {
+      width: 100%;
+      background-color: #fff;
+      border-collapse: collapse;
+    }
 
-      td {
-        text-align: center;
-        padding: 0.6rem;
-        color: black;
-        border-bottom: 1px solid #e0e0e0;
-      }
+    th {
+      background: #2e86c1;
+      color: #fff;
+      padding: 0.6rem;
+    }
 
-      .back-btn {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px 25px;
-        border-radius: 15px;
-        text-decoration: none;
-        color: #fff;
-        margin-top: 20px;
-        background-color: #0d6efd;
-      }
-    </style>
-  </head>
+    td {
+      text-align: center;
+      padding: 0.6rem;
+      color: black;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  </style>
+</head>
 
-  <body>
-    <header>
-      <h3>العملاء</h3>
-      <nav class="breadcrumbs">
+<body>
+  <header>
+    <h3>العملاء</h3>
+    <nav class="breadcrumbs">
       <a href="../index.html" class="home">الرئيسية</a>
       <span class="separator">›</span>
       <span class="current">العملاء</span>
@@ -142,39 +129,46 @@
       <a href="../pages/expenses.html" class="home">المدفوعات</a>
       <span class="separator">›</span>
       <a href="../pages/cash.html" class="home">الخزينة</a>
-    </header>
+  </header>
 
-    <section>
-      <!-- إضافة عميل -->
-      <div class="t-container">
-        <h3>إضافة عميل جديد</h3>
-        <div class="form-row">
-          <input type="text" id="customerName" placeholder="اسم العميل" />
-          <input
-            type="number"
-            id="openingBalance"
-            placeholder="الرصيد الافتتاحي"
-          />
-          <button id="addCustomerBtn">إضافة</button>
-        </div>
+  <section>
+    <!-- إضافة عميل -->
+    <div class="t-container">
+      <h3>إضافة عميل جديد</h3>
+      <div class="form-row">
+        <input type="text" id="customerName" placeholder="اسم العميل" />
+        <input type="number" id="openingBalance" placeholder="الرصيد الافتتاحي" />
+        <button id="addCustomerBtn">إضافة</button>
       </div>
+    </div>
 
-      <div class="t-container">
-        <h3>قائمة العملاء</h3>
-        <table id="customersTable">
-          <thead>
-            <tr>
-              <th>العميل</th>
-              <th>الرصيد الحالي</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-        <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
-      </div>
-    </section>
+    <div class="t-container">
+      <h3>قائمة العملاء</h3>
+      <table id="customersTable">
+        <thead>
+          <tr>
+            <th>العميل</th>
+            <th>الرصيد الحالي</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
+    </div>
+  </section>
 
-    <script src="../js/data.js"></script>
-    <script src="../js/customers.js"></script>
-  </body>
+  <!-- Modal -->
+  <div id="appModal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 id="modalTitle">تنبيه</h3>
+      <p id="modalMessage"></p>
+      <button onclick="closeModal()">حسناً</button>
+    </div>
+  </div>
+
+
+  <script src="../js/data.js"></script>
+  <script src="../js/customers.js"></script>
+</body>
+
 </html>

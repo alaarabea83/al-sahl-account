@@ -20,7 +20,10 @@ function addIncome() {
   const customerIndex = document.getElementById("incomeCustomer").value;
   const customer = customerIndex !== "" ? customers[customerIndex] : null;
 
-  if (!title || !amount) return alert("اكمل البيانات");
+  if (!title || !amount) {
+  showModal("من فضلك أكمل جميع البيانات");
+  return;
+}
 
   if (customer) customer.balance -= amount; // العميل دفع للخزنة
   cash.income += amount; // تحديث الخزنة
@@ -49,4 +52,14 @@ function renderIncome() {
     tr.innerHTML = `<td>${i.title}</td><td>${i.amount}</td><td>${i.customer}</td><td>${i.date}</td>`;
     tbody.appendChild(tr);
   });
+}
+
+function showModal(message, title = "تنبيه") {
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalMessage").innerText = message;
+  document.getElementById("appModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("appModal").style.display = "none";
 }

@@ -11,7 +11,10 @@ function addProductHandler() {
   const price = +document.getElementById("productPrice").value;
   const qty = +document.getElementById("productQty").value;
 
-  if (!name) return alert("ادخل اسم المنتج");
+  if (!name) {
+    showModal("من فضلك أدخل اسم المنتج");
+    return;
+  }
   products.push({ name, price, qty });
 
   document.getElementById("productName").value = "";
@@ -31,4 +34,14 @@ function renderProducts() {
     tr.innerHTML = `<td>${p.name}</td><td>${p.qty}</td><td>${p.price.toFixed(2)}</td>`;
     tbody.appendChild(tr);
   });
+}
+
+function showModal(message, title = "تنبيه") {
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalMessage").innerText = message;
+  document.getElementById("appModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("appModal").style.display = "none";
 }

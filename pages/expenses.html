@@ -1,123 +1,122 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="icon" type="image/png" href="../icons/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
 
-    <title>سهل لإدارة الحسابات</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <style>
-      body {
-        font-family: "Tajawal", Arial, sans-serif;
-        background: #f4f6f8;
-        margin: 0;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="../icons/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
+    rel="stylesheet" />
 
-      header {
-        background: #ffc107;
-        text-align: center;
-        padding: 1px;
-      }
+  <title>سهل لإدارة الحسابات</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    body {
+      font-family: "Tajawal", Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
 
-      h1,
-      h2,
-      h3 {
-        font-family: "Cairo", sans-serif;
-        font-weight: 700;
-        color: black;
-      }
+    header {
+      background: #ffc107;
+      text-align: center;
+      padding: 1px;
+    }
 
-      section {
-        max-width: 900px;
-        margin: 0 auto;
-        background: #fff;
-        color: #fff;
-        padding: 1rem;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      }
+    h1,
+    h2,
+    h3 {
+      font-family: "Cairo", sans-serif;
+      font-weight: 700;
+      color: black;
+    }
 
-      .t-container {
-        display: flex;
-        flex-direction: column;
-        background-color: #ffc107;
-        justify-content: center;
-        align-items: center;
-        padding: 15px;
-        border-radius: 10px;
-      }
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      color: #fff;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
 
-      .form-row {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        width: 100%;
-        justify-content: center;
-      }
+    .t-container {
+      display: flex;
+      flex-direction: column;
+      background-color: #ffc107;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      border-radius: 10px;
+    }
 
-      .form-row select,
-      .form-row button {
-        padding: 0.5rem;
-        font-size: 1rem;
-      }
+    .form-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
 
-      .form-row input {
-        flex: 1;
-        min-width: 180px;
-        padding: 0.5rem;
-        font-size: 1rem;
-        border-radius: 5px;
-        border: none;
-      }
+    .form-row select,
+    .form-row button {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
 
-      .form-row button {
-        padding: 0.5rem 1.2rem;
-        font-size: 1rem;
-        background: #2e86c1;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-      }
+    .form-row input {
+      flex: 1;
+      min-width: 180px;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+    }
 
-      .table-scroll {
-        overflow-x: auto;
-        width: 100%;
-      }
+    .form-row button {
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      background: #2e86c1;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 
-      table {
-        width: 100%;
-        background-color: #fff;
-        border-collapse: collapse;
-        margin-top: 1rem;
-      }
+    .table-scroll {
+      overflow-x: auto;
+      width: 100%;
+    }
 
-      th {
-        background: #2e86c1;
-        color: #fff;
-        padding: 0.6rem;
-      }
+    table {
+      width: 100%;
+      background-color: #fff;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
 
-      td {
-        text-align: center;
-        color: black;
-        padding: 0.6rem;
-        border-bottom: 1px solid #e0e0e0;
-      }
-    </style>
-  </head>
+    th {
+      background: #2e86c1;
+      color: #fff;
+      padding: 0.6rem;
+    }
 
-  <body>
-    <header>
-      <h3>المدفوعات</h3>
-      <nav class="breadcrumbs">
+    td {
+      text-align: center;
+      color: black;
+      padding: 0.6rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h3>المدفوعات</h3>
+    <nav class="breadcrumbs">
       <a href="../index.html" class="home">الرئيسية</a>
       <span class="separator">›</span>
       <a href="../pages/products.html" class="home">العملاء</a>
@@ -133,49 +132,55 @@
       <span class="current">المدفوعات</span>
       <span class="separator">›</span>
       <a href="../pages/cash.html" class="home">الخزينة</a>
-    </header>
+  </header>
 
-    <section>
-      <!-- صندوق إضافة سند الدفع -->
-      <div class="t-container">
-        <h3>إضافة سند دفع</h3>
-        <div class="form-row">
-          <input type="text" id="expenseTitle" placeholder="البيان" />
-          <input
-            type="number"
-            id="expenseAmount"
-            placeholder="المبلغ"
-            min="0"
-          />
-          <select id="expenseCustomer"></select>
-          <button id="addExpenseBtn">إضافة</button>
-        </div>
+  <section>
+    <!-- صندوق إضافة سند الدفع -->
+    <div class="t-container">
+      <h3>إضافة سند دفع</h3>
+      <div class="form-row">
+        <input type="text" id="expenseTitle" placeholder="البيان" />
+        <input type="number" id="expenseAmount" placeholder="المبلغ" min="0" />
+        <select id="expenseCustomer"></select>
+        <button id="addExpenseBtn">إضافة</button>
       </div>
+    </div>
 
-      <!-- مسافة بين الصناديق -->
-      <div style="height: 20px"></div>
+    <!-- مسافة بين الصناديق -->
+    <div style="height: 20px"></div>
 
-      <!-- صندوق سجل المصروفات -->
-      <div class="t-container">
-        <h3>سجل المدفوعات</h3>
-        <div class="table-scroll">
-          <table id="expenseTable">
-            <thead>
-              <tr>
-                <th>البيان</th>
-                <th>المبلغ</th>
-                <th>العميل</th>
-                <th>التاريخ</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-        <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
+    <!-- صندوق سجل المصروفات -->
+    <div class="t-container">
+      <h3>سجل المدفوعات</h3>
+      <div class="table-scroll">
+        <table id="expenseTable">
+          <thead>
+            <tr>
+              <th>البيان</th>
+              <th>المبلغ</th>
+              <th>العميل</th>
+              <th>التاريخ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
-    </section>
+      <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
+    </div>
+  </section>
 
-    <script src="../js/data.js"></script>
-    <script src="../js/expenses.js"></script>
-  </body>
+  <!-- Modal -->
+  <!-- Modal -->
+  <div id="appModal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 id="modalTitle">تنبيه</h3>
+      <p id="modalMessage"></p>
+      <button onclick="closeModal()">حسناً</button>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/expenses.js"></script>
+</body>
+
 </html>
