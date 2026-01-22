@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -110,22 +111,19 @@
         padding: 0.6rem;
         border-bottom: 1px solid #e0e0e0;
       }
-
-      a {
-        display: block;
-        text-align: center;
-        padding: 10px;
-        border-radius: 15px;
-        text-decoration: none;
-        color: #fff;
-        margin-top: 25px;
-        background-color: #0d6efd;
-      }
     </style>
   </head>
   <body>
     <header>
       <h2>المنتجات</h2>
+      <nav class="breadcrumbs">
+      <a href="../index.html" class="home">الرئيسية</a>
+      <a href="../pages/customers.html" class="home">العملاء</a>
+      <a href="../pages/sales.html" class="home">المبيعات</a>
+      <a href="../pages/purchases.html" class="home"> المشتريات</a>
+      <a href="../pages/income.html" class="home">المقبوضات</a>
+      <a href="../pages/expenses.html" class="home">المدفوعات</a>
+      <a href="../pages/cash.html" class="home">الخزينة</a>
     </header>
 
     <section>
@@ -153,7 +151,7 @@
             </thead>
             <tbody></tbody>
           </table>
-        <a href="../index.html">🏠 عودة للرئيسية</a>
+        <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
       </div>
     </section>
 

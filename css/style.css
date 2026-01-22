@@ -1,31 +1,56 @@
 .breadcrumbs {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  background: #e9f5ee;
-  padding: 10px 15px;
-  margin: 10px auto;
   max-width: 900px;
-  border-radius: 8px;
-  font-size: 0.9rem;
+  margin: 1rem auto;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Tajawal", sans-serif;
+  font-size: 0.95rem;
+  overflow-x: scroll;
+  scrollbar-width: none;
 }
 
 .breadcrumbs a {
-  color: #198754;
+  color: green;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .breadcrumbs a:hover {
   text-decoration: underline;
 }
 
-.breadcrumbs span {
-  color: #555;
+.breadcrumbs .separator {
+  color: #aaa;
+  font-size: 1.1rem;
 }
 
-.breadcrumbs .active {
-  color: #0d6efd;
-  font-weight: bold;
+.breadcrumbs .current {
+  color: #555;
+  font-weight: 600;
+}
+
+/* موبايل */
+@media (max-width: 600px) {
+  .breadcrumbs {
+    font-size: 0.9rem;
+    margin: 0.8rem;
+  }
+}
+
+.back-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 25px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: #fff;
+  margin-top: 20px;
+  background-color: #0d6efd;
 }
