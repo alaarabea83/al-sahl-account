@@ -112,7 +112,6 @@
     transform: scale(0.8);
     opacity: 0;
   }
-
   to {
     transform: scale(1);
     opacity: 1;
@@ -126,21 +125,16 @@
   min-width: 120px;
   border: none;
   border-radius: 4px;
-  background-color: #dc3545;
-  /* يمكن تغييره حسب التصميم */
-  color: #fff;
-  /* لون النص */
-  appearance: none;
-  /* لإزالة شكل المتصفح الافتراضي إذا لزم */
+  background-color: #fff; /* يمكن تغييره حسب التصميم */
+  color: #000; /* لون النص */
+  appearance: none; /* لإزالة شكل المتصفح الافتراضي إذا لزم */
 }
 
 .filters input[type="date"]::placeholder {
-  color: #888;
-  /* لون النص الظاهر لو فيه placeholder */
+  color: #888; /* لون النص الظاهر لو فيه placeholder */
 }
 
 @media (max-width: 768px) {
-
   .filters input[type="date"],
   .filters select {
     min-width: 100px;

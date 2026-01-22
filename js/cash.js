@@ -70,7 +70,7 @@ function renderCashStatement() {
     tfoot = document.createElement("tfoot");
     tbody.parentElement.appendChild(tfoot);
   }
-  tfoot.innerHTML = `<tr style="background-color:#607d8b;font-weight:bold;">
+  tfoot.innerHTML = `<tr style="background-color:#2196f3;font-weight:bold;">
     <td colspan="5" style="text-align:right;">الرصيد الختامي</td>
     <td>${cumulativeBalance.toFixed(2)}</td>
   </tr>`;
