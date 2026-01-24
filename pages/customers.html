@@ -110,11 +110,14 @@
       }
 
       .actions button {
-        flex: 1 1 auto; /* يسمح للزر بالتوسع قليلًا عند الحاجة */
-        min-width: 45px; /* يمنع الزر من أن يكون صغير جدًا */
+        flex: 1 1 auto;
+        /* يسمح للزر بالتوسع قليلًا عند الحاجة */
+        min-width: 45px;
+        /* يمنع الزر من أن يكون صغير جدًا */
         padding: 6px 10px;
         font-size: 13px;
-        margin-bottom: 3px; /* مسافة صغيرة بين الصفوف لو wrap */
+        margin-bottom: 3px;
+        /* مسافة صغيرة بين الصفوف لو wrap */
       }
 
       .btn-edit {
@@ -151,7 +154,7 @@
         width: 600px;
         max-width: 95%;
         max-height: 80vh;
-        overflow: auto;
+        overflow-y: auto;
         scrollbar-width: none;
         padding: 20px;
         display: flex;
@@ -159,8 +162,33 @@
       }
 
       #statementModal .modal-actions button {
-        flex: 0; /* يمنع الزر من التمدد */
+        flex: 0;
+        /* يمنع الزر من التمدد */
         padding: 10px 25px;
+      }
+
+      /* حاوية جدول كشف الحساب */
+      .statement-table-wrapper {
+        max-height: 400px;
+        /* ارتفاع ثابت مع السكروول العمودي */
+        overflow: auto;
+        /* تفعيل السكروول على المحورين */
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+
+      /* تظل عناوين الأعمدة ثابتة إذا حبيت */
+      .statement-table-wrapper table {
+        border-collapse: collapse;
+        min-width: 600px;
+        /* يضمن وجود سكروول أفقي لو الجدول واسع */
+      }
+
+      .statement-table-wrapper th,
+      .statement-table-wrapper td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
       }
 
       .modal-card {
