@@ -107,11 +107,6 @@ function saveSale() {
       return;
     }
 
-    if (qty > product.qty) {
-      showModal(`الكمية غير متاحة للمنتج ${product.name}`);
-      return;
-    }
-
     // خصم المخزون
     product.qty -= qty;
 
