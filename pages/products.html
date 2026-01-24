@@ -120,21 +120,22 @@
       .actions {
         display: flex;
         flex-wrap: wrap; /* تخلي الأزرار تنزل سطر ثاني لو ضيق المكان */
-        gap: 5px; /* مسافة بين الأزرار */
+        gap: 1px; /* مسافة بين الأزرار */
         justify-content: center; /* تخلي الأزرار في الوسط */
       }
 
       /* الأزرار داخل container - للكمبيوتر */
       .actions .btn {
-        min-width: 45px; /* يمنع الزر من أن يكون ضيق جدًا */
+        min-width: 25px; /* يمنع الزر من أن يكون ضيق جدًا */
         margin-bottom: 3px; /* مسافة صغيرة بين الصفوف لو wrap */
         flex: unset; /* على الكمبيوتر لا يمتد */
+        border-radius: 8px;
       }
 
       /* للشاشات الصغيرة (موبايل) */
       @media (max-width: 600px) {
         .actions .btn {
-          flex: 1 1 auto; /* يسمح للزر بالتوسع قليلاً على الموبايل */
+          flex: 0 0 auto; /* يسمح للزر بالتوسع قليلاً على الموبايل */
         }
       }
 
