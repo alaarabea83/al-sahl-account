@@ -1,11 +1,9 @@
-// ربط العناصر
 const expenseTitle = document.getElementById("expenseTitle");
 const expenseAmount = document.getElementById("expenseAmount");
 const expenseCustomer = document.getElementById("expenseCustomer");
 const addExpenseBtn = document.getElementById("addExpenseBtn");
 const expenseTableBody = document.querySelector("#expenseTable tbody");
 
-// تحميل قائمة العملاء في select
 function renderExpenseCustomerSelect() {
   const opts =
     `<option value="">نقدي بدون عميل</option>` +
@@ -13,7 +11,6 @@ function renderExpenseCustomerSelect() {
   expenseCustomer.innerHTML = opts;
 }
 
-// إضافة مصروف
 function addExpense() {
   const title = expenseTitle.value.trim();
   const amount = +expenseAmount.value;
@@ -21,37 +18,38 @@ function addExpense() {
   const customer = customerIndex !== "" ? customers[customerIndex] : null;
 
   if (!title || !amount) {
-  showModal("من فضلك أكمل جميع البيانات");
-  return;
-}
+    showModal("من فضلك أكمل جميع البيانات");
+    return;
+  }
 
-
-  // تعديل رصيد العميل و خزنة المصروفات
   if (customer) customer.balance += amount;
   cash.expenses += amount;
+
+  const newOrder = sales.length + purchases.length + incomes.length + expenses.length + 1;
 
   expenses.push({
     title,
     amount,
     customer: customer ? customer.name : "نقدي",
     date: new Date().toLocaleDateString(),
+    order: newOrder
   });
 
-  // مسح الحقول
   expenseTitle.value = "";
   expenseAmount.value = "";
   expenseCustomer.value = "";
 
-  // تحديث العرض والبيانات
   saveData();
   renderExpenses();
   renderCash();
   renderExpenseCustomerSelect();
 }
 
-// عرض المصروفات
 function renderExpenses() {
   expenseTableBody.innerHTML = "";
+
+  expenses.sort((a, b) => (a.order || 0) - (b.order || 0));
+
   expenses.forEach((e) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `<td>${e.title}</td><td>${e.amount.toFixed(2)}</td><td>${e.customer}</td><td>${e.date}</td>`;
@@ -59,18 +57,15 @@ function renderExpenses() {
   });
 }
 
-// حدث الضغط على زر الإضافة
 addExpenseBtn.addEventListener("click", addExpense);
 
-// عند تحميل الصفحة
 window.onload = function () {
-  loadData();                   // تحميل البيانات من localStorage
+  loadData();
   renderExpenseCustomerSelect();
   renderExpenses();
-  renderCash();                 // تحديث الخزنة
-};
+  renderCash();
+}
 
-// ===== MODAL FUNCTIONS =====
 function showModal(message, title = "تنبيه") {
   document.getElementById("modalTitle").innerText = title;
   document.getElementById("modalMessage").innerText = message;
@@ -80,4 +75,3 @@ function showModal(message, title = "تنبيه") {
 function closeModal() {
   document.getElementById("appModal").style.display = "none";
 }
-

@@ -43,11 +43,14 @@ function savePurchase() {
   // تحديث المخزون
   prod.qty += qty;
 
-  // تحديث رصيد العميل (في حالة حساب على الحساب)
+  // تحديث رصيد العميل (في حالة الحساب)
   if (customer) customer.balance -= qty * price;
 
   // تحديث الخزنة
   cash.income -= paid;
+
+  // إضافة order لكل عملية شراء
+  const order = purchases.length > 0 ? Math.max(...purchases.map(p => p.order || 0)) + 1 : 1;
 
   // تخزين الفاتورة
   purchases.push({
@@ -58,6 +61,7 @@ function savePurchase() {
     customer: customer ? customer.name : "نقدي",
     remaining: qty * price - paid,
     date: new Date().toLocaleDateString(),
+    order // ترتيب العملية
   });
 
   // مسح القيم في الفورم
@@ -79,6 +83,10 @@ function renderPurchases() {
   const tbody = document.querySelector("#purchasesTable tbody");
   if (!tbody) return;
   tbody.innerHTML = "";
+
+  // ترتيب حسب order العملية
+  purchases.sort((a, b) => (a.order || 0) - (b.order || 0));
+
   purchases.forEach((p) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `<td>${p.customer}</td><td>${p.product}</td><td>${p.qty}</td><td>${p.price}</td><td>${p.paid}</td><td>${p.remaining}</td><td>${p.date}</td>`;

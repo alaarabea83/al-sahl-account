@@ -30,19 +30,26 @@ function saveData() {
 }
 
 function loadData() {
-  customers = JSON.parse(localStorage.getItem("customers")) || [];
-  products = JSON.parse(localStorage.getItem("products")) || [];
-  sales = JSON.parse(localStorage.getItem("sales")) || [];
-  purchases = JSON.parse(localStorage.getItem("purchases")) || [];
-  incomes = JSON.parse(localStorage.getItem("incomes")) || [];
-  expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+  const c = localStorage.getItem("customers");
+  const p = localStorage.getItem("products");
+  const s = localStorage.getItem("sales");
+  const pu = localStorage.getItem("purchases");
+  const i = localStorage.getItem("incomes");
+  const e = localStorage.getItem("expenses");
+  const ca = localStorage.getItem("cash");
 
-  cash = JSON.parse(localStorage.getItem("cash")) || {
-    opening: 0,
-    income: 0,
-    expenses: 0,
-  };
+  customers = c ? JSON.parse(c) : [];
+  products = p ? JSON.parse(p) : [];
+  sales = s ? JSON.parse(s) : [];
+  purchases = pu ? JSON.parse(pu) : [];
+  incomes = i ? JSON.parse(i) : [];
+  expenses = e ? JSON.parse(e) : [];
+
+  cash = ca
+    ? JSON.parse(ca)
+    : { opening: 0, income: 0, expenses: 0 };
 }
+
 
 /* ===============================
    أدوات مساعدة عامة

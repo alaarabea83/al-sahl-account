@@ -21,18 +21,21 @@ function addIncome() {
   const customer = customerIndex !== "" ? customers[customerIndex] : null;
 
   if (!title || !amount) {
-  showModal("من فضلك أكمل جميع البيانات");
-  return;
-}
+    showModal("من فضلك أكمل جميع البيانات");
+    return;
+  }
 
-  if (customer) customer.balance -= amount; // العميل دفع للخزنة
-  cash.income += amount; // تحديث الخزنة
+  if (customer) customer.balance -= amount;
+  cash.income += amount;
+
+  const newOrder = sales.length + purchases.length + incomes.length + expenses.length + 1;
 
   incomes.push({
     title,
     amount,
     customer: customer ? customer.name : "نقدي",
     date: new Date().toLocaleDateString(),
+    order: newOrder
   });
 
   document.getElementById("incomeTitle").value = "";
@@ -47,6 +50,9 @@ function renderIncome() {
   const tbody = document.querySelector("#incomeTable tbody");
   if (!tbody) return;
   tbody.innerHTML = "";
+
+  incomes.sort((a, b) => (a.order || 0) - (b.order || 0));
+
   incomes.forEach((i) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `<td>${i.title}</td><td>${i.amount}</td><td>${i.customer}</td><td>${i.date}</td>`;

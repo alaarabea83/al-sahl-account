@@ -13,67 +13,61 @@
     />
 
     <title>سهل لإدارة الحسابات</title>
-    <link rel="stylesheet" href="css/style.css" />
     <style>
       body {
-        font-family: "Tajawal", Arial, sans-serif;
-        background: #f4f6f8;
+        font-family: "Tajawal", sans-serif;
+        background: #f4f6f9;
         margin: 0;
       }
-      header {
-        background: #ffc107;
-        text-align: center;
-        padding: 1px;
-      }
-      header h1::before {
-        content: "";
-      }
 
-      /* الهيدر */
       header {
         font-family: "Cairo", sans-serif;
         font-weight: 700;
-        letter-spacing: 0.5px;
+        background: linear-gradient(135deg, #2e86c1, #1b4f72);
+        text-align: center;
+        color: #fff;
+        padding: 1rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       }
 
-      /* العناوين */
       h1,
       h2,
       h3 {
         font-family: "Cairo", sans-serif;
         font-weight: 700;
-        color: black;
+        margin: 10px;
       }
 
-      /* كروت الأقسام */
-      .card {
-        font-family: "Tajawal", sans-serif;
-        font-weight: 500;
-      }
       section {
-        max-width: 900px;
-        margin: 0 auto;
-        background: #fff;
-        color: #fff;
+        max-width: 1000px;
+        margin: 2rem auto;
         padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .t-container {
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 12px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       }
-      
+
       .form-row {
         display: flex;
         gap: 0.5rem;
         flex-wrap: wrap;
-        width: 100%;
         justify-content: center;
       }
 
       .form-row input {
         flex: 1;
-        min-width: 180px;
+        min-width: 120px;
         padding: 0.5rem;
         font-size: 1rem;
         border-radius: 5px;
-        border: none;
+        border: 1px solid #ccc;
       }
 
       .form-row button {
@@ -84,93 +78,274 @@
         border: none;
         cursor: pointer;
         border-radius: 5px;
+        transition: 0.3s;
       }
 
-      .t-container {
-        display: flex;
-        flex-direction: column;
-        background-color: #ffc107;
-        justify-content: center;
-        align-items: center;
-        padding: 15px;
-        border-radius: 10px;
+      .form-row button:hover {
+        background: #21618c;
       }
 
       table {
         width: 100%;
-        background-color: #fff;
         border-collapse: collapse;
+        margin-top: 1rem;
       }
+
       th {
         background: #2e86c1;
         color: #fff;
         padding: 0.6rem;
       }
+
       td {
         text-align: center;
-        color: black;
         padding: 0.6rem;
         border-bottom: 1px solid #e0e0e0;
       }
+
+      td .btn {
+        padding: 0.3rem 0.8rem;
+        margin: 0 2px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+
+      tbody tr:hover {
+      background: #f4f6f8;
+    }
+
+      .btn-edit {
+        background: #28a745;
+        color: #fff;
+      }
+
+      .btn-edit:hover {
+        background: #1e7e34;
+      }
+
+      .btn-delete {
+        background: #dc3545;
+        color: #fff;
+      }
+
+      .btn-delete:hover {
+        background: #a71d2a;
+      }
+
+      .btn-info {
+        background: #2e86c1;
+        color: #fff;
+      }
+
+      .btn-info:hover {
+        background: #117a8b;
+      }
+
+      /* مودالات عصريه */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }
+
+      .modal-box {
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        min-width: 300px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .modal-box h3 {
+        margin-bottom: 0.8rem;
+        color: #2e86c1;
+      }
+
+      .modal-box label {
+        display: block;
+        margin-top: 0.5rem;
+        font-weight: 500;
+        text-align: right;
+      }
+
+      .modal-box input {
+        width: 100%;
+        margin-top: 0.2rem;
+        padding: 0.4rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .modal-box button {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        background: #2e86c1;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .modal-box button.cancel {
+        background: #dc3545;
+      }
     </style>
   </head>
+
   <body>
     <header>
-      <h3>المنتجات</h3>
+      <h2>📦 إدارة المنتجات</h2>
       <nav class="breadcrumbs">
-      <a href="../index.html" class="home">الرئيسية</a>
-      <span class="separator">›</span>
-      <a href="../pages/customers.html" class="home">العملاء</a>
-      <span class="separator">›</span>
-      <span class="current">المنتجات</span>
-      <span class="separator">›</span>
-      <a href="../pages/sales.html" class="home">المبيعات</a>
-      <span class="separator">›</span>
-      <a href="../pages/purchases.html" class="home"> المشتريات</a>
-      <span class="separator">›</span>
-      <a href="../pages/income.html" class="home">المقبوضات</a>
-      <span class="separator">›</span>
-      <a href="../pages/expenses.html" class="home">المدفوعات</a>
-      <span class="separator">›</span>
-      <a href="../pages/cash.html" class="home">الخزينة</a>
+        <a href="../index.html" class="home">الأقسام</a>
+        <span class="separator">›</span>
+        <a href="../pages/customers.html" class="home">العملاء</a>
+        <span class="separator">›</span>
+        <span class="current">المنتجات</span>
+        <span class="separator">›</span>
+        <a href="../pages/sales.html" class="home">المبيعات</a>
+        <span class="separator">›</span>
+        <a href="../pages/purchases.html" class="home"> المشتريات</a>
+        <span class="separator">›</span>
+        <a href="../pages/income.html" class="home">المقبوضات</a>
+        <span class="separator">›</span>
+        <a href="../pages/expenses.html" class="home">المدفوعات</a>
+        <span class="separator">›</span>
+        <a href="../pages/cash.html" class="home">الخزينة</a>
+      </nav>
     </header>
 
     <section>
       <div class="t-container">
-        <h3>إضافة منتج جديد</h3>
+        <h3>➕ إضافة منتج جديد</h3>
         <div class="form-row">
           <input type="text" id="productName" placeholder="اسم المنتج" />
           <input type="number" id="productPrice" placeholder="سعر المنتج" />
           <input type="number" id="productQty" placeholder="الكمية" />
-          <button id="addProductBtn">إضافة</button>
+          <button id="addProductBtn">✚ إضافة</button>
         </div>
       </div>
 
-      <div style="height: 20px"></div>
-
       <div class="t-container">
-        <h3>قائمة المنتجات</h3>
-          <table id="productsTable">
-            <thead>
-              <tr>
-                <th>المنتج</th>
-                <th>الكمية</th>
-                <th>السعر</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+        <h3>📋 قائمة المنتجات</h3>
+        <table id="productsTable">
+          <thead>
+            <tr>
+              <th>المنتج</th>
+              <th>الكمية</th>
+              <th>السعر</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
         <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
       </div>
     </section>
 
+    <!-- مودال التنبيه -->
     <div id="appModal" class="modal-overlay">
-  <div class="modal-box">
-    <h3 id="modalTitle">تنبيه</h3>
-    <p id="modalMessage"></p>
-    <button onclick="closeModal()">حسناً</button>
-  </div>
-</div>
+      <div class="modal-box">
+        <h3 id="modalTitle">تنبيه</h3>
+        <p id="modalMessage"></p>
+        <button onclick="closeModal()">حسناً</button>
+      </div>
+    </div>
+
+    <!-- مودال تعديل المنتج -->
+    <div id="editModal" class="modal-overlay">
+      <div class="modal-box">
+        <h3>تعديل المنتج</h3>
+        <label>اسم المنتج</label>
+        <input type="text" id="editProductName" />
+        <label>الرصيد الافتتاحي</label>
+        <input type="number" id="editProductQty" />
+        <label>سعر البيع</label>
+        <input type="number" id="editProductPrice" />
+        <div style="margin-top: 10px">
+          <button onclick="saveProductEdit()">حفظ</button>
+          <button class="cancel" onclick="closeEditModal()">إلغاء</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- مودال حذف المنتج -->
+    <div id="deleteModal" class="modal-overlay">
+      <div class="modal-box">
+        <h3>تأكيد الحذف</h3>
+        <p>هل أنت متأكد من حذف هذا المنتج؟</p>
+        <button onclick="confirmDelete()">نعم</button>
+        <button class="cancel" onclick="closeDeleteModal()">إلغاء</button>
+      </div>
+    </div>
+
+    <!-- مودال النجاح -->
+    <div id="successModal" class="modal-overlay">
+      <div class="modal-box">
+        <h3>نجاح</h3>
+        <p id="successMessage">تمت العملية بنجاح ✅</p>
+        <button onclick="closeSuccessModal()">حسناً</button>
+      </div>
+    </div>
+
+    <!-- Product Movement Modal -->
+    <div id="productMovementModal" class="modal-overlay">
+      <div
+        class="modal-card"
+        style="
+          background: #ffffff;
+          padding: 25px 22px;
+          border-radius: 16px;
+          width: 600px;
+          max-width: 95%;
+          max-height: 80vh; /* ارتفاع المودال */
+          overflow-y: auto; /* تفعيل السحب العمودي */
+          scrollbar-width: none;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+          animation: fadeInUp 0.3s ease;
+        "
+      >
+        <h3 style="text-align: center; margin-bottom: 15px; color: #2e86c1">
+          حركة الصنف
+        </h3>
+        <p
+          id="movementProductName"
+          style="
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #444;
+            font-size: 14px;
+          "
+        ></p>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px">
+          <thead>
+            <tr>
+              <th>التاريخ</th>
+              <th>نوع العملية</th>
+              <th>كمية</th>
+              <th>الرصيد بعد العملية</th>
+            </tr>
+          </thead>
+          <tbody id="movementBody"></tbody>
+        </table>
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="closeProductMovementModal()">
+            إغلاق
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script src="../js/data.js"></script>
     <script src="../js/products.js"></script>
