@@ -173,6 +173,7 @@
         /* ارتفاع ثابت مع السكروول العمودي */
         overflow: auto;
         /* تفعيل السكروول على المحورين */
+        scrollbar-width: none;
         border: 1px solid #ccc;
         border-radius: 8px;
       }
@@ -405,18 +406,20 @@
 
         <p id="statementCustomerName" style="font-weight: bold"></p>
 
-        <table style="width: 100%; border-collapse: collapse; margin-top: 15px">
-          <thead>
-            <tr>
-              <th>التاريخ</th>
-              <th>البيان</th>
-              <th>مدين</th>
-              <th>دائن</th>
-              <th>الرصيد</th>
-            </tr>
-          </thead>
-          <tbody id="statementBody"></tbody>
-        </table>
+        <div class="statement-table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>التاريخ</th>
+                <th>البيان</th>
+                <th>مدين</th>
+                <th>دائن</th>
+                <th>الرصيد</th>
+              </tr>
+            </thead>
+            <tbody id="statementBody"></tbody>
+          </table>
+        </div>
 
         <div class="modal-actions">
           <button class="btn-secondary" onclick="closeStatementModal()">
