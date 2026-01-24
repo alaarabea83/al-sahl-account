@@ -59,28 +59,37 @@ function getCurrentQty(productName) {
   return qty;
 }
 
-function renderProducts() {
+function renderProducts(searchQuery = "") {
   const tbody = document.querySelector("#productsTable tbody");
   tbody.innerHTML = "";
 
   products.forEach((p, index) => {
-    const currentQty = getCurrentQty(p.name); // الرصيد الحالي محسوب
+    // فلتر البحث
+    if (searchQuery && !p.name.toLowerCase().includes(searchQuery)) return;
+
+    const currentQty = getCurrentQty(p.name);
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${p.name}</td>
-      <td>${currentQty}</td> <!-- الرصيد الحالي -->
-      <td>${p.price.toFixed(2)}</td>
-      <td>
-  <button class="btn btn-edit" onclick="openEditModal(${index})">✏️</button>
-  <button class="btn btn-delete" onclick="openDeleteModal(${index})">🗑️</button>
-  <button class="btn btn-info" onclick="openProductMovement(${index})">📄</button>
-</td>
+  <td>${p.name}</td>
+  <td>${currentQty}</td>
+  <td>${p.price.toFixed(2)}</td>
+  <td class="actions">
+    <button class="btn btn-edit" onclick="openEditModal(${index})">✏️</button>
+    <button class="btn btn-delete" onclick="openDeleteModal(${index})">🗑️</button>
+    <button class="btn btn-info" onclick="openProductMovement(${index})">📄</button>
+  </td>
+`;
 
-    `;
     tbody.appendChild(tr);
   });
 }
+
+// البحث في المنتجات
+document.getElementById("searchProduct").addEventListener("input", function () {
+  const query = this.value.trim().toLowerCase();
+  renderProducts(query);
+});
 
 function openEditModal(index) {
   editIndex = index;

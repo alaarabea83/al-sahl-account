@@ -113,16 +113,38 @@
       }
 
       tbody tr:hover {
-      background: #f4f6f8;
-    }
+        background: #f4f6f8;
+      }
+
+      /* حاوية الأزرار */
+      .actions {
+        display: flex;
+        flex-wrap: wrap; /* تخلي الأزرار تنزل سطر ثاني لو ضيق المكان */
+        gap: 5px; /* مسافة بين الأزرار */
+        justify-content: center; /* تخلي الأزرار في الوسط */
+      }
+
+      /* الأزرار داخل container - للكمبيوتر */
+      .actions .btn {
+        min-width: 45px; /* يمنع الزر من أن يكون ضيق جدًا */
+        margin-bottom: 3px; /* مسافة صغيرة بين الصفوف لو wrap */
+        flex: unset; /* على الكمبيوتر لا يمتد */
+      }
+
+      /* للشاشات الصغيرة (موبايل) */
+      @media (max-width: 600px) {
+        .actions .btn {
+          flex: 1 1 auto; /* يسمح للزر بالتوسع قليلاً على الموبايل */
+        }
+      }
 
       .btn-edit {
-        background: #28a745;
+        background: #f1c40f;
         color: #fff;
       }
 
       .btn-edit:hover {
-        background: #1e7e34;
+        background: #e0a800;
       }
 
       .btn-delete {
@@ -238,6 +260,22 @@
 
       <div class="t-container">
         <h3>📋 قائمة المنتجات</h3>
+        <!-- حقل البحث -->
+        <input
+          type="text"
+          id="searchProduct"
+          placeholder="🔍 ابحث باسم المنتج..."
+          style="
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin: 0 auto 15px auto;
+            width: 90%;
+            max-width: 400px;
+            font-size: 15px;
+          "
+        />
         <table id="productsTable">
           <thead>
             <tr>

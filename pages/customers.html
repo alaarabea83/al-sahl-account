@@ -106,13 +106,15 @@
       }
 
       tbody tr:hover {
-      background: #f4f6f8;
-    }
+        background: #f4f6f8;
+      }
 
       .actions button {
-        margin: 0 3px;
+        flex: 1 1 auto; /* يسمح للزر بالتوسع قليلًا عند الحاجة */
+        min-width: 45px; /* يمنع الزر من أن يكون صغير جدًا */
         padding: 6px 10px;
         font-size: 13px;
+        margin-bottom: 3px; /* مسافة صغيرة بين الصفوف لو wrap */
       }
 
       .btn-edit {
@@ -268,6 +270,22 @@
 
       <div class="card">
         <h3>📋 قائمة العملاء</h3>
+        <!-- حقل البحث -->
+        <input
+          type="text"
+          id="searchCustomer"
+          placeholder="🔍 ابحث باسم العميل..."
+          style="
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin: 0 auto 15px auto;
+            width: 90%;
+            max-width: 400px;
+            font-size: 15px;
+          "
+        />
         <table id="customersTable">
           <thead>
             <tr>
@@ -310,8 +328,18 @@
         </div>
 
         <div class="modal-actions">
-          <button style="color: #000; font-weight: bold;" class="btn-primary" onclick="saveCustomerEdit()">حفظ</button>
-          <button style="background-color: #ffc107; color: #000; font-weight: bold;" class="btn-primary" onclick="closeEditModal()">
+          <button
+            style="color: #000; font-weight: bold"
+            class="btn-primary"
+            onclick="saveCustomerEdit()"
+          >
+            حفظ
+          </button>
+          <button
+            style="background-color: #ffc107; color: #000; font-weight: bold"
+            class="btn-primary"
+            onclick="closeEditModal()"
+          >
             إلغاء
           </button>
         </div>
@@ -327,7 +355,13 @@
         </p>
 
         <div class="modal-actions">
-          <button style="background-color: #e74c3c;" class="btn-secondary" onclick="confirmDelete()">حذف</button>
+          <button
+            style="background-color: #e74c3c"
+            class="btn-secondary"
+            onclick="confirmDelete()"
+          >
+            حذف
+          </button>
           <button class="btn-secondary" onclick="closeDeleteModal()">
             إلغاء
           </button>

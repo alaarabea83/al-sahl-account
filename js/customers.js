@@ -44,35 +44,38 @@ function addCustomerHandler() {
 }
 
 // ====== RENDER CUSTOMERS ======
-function renderCustomers() {
+function renderCustomers(searchQuery = "") {
   const tbody = document.querySelector("#customersTable tbody");
   tbody.innerHTML = "";
 
   customers.forEach((c, index) => {
-    // حساب الرصيد الحالي بناءً على جميع العمليات
+    // فلتر الاسم
+    if (searchQuery && !c.name.toLowerCase().includes(searchQuery)) return;
+
+    // حساب الرصيد الحالي كما في كودك
     let currentBalance = c.openingBalance;
 
-    // مبيعات العميل
-    sales.filter(s => s.customer === c.name)
-      .forEach(s => {
+    sales
+      .filter((s) => s.customer === c.name)
+      .forEach((s) => {
         currentBalance += s.total - s.paid;
       });
 
-    // مشتريات العميل
-    purchases.filter(p => p.customer === c.name)
-      .forEach(p => {
-        currentBalance += p.paid - (p.qty * p.price);
+    purchases
+      .filter((p) => p.customer === c.name)
+      .forEach((p) => {
+        currentBalance += p.paid - p.qty * p.price;
       });
 
-    // الإيرادات
-    incomes.filter(i => i.customer === c.name)
-      .forEach(i => {
+    incomes
+      .filter((i) => i.customer === c.name)
+      .forEach((i) => {
         currentBalance -= i.amount;
       });
 
-    // المصروفات
-    expenses.filter(e => e.customer === c.name)
-      .forEach(e => {
+    expenses
+      .filter((e) => e.customer === c.name)
+      .forEach((e) => {
         currentBalance += e.amount;
       });
 
@@ -89,6 +92,14 @@ function renderCustomers() {
     tbody.appendChild(tr);
   });
 }
+
+// البحث في العملاء
+document
+  .getElementById("searchCustomer")
+  .addEventListener("input", function () {
+    const query = this.value.trim().toLowerCase();
+    renderCustomers(query);
+  });
 
 // ====== OPEN EDIT MODAL ======
 function openEditModal(index) {
@@ -180,43 +191,43 @@ function openStatementModal(index) {
   const allEntries = [
     // المبيعات
     ...sales
-      .filter(s => s.customer === customer.name)
-      .map(s => ({
+      .filter((s) => s.customer === customer.name)
+      .map((s) => ({
         date: s.date,
         desc: "فاتورة مبيعات",
         debit: s.total,
         credit: s.paid,
-        order: s.order
+        order: s.order,
       })),
     // المشتريات
     ...purchases
-      .filter(p => p.customer === customer.name)
-      .map(p => ({
+      .filter((p) => p.customer === customer.name)
+      .map((p) => ({
         date: p.date,
         desc: "فاتورة مشتريات",
         debit: p.paid,
         credit: p.qty * p.price,
-        order: p.order
+        order: p.order,
       })),
     // الإيرادات
     ...incomes
-      .filter(i => i.customer === customer.name)
-      .map(i => ({
+      .filter((i) => i.customer === customer.name)
+      .map((i) => ({
         date: i.date,
         desc: i.title,
         debit: 0,
         credit: i.amount,
-        order: i.order
+        order: i.order,
       })),
     // المصروفات
     ...expenses
-      .filter(e => e.customer === customer.name)
-      .map(e => ({
+      .filter((e) => e.customer === customer.name)
+      .map((e) => ({
         date: e.date,
         desc: e.title,
         debit: e.amount,
         credit: 0,
-        order: e.order
+        order: e.order,
       })),
   ];
 
@@ -224,7 +235,7 @@ function openStatementModal(index) {
   allEntries.sort((a, b) => (a.order || 0) - (b.order || 0));
 
   // عرض العمليات وحساب الرصيد التراكمي
-  allEntries.forEach(e => {
+  allEntries.forEach((e) => {
     balance += (e.debit || 0) - (e.credit || 0);
     tbody.innerHTML += `
       <tr>
@@ -243,4 +254,3 @@ function openStatementModal(index) {
 function closeStatementModal() {
   document.getElementById("statementModal").style.display = "none";
 }
-
