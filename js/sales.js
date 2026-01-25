@@ -33,6 +33,7 @@ function renderCustomerSelect() {
   if (!sel) return;
 
   sel.innerHTML =
+    `<option value="">إختر عميل</option>` +
     `<option value="">نقدي بدون عميل</option>` +
     customers.map((c, i) => `<option value="${i}">${c.name}</option>`).join("");
 }
@@ -272,13 +273,12 @@ function editInvoice(index) {
     row.innerHTML = `
       <select class="itemProduct">
         ${products
-          .map(
-            (p, i) =>
-              `<option value="${i}" ${
-                p.name === item.name ? "selected" : ""
-              }>${p.name}</option>`,
-          )
-          .join("")}
+        .map(
+          (p, i) =>
+            `<option value="${i}" ${p.name === item.name ? "selected" : ""
+            }>${p.name}</option>`,
+        )
+        .join("")}
       </select>
       <input type="number" class="itemQty" value="${item.qty}" min="1">
       <input type="number" class="itemPrice" value="${products.find((p) => p.name === item.name).price}" readonly>

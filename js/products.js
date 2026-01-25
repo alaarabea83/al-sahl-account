@@ -97,9 +97,9 @@ function renderProducts(searchQuery = "") {
       <td>${buyPrice.toFixed(2)}</td>
       <td>${total.toFixed(2)}</td>
       <td class="actions">
-        <button class="btn btn-edit" onclick="openEditModal(${index})">✏️</button>
-        <button class="btn btn-delete" onclick="openDeleteModal(${index})">🗑️</button>
-        <button class="btn btn-info" onclick="openProductMovement(${index})">📄</button>
+        <button class="btn btn-edit" onclick="openEditModal(${index})">✏️ تعديل</button>
+        <button class="btn btn-delete" onclick="openDeleteModal(${index})">🗑️ حذف</button>
+        <button class="btn btn-info" onclick="openProductMovement(${index})">📄 حركة الصنف</button>
       </td>
     `;
 

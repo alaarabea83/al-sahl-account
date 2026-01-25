@@ -48,11 +48,11 @@ function renderCustomers(searchQuery = "") {
   const tbody = document.querySelector("#customersTable tbody");
   tbody.innerHTML = "";
 
+  let totalBalance = 0; // 👈 إجمالي الأرصدة
+
   customers.forEach((c, index) => {
-    // فلتر الاسم
     if (searchQuery && !c.name.toLowerCase().includes(searchQuery)) return;
 
-    // حساب الرصيد الحالي كما في كودك
     let currentBalance = c.openingBalance;
 
     sales
@@ -79,20 +79,34 @@ function renderCustomers(searchQuery = "") {
         currentBalance += e.amount;
       });
 
+    totalBalance += currentBalance; // 👈 نجمع الإجمالي
+
     const tr = document.createElement("tr");
     tr.innerHTML = `
-  <td>${index + 1}</td>
-  <td>${c.name}</td>
-  <td>${currentBalance.toFixed(2)}</td>
-  <td class="actions">
-    <button class="btn-primary" onclick="openStatementModal(${index})">📄</button>
-    <button class="btn-edit" onclick="openEditModal(${index})">✏️</button>
-    <button class="btn-delete" onclick="deleteCustomer(${index})">🗑️</button>
-  </td>
-`;
-
+      <td>${index + 1}</td>
+      <td>${c.name}</td>
+      <td>${currentBalance.toFixed(2)}</td>
+      <td class="actions">
+        <button class="btn-primary" onclick="openStatementModal(${index})">📄 كشف حساب</button>
+        <button class="btn-edit" onclick="openEditModal(${index})">✏️ تعديل</button>
+        <button class="btn-delete" onclick="deleteCustomer(${index})">🗑️ حذف</button>
+      </td>
+    `;
     tbody.appendChild(tr);
   });
+
+  // ===== صف الإجمالي =====
+  const totalRow = document.createElement("tr");
+  totalRow.style.background = "#f1f3f6";
+  totalRow.style.fontWeight = "bold";
+
+  totalRow.innerHTML = `
+    <td colspan="2">الإجمالي</td>
+    <td>${totalBalance.toFixed(2)}</td>
+    <td></td>
+  `;
+
+  tbody.appendChild(totalRow);
 }
 
 // البحث في العملاء

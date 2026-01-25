@@ -1,314 +1,329 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="icon" type="image/png" href="../icons/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
 
-    <title>سهل لإدارة الحسابات</title>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="../icons/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
+    rel="stylesheet" />
 
-    <style>
-      body {
-        font-family: "Tajawal", sans-serif;
-        background: #f4f6f9;
-        margin: 0;
+  <title>سهل لإدارة الحسابات</title>
+
+  <style>
+    body {
+      font-family: "Tajawal", sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+    }
+
+    header {
+      background: #2e86c1;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Cairo", sans-serif;
+      font-weight: 700;
+      margin: 10px;
+    }
+
+    .card {
+      background: #fdfefe;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid #e5e7e9;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    input {
+      flex: 1;
+      min-width: 180px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .btn-add {
+      background: #2e86c1;
+      color: #fff;
+    }
+
+    .btn-add:hover {
+      background: #21618c;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: #2e86c1;
+      color: #fff;
+      padding: 12px;
+    }
+
+    td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    tbody tr:hover {
+      background: #f4f6f8;
+    }
+
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .table-scroll table {
+      min-width: 900px;
+      /* يمنع تكسير الأعمدة */
+    }
+
+    .table-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .table-scroll::-webkit-scrollbar-thumb {
+      background: #2e86c1;
+      border-radius: 10px;
+    }
+
+    .actions button {
+      flex: 1 1 auto;
+      /* يسمح للزر بالتوسع قليلًا عند الحاجة */
+      min-width: 45px;
+      /* يمنع الزر من أن يكون صغير جدًا */
+      padding: 6px 10px;
+      font-size: 13px;
+      margin-bottom: 3px;
+      /* مسافة صغيرة بين الصفوف لو wrap */
+    }
+
+    .btn-edit {
+      background: #f1c40f;
+      color: #000;
+    }
+
+    .btn-delete {
+      background: #e74c3c;
+      color: #fff;
+    }
+
+    .btn-primary {
+      background: #2e86c1;
+      color: #fff;
+    }
+
+    /* ===== MODALS ===== */
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    /* Customer Statement Modal */
+
+    #statementModal .modal-card {
+      width: 600px;
+      max-width: 95%;
+      max-height: 80vh;
+      overflow-y: auto;
+      scrollbar-width: none;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #statementModal .modal-actions button {
+      flex: 0;
+      /* يمنع الزر من التمدد */
+      padding: 10px 25px;
+    }
+
+    /* حاوية جدول كشف الحساب */
+    .statement-table-wrapper {
+      max-height: 400px;
+      /* ارتفاع ثابت مع السكروول العمودي */
+      overflow: auto;
+      /* تفعيل السكروول على المحورين */
+      scrollbar-width: none;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    /* تظل عناوين الأعمدة ثابتة إذا حبيت */
+    .statement-table-wrapper table {
+      border-collapse: collapse;
+      min-width: 600px;
+      /* يضمن وجود سكروول أفقي لو الجدول واسع */
+    }
+
+    .statement-table-wrapper th,
+    .statement-table-wrapper td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      padding: 25px 22px;
+      border-radius: 16px;
+      width: 360px;
+      max-width: 90%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 0.3s ease;
+    }
+
+    .modal-card h3 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #2e86c1;
+    }
+
+    .modal-card p {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444;
+      font-size: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #555;
+    }
+
+    .form-group input {
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
       }
 
-      header {
-        background: #18204a;
-        color: #fff;
-        padding: 1rem;
-        text-align: center;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
+    }
 
-      section {
-        max-width: 1000px;
-        margin: 20px auto;
-        background: #fff;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-      }
+    #customersTable tbody tr:last-child {
+      background-color: #eef2f7;
+      font-weight: bold;
+    }
+  </style>
+</head>
 
-      h1,
-      h2,
-      h3 {
-        font-family: "Cairo", sans-serif;
-        font-weight: 700;
-        margin: 10px;
-      }
+<body>
+  <header>
+    <h2>إدارة العملاء</h2>
+    <nav class="breadcrumbs">
+      <a href="../index.html" class="home">الأقسام</a>
+      <span class="separator">›</span>
+      <span class="current">العملاء</span>
+      <span class="separator">›</span>
+      <a href="../pages/products.html" class="home">المنتجات</a>
+      <span class="separator">›</span>
+      <a href="../pages/sales.html" class="home">المبيعات</a>
+      <span class="separator">›</span>
+      <a href="../pages/purchases.html" class="home"> المشتريات</a>
+      <span class="separator">›</span>
+      <a href="../pages/income.html" class="home">المقبوضات</a>
+      <span class="separator">›</span>
+      <a href="../pages/expenses.html" class="home">المدفوعات</a>
+      <span class="separator">›</span>
+      <a href="../pages/cash.html" class="home">الخزينة</a>
+      <span class="separator">›</span>
+      <a href="../pages/profit.html" class="home">التقارير</a>
+      <span class="separator">›</span>
+      <a href="../pages/profit.html" class="home">الإعدادات</a>
+    </nav>
+  </header>
 
-      .card {
-        background: #fdfefe;
-        border-radius: 12px;
-        padding: 20px;
-        border: 1px solid #e5e7e9;
-      }
-
-      .form-row {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      input {
-        flex: 1;
-        min-width: 180px;
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        font-size: 15px;
-      }
-
-      button {
-        padding: 10px 18px;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        font-size: 14px;
-        transition: 0.2s;
-      }
-
-      .btn-add {
-        background: #18204a;
-        color: #fff;
-      }
-
-      .btn-add:hover {
-        background: #21618c;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      th {
-        background: #2e86c1;
-        color: #fff;
-        padding: 12px;
-      }
-
-      td {
-        padding: 12px;
-        text-align: center;
-        border-bottom: 1px solid #eee;
-      }
-
-      tbody tr:hover {
-        background: #f4f6f8;
-      }
-
-      .actions button {
-        flex: 1 1 auto;
-        /* يسمح للزر بالتوسع قليلًا عند الحاجة */
-        min-width: 45px;
-        /* يمنع الزر من أن يكون صغير جدًا */
-        padding: 6px 10px;
-        font-size: 13px;
-        margin-bottom: 3px;
-        /* مسافة صغيرة بين الصفوف لو wrap */
-      }
-
-      .btn-edit {
-        background: #f1c40f;
-        color: #000;
-      }
-
-      .btn-delete {
-        background: #e74c3c;
-        color: #fff;
-      }
-
-      .btn-primary {
-        background: #2e86c1;
-        color: #fff;
-      }
-
-      /* ===== MODALS ===== */
-
-      .modal-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(4px);
-        align-items: center;
-        justify-content: center;
-        z-index: 999;
-      }
-
-      /* Customer Statement Modal */
-
-      #statementModal .modal-card {
-        width: 600px;
-        max-width: 95%;
-        max-height: 80vh;
-        overflow-y: auto;
-        scrollbar-width: none;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-      }
-
-      #statementModal .modal-actions button {
-        flex: 0;
-        /* يمنع الزر من التمدد */
-        padding: 10px 25px;
-      }
-
-      /* حاوية جدول كشف الحساب */
-      .statement-table-wrapper {
-        max-height: 400px;
-        /* ارتفاع ثابت مع السكروول العمودي */
-        overflow: auto;
-        /* تفعيل السكروول على المحورين */
-        scrollbar-width: none;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-      }
-
-      /* تظل عناوين الأعمدة ثابتة إذا حبيت */
-      .statement-table-wrapper table {
-        border-collapse: collapse;
-        min-width: 600px;
-        /* يضمن وجود سكروول أفقي لو الجدول واسع */
-      }
-
-      .statement-table-wrapper th,
-      .statement-table-wrapper td {
-        padding: 10px;
-        text-align: center;
-        border-bottom: 1px solid #eee;
-      }
-
-      .modal-card {
-        background: #ffffff;
-        padding: 25px 22px;
-        border-radius: 16px;
-        width: 360px;
-        max-width: 90%;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        animation: fadeInUp 0.3s ease;
-      }
-
-      .modal-card h3 {
-        text-align: center;
-        margin-bottom: 15px;
-        color: #2e86c1;
-      }
-
-      .modal-card p {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #444;
-        font-size: 14px;
-      }
-
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 15px;
-      }
-
-      .form-group label {
-        font-size: 14px;
-        margin-bottom: 6px;
-        color: #555;
-      }
-
-      .form-group input {
-        padding: 11px 12px;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-        font-size: 14px;
-      }
-
-      .modal-actions {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-      }
-
-      .modal-actions button {
-        flex: 1;
-        padding: 10px;
-        border-radius: 10px;
-        font-size: 14px;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(15px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <header>
-      <h2>إدارة العملاء</h2>
-      <nav class="breadcrumbs">
-        <a href="../index.html" class="home">الأقسام</a>
-        <span class="separator">›</span>
-        <span class="current">العملاء</span>
-        <span class="separator">›</span>
-        <a href="../pages/products.html" class="home">المنتجات</a>
-        <span class="separator">›</span>
-        <a href="../pages/sales.html" class="home">المبيعات</a>
-        <span class="separator">›</span>
-        <a href="../pages/purchases.html" class="home"> المشتريات</a>
-        <span class="separator">›</span>
-        <a href="../pages/income.html" class="home">المقبوضات</a>
-        <span class="separator">›</span>
-        <a href="../pages/expenses.html" class="home">المدفوعات</a>
-        <span class="separator">›</span>
-        <a href="../pages/cash.html" class="home">الخزينة</a>
-        <span class="separator">›</span>
-        <a href="../pages/profit.html" class="home">التقارير</a>
-        <span class="separator">›</span>
-        <a href="../pages/profit.html" class="home">الإعدادات</a>
-      </nav>
-    </header>
-
-    <section>
-      <div class="card">
-        <h3>➕ إضافة عميل جديد</h3>
-        <div class="form-row">
-          <input type="text" id="customerName" placeholder="اسم العميل أو المورد" />
-          <input
-            type="number"
-            id="openingBalance"
-            placeholder="الرصيد السابق"
-          />
-          <button class="btn-add" id="addCustomerBtn">✚ إضافة</button>
-        </div>
+  <section>
+    <div class="card">
+      <h3>🧑‍💼 إضافة عميل جديد</h3>
+      <div class="form-row">
+        <input type="text" id="customerName" placeholder="إسم العميل او المورد او الحساب" />
+        <input type="number" id="openingBalance" placeholder="الرصيد السابق (إن وجد)" />
+        <button class="btn-add" id="addCustomerBtn">✚ إضافة</button>
       </div>
+    </div>
 
-      <div class="card">
-        <h3>📋 قائمة العملاء</h3>
-        <!-- حقل البحث -->
-        <input
-          type="text"
-          id="searchCustomer"
-          placeholder="🔍 ابحث باسم العميل..."
-          style="
+    <div class="card">
+      <h3>📋 قائمة العملاء</h3>
+      <!-- حقل البحث -->
+      <input type="text" id="searchCustomer" placeholder="🔍 ابحث باسم العميل..." style="
             display: block;
             padding: 10px;
             border-radius: 8px;
@@ -317,125 +332,114 @@
             width: 90%;
             max-width: 400px;
             font-size: 15px;
-          "
-        />
+          " />
+      <div class="table-scroll">
         <table id="customersTable">
           <thead>
             <tr>
               <th>#</th>
               <th>الاسم</th>
-              <th>الرصيد</th>
+              <th>الرصيد الحالي</th>
               <th>إجراءات</th>
             </tr>
           </thead>
+      </div>
+      <tbody></tbody>
+      </table>
+    </div>
+    <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
+  </section>
 
-          <tbody></tbody>
+  <!-- Alert Modal -->
+  <div id="appModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3 id="modalTitle">تنبيه</h3>
+      <p id="modalMessage"></p>
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="closeModal()">حسناً</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Customer Modal -->
+  <div id="editModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3>تعديل بيانات العميل</h3>
+
+      <div class="form-group">
+        <label for="editCustomerName">اسم العميل</label>
+        <input type="text" id="editCustomerName" />
+      </div>
+
+      <div class="form-group">
+        <label for="editOpeningBalance">الرصيد الافتتاحي</label>
+        <input type="number" id="editOpeningBalance" />
+      </div>
+
+      <div class="modal-actions">
+        <button style="color: #000; font-weight: bold" class="btn-primary" onclick="saveCustomerEdit()">
+          حفظ
+        </button>
+        <button style="background-color: #ffc107; color: #000; font-weight: bold" class="btn-primary"
+          onclick="closeEditModal()">
+          إلغاء
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Delete Modal -->
+  <div id="deleteModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3>تأكيد الحذف</h3>
+      <p>
+        هل أنت متأكد من حذف هذا العميل؟<br />لا يمكن التراجع عن هذا الإجراء.
+      </p>
+
+      <div class="modal-actions">
+        <button style="background-color: #e74c3c" class="btn-secondary" onclick="confirmDelete()">
+          حذف
+        </button>
+        <button class="btn-secondary" onclick="closeDeleteModal()">
+          إلغاء
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer Statement Modal -->
+
+  <div id="statementModal" class="modal-overlay">
+    <div class="modal-card" style="width: 600px; max-width: 95%">
+      <h3>كشف حساب العميل</h3>
+
+      <p id="statementCustomerName" style="font-weight: bold"></p>
+
+      <div class="statement-table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>التاريخ</th>
+              <th>البيان</th>
+              <th>مدين</th>
+              <th>دائن</th>
+              <th>الرصيد</th>
+            </tr>
+          </thead>
+          <tbody id="statementBody"></tbody>
         </table>
-
-        <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
       </div>
-    </section>
 
-    <!-- Alert Modal -->
-    <div id="appModal" class="modal-overlay">
-      <div class="modal-card">
-        <h3 id="modalTitle">تنبيه</h3>
-        <p id="modalMessage"></p>
-        <div class="modal-actions">
-          <button class="btn-primary" onclick="closeModal()">حسناً</button>
-        </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeStatementModal()">
+          إغلاق
+        </button>
       </div>
     </div>
+  </div>
 
-    <!-- Edit Customer Modal -->
-    <div id="editModal" class="modal-overlay">
-      <div class="modal-card">
-        <h3>تعديل بيانات العميل</h3>
+  <script src="../js/data.js"></script>
+  <script src="../js/customers.js"></script>
+</body>
 
-        <div class="form-group">
-          <label for="editCustomerName">اسم العميل</label>
-          <input type="text" id="editCustomerName" />
-        </div>
-
-        <div class="form-group">
-          <label for="editOpeningBalance">الرصيد الافتتاحي</label>
-          <input type="number" id="editOpeningBalance" />
-        </div>
-
-        <div class="modal-actions">
-          <button
-            style="color: #000; font-weight: bold"
-            class="btn-primary"
-            onclick="saveCustomerEdit()"
-          >
-            حفظ
-          </button>
-          <button
-            style="background-color: #ffc107; color: #000; font-weight: bold"
-            class="btn-primary"
-            onclick="closeEditModal()"
-          >
-            إلغاء
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Confirm Delete Modal -->
-    <div id="deleteModal" class="modal-overlay">
-      <div class="modal-card">
-        <h3>تأكيد الحذف</h3>
-        <p>
-          هل أنت متأكد من حذف هذا العميل؟<br />لا يمكن التراجع عن هذا الإجراء.
-        </p>
-
-        <div class="modal-actions">
-          <button
-            style="background-color: #e74c3c"
-            class="btn-secondary"
-            onclick="confirmDelete()"
-          >
-            حذف
-          </button>
-          <button class="btn-secondary" onclick="closeDeleteModal()">
-            إلغاء
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Customer Statement Modal -->
-
-    <div id="statementModal" class="modal-overlay">
-      <div class="modal-card" style="width: 600px; max-width: 95%">
-        <h3>كشف حساب العميل</h3>
-
-        <p id="statementCustomerName" style="font-weight: bold"></p>
-
-        <div class="statement-table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>التاريخ</th>
-                <th>البيان</th>
-                <th>مدين</th>
-                <th>دائن</th>
-                <th>الرصيد</th>
-              </tr>
-            </thead>
-            <tbody id="statementBody"></tbody>
-          </table>
-        </div>
-
-        <div class="modal-actions">
-          <button class="btn-secondary" onclick="closeStatementModal()">
-            إغلاق
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <script src="../js/data.js"></script>
-    <script src="../js/customers.js"></script>
-  </body>
 </html>
