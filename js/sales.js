@@ -54,31 +54,22 @@ function saveSale() {
   const paidEl = document.getElementById("paidAmount");
   const customerIndex = document.getElementById("invoiceCustomer").value;
 
-  // لو في تعديل فاتورة
   if (editInvoiceIndex !== null) {
     const oldInvoice = sales[editInvoiceIndex];
 
-    // 1️⃣ إرجاع المخزون القديم
     oldInvoice.items.forEach((item) => {
       const product = products.find((p) => p.name === item.name);
-      if (product) {
-        product.qty += item.qty;
-      }
+      if (product) product.qty += item.qty;
     });
 
-    // 2️⃣ تعديل رصيد العميل القديم
     if (oldInvoice.customer !== "نقدي") {
       const customer = customers.find((c) => c.name === oldInvoice.customer);
-      if (customer) {
-        customer.balance -= oldInvoice.total - oldInvoice.paid;
-      }
+      if (customer) customer.balance -= oldInvoice.total - oldInvoice.paid;
     }
 
-    // 3️⃣ تعديل الخزنة
     cash.income -= oldInvoice.paid;
     if (cash.income < 0) cash.income = 0;
 
-    // حذف الفاتورة القديمة
     sales.splice(editInvoiceIndex, 1);
     editInvoiceIndex = null;
   }
@@ -107,9 +98,7 @@ function saveSale() {
       return;
     }
 
-    // خصم المخزون
     product.qty -= qty;
-
     total += qty * product.price;
 
     items.push({
@@ -119,7 +108,6 @@ function saveSale() {
     });
   }
 
-  // تحديث العميل
   let customerName = "نقدي";
   if (customerIndex !== "") {
     const customer = customers[customerIndex];
@@ -127,7 +115,6 @@ function saveSale() {
     customerName = customer.name;
   }
 
-  // تحديث الخزنة
   cash.income += paid;
 
   const order =
@@ -146,7 +133,7 @@ function saveSale() {
   saveData();
   container.innerHTML = "";
   paidEl.value = "";
-  document.getElementById("invoiceCustomer").value = ""; // 👈 إعادة اختيار العميل للوضع الافتراضي
+  document.getElementById("invoiceCustomer").value = "";
 
   renderSales();
   showModal("تم حفظ الفاتورة بنجاح ✅", "نجاح");
@@ -173,9 +160,8 @@ function renderSales() {
         <td>${invoice.remaining}</td>
         <td>${invoice.date}</td>
         <td>
-          <button class="btn-delete" onclick="deleteInvoice(${index})">🗑️</button>
+          <button class="btn-delete" onclick="confirmDeleteInvoice(${index})">🗑️</button>
           <button class="btn-edit" onclick="editInvoice(${index})">✏️</button>
-
         </td>
       `;
 
@@ -183,19 +169,18 @@ function renderSales() {
     });
 }
 
+/* ===============================
+   تعديل فاتورة
+================================ */
 function editInvoice(index) {
   const invoice = sales[index];
   editInvoiceIndex = index;
 
   const customerSelect = document.getElementById("invoiceCustomer");
-
-  if (invoice.customer === "نقدي") {
-    customerSelect.value = "";
-  } else {
-    customerSelect.value = customers.findIndex(
-      (c) => c.name === invoice.customer,
-    );
-  }
+  customerSelect.value =
+    invoice.customer === "نقدي"
+      ? ""
+      : customers.findIndex((c) => c.name === invoice.customer);
 
   document.getElementById("paidAmount").value = invoice.paid;
 
@@ -209,7 +194,9 @@ function editInvoice(index) {
           ${products
             .map(
               (p, i) =>
-                `<option value="${i}" ${p.name === item.name ? "selected" : ""}>${p.name}</option>`,
+                `<option value="${i}" ${
+                  p.name === item.name ? "selected" : ""
+                }>${p.name}</option>`,
             )
             .join("")}
         </select>
@@ -222,65 +209,93 @@ function editInvoice(index) {
 }
 
 /* ===============================
-   حذف فاتورة
+   حذف فاتورة (أساسي)
 ================================ */
 function deleteInvoice(index) {
-  if (!confirm("هل أنت متأكد من حذف الفاتورة؟")) return;
-
   const invoice = sales[index];
 
-  /* ===============================
-     1️⃣ إرجاع المخزون
-  ================================ */
   invoice.items.forEach((item) => {
     const product = products.find((p) => p.name === item.name);
-    if (product) {
-      product.qty += item.qty;
-    }
+    if (product) product.qty += item.qty;
   });
 
-  /* ===============================
-     2️⃣ تعديل رصيد العميل
-  ================================ */
   if (invoice.customer !== "نقدي") {
     const customer = customers.find((c) => c.name === invoice.customer);
-    if (customer) {
-      customer.balance -= invoice.total - invoice.paid;
-    }
+    if (customer) customer.balance -= invoice.total - invoice.paid;
   }
 
-  /* ===============================
-     3️⃣ تعديل الخزنة (المهم 👈)
-  ================================ */
   cash.income -= invoice.paid;
+  if (cash.income < 0) cash.income = 0;
 
-  if (cash.income < 0) cash.income = 0; // حماية إضافية
-
-  /* ===============================
-     4️⃣ حذف الفاتورة
-  ================================ */
   sales.splice(index, 1);
-
   saveData();
   renderSales();
 
-  // لو صفحة الخزنة مفتوحة
-  if (typeof renderCashStatement === "function") {
-    renderCashStatement();
-  }
-
-  showModal("تم حذف الفاتورة وتحديث الخزنة بنجاح ✅", "نجاح");
+  if (typeof renderCashStatement === "function") renderCashStatement();
 }
 
 /* ===============================
-   مودال
+   مودال عصري لحذف الفاتورة
 ================================ */
+function confirmDeleteInvoice(index) {
+  showDeleteModal("هل أنت متأكد من حذف هذه الفاتورة؟ لا يمكن التراجع.", () => {
+    deleteInvoice(index);
+    showModal("تم حذف الفاتورة وتحديث الخزنة بنجاح ✅", "نجاح");
+  });
+}
+
+/* ===============================
+   مودال عصري + عام
+================================ */
+let deleteCallback = null;
+
+function showDeleteModal(message, onConfirm) {
+  const appModal = document.getElementById("appModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalMessage = document.getElementById("modalMessage");
+  const modalConfirmBtn = document.getElementById("modalConfirmBtn");
+  const modalCancelBtn = document.getElementById("modalCancelBtn");
+  const modalOkBtn = document.getElementById("modalOkBtn");
+
+  modalTitle.innerText = "تأكيد الحذف";
+  modalMessage.innerText = message;
+
+  modalConfirmBtn.style.display = "flex";
+  modalCancelBtn.style.display = "flex";
+  modalOkBtn.style.display = "none";
+
+  deleteCallback = onConfirm;
+  appModal.style.display = "flex";
+
+  modalConfirmBtn.onclick = () => {
+    if (deleteCallback) deleteCallback();
+    closeModal();
+  };
+
+  modalCancelBtn.onclick = closeModal;
+}
+
 function showModal(message, title = "تنبيه") {
-  document.getElementById("modalTitle").innerText = title;
-  document.getElementById("modalMessage").innerText = message;
-  document.getElementById("appModal").style.display = "flex";
+  const appModal = document.getElementById("appModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalMessage = document.getElementById("modalMessage");
+  const modalConfirmBtn = document.getElementById("modalConfirmBtn");
+  const modalCancelBtn = document.getElementById("modalCancelBtn");
+  const modalOkBtn = document.getElementById("modalOkBtn");
+
+  modalTitle.innerText = title;
+  modalMessage.innerText = message;
+
+  modalConfirmBtn.style.display = "none";
+  modalCancelBtn.style.display = "none";
+  modalOkBtn.style.display = "flex";
+
+  appModal.style.display = "flex";
+
+  modalOkBtn.onclick = closeModal;
 }
 
 function closeModal() {
   document.getElementById("appModal").style.display = "none";
+  deleteCallback = null;
 }
