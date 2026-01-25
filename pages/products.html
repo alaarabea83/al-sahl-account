@@ -115,26 +115,52 @@
         background: #f4f6f8;
       }
 
+      .table-scroll {
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      .table-scroll table {
+        min-width: 900px;
+        /* يمنع تكسير الأعمدة */
+      }
+
+      .table-scroll::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      .table-scroll::-webkit-scrollbar-thumb {
+        background: #2e86c1;
+        border-radius: 10px;
+      }
+
       /* حاوية الأزرار */
       .actions {
         display: flex;
-        flex-wrap: wrap; /* تخلي الأزرار تنزل سطر ثاني لو ضيق المكان */
-        gap: 1px; /* مسافة بين الأزرار */
-        justify-content: center; /* تخلي الأزرار في الوسط */
+        flex-wrap: wrap;
+        /* تخلي الأزرار تنزل سطر ثاني لو ضيق المكان */
+        gap: 1px;
+        /* مسافة بين الأزرار */
+        justify-content: center;
+        /* تخلي الأزرار في الوسط */
       }
 
       /* الأزرار داخل container - للكمبيوتر */
       .actions .btn {
-        min-width: 25px; /* يمنع الزر من أن يكون ضيق جدًا */
-        margin-bottom: 3px; /* مسافة صغيرة بين الصفوف لو wrap */
-        flex: unset; /* على الكمبيوتر لا يمتد */
+        min-width: 25px;
+        /* يمنع الزر من أن يكون ضيق جدًا */
+        margin-bottom: 3px;
+        /* مسافة صغيرة بين الصفوف لو wrap */
+        flex: unset;
+        /* على الكمبيوتر لا يمتد */
         border-radius: 8px;
       }
 
       /* للشاشات الصغيرة (موبايل) */
       @media (max-width: 600px) {
         .actions .btn {
-          flex: 0 0 auto; /* يسمح للزر بالتوسع قليلاً على الموبايل */
+          flex: 0 0 auto;
+          /* يسمح للزر بالتوسع قليلاً على الموبايل */
         }
       }
 
@@ -222,6 +248,10 @@
       .modal-box button.cancel {
         background: #dc3545;
       }
+
+      #productsTable tbody tr:last-child {
+        border-top: 2px solid #2e86c1;
+      }
     </style>
   </head>
 
@@ -252,8 +282,21 @@
         <h3>➕ إضافة منتج جديد</h3>
         <div class="form-row">
           <input type="text" id="productName" placeholder="اسم المنتج" />
-          <input type="number" id="productPrice" placeholder="سعر المنتج" />
-          <input type="number" id="productQty" placeholder="الكمية" />
+
+          <input type="number" id="productQty" placeholder="الرصيد الإفتتاحي" />
+
+          <select id="productUnit">
+            <option value="">الوحدة</option>
+            <option value="قطعة">قطعة</option>
+            <option value="كرتونة">كرتونة</option>
+            <option value="كجم">كجم</option>
+            <option value="لتر">لتر</option>
+          </select>
+
+          <input type="number" id="productPrice" placeholder="سعر البيع" />
+
+          <input type="number" id="productBuyPrice" placeholder="سعر الشراء" />
+
           <button id="addProductBtn">✚ إضافة</button>
         </div>
       </div>
@@ -276,17 +319,25 @@
             font-size: 15px;
           "
         />
-        <table id="productsTable">
-          <thead>
-            <tr>
-              <th>المنتج</th>
-              <th>الكمية</th>
-              <th>السعر</th>
-              <th>إجراءات</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+
+        <div class="table-scroll">
+          <table id="productsTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>المنتج</th>
+                <th>الكمية</th>
+                <th>الوحدة</th>
+                <th>سعر البيع</th>
+                <th>سعر الشراء</th>
+                <th>الإجمالي</th>
+                <th>إجراءات</th>
+              </tr>
+            </thead>
+
+            <tbody></tbody>
+          </table>
+        </div>
         <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
       </div>
     </section>
@@ -304,12 +355,27 @@
     <div id="editModal" class="modal-overlay">
       <div class="modal-box">
         <h3>تعديل المنتج</h3>
+
         <label>اسم المنتج</label>
         <input type="text" id="editProductName" />
+
         <label>الرصيد الافتتاحي</label>
         <input type="number" id="editProductQty" />
+
+        <label>الوحدة</label>
+        <select id="editProductUnit">
+          <option value="قطعة">قطعة</option>
+          <option value="كرتونة">كرتونة</option>
+          <option value="كجم">كجم</option>
+          <option value="لتر">لتر</option>
+        </select>
+
         <label>سعر البيع</label>
         <input type="number" id="editProductPrice" />
+
+        <label>سعر الشراء</label>
+        <input type="number" id="editProductBuyPrice" />
+
         <div style="margin-top: 10px">
           <button onclick="saveProductEdit()">حفظ</button>
           <button class="cancel" onclick="closeEditModal()">إلغاء</button>

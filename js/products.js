@@ -10,16 +10,27 @@ window.onload = function () {
 function addProductHandler() {
   const name = document.getElementById("productName").value.trim();
   const price = +document.getElementById("productPrice").value;
+  const buyPrice = +document.getElementById("productBuyPrice").value;
   const openingQty = +document.getElementById("productQty").value;
+  const unit = document.getElementById("productUnit").value;
 
-  if (!name) return showModal("من فضلك أدخل اسم المنتج");
+  if (!name) return showModal("من فضلك أدخل جميع البيانات");
+  if (!unit) return showModal("من فضلك اختر الوحدة");
 
-  // qty الحالي = الرصيد الافتتاحي عند الإضافة
-  products.push({ name, price, openingQty });
+  products.push({
+    name,
+    price,
+    buyPrice,
+    unit,
+    openingQty,
+  });
 
+  // تفريغ الحقول
   document.getElementById("productName").value = "";
   document.getElementById("productPrice").value = "";
+  document.getElementById("productBuyPrice").value = "";
   document.getElementById("productQty").value = "";
+  document.getElementById("productUnit").value = "";
 
   saveData();
   renderProducts();
@@ -63,26 +74,52 @@ function renderProducts(searchQuery = "") {
   const tbody = document.querySelector("#productsTable tbody");
   tbody.innerHTML = "";
 
+  let grandTotal = 0;
+
   products.forEach((p, index) => {
-    // فلتر البحث
     if (searchQuery && !p.name.toLowerCase().includes(searchQuery)) return;
 
     const currentQty = getCurrentQty(p.name);
+    const sellPrice = p.price || 0; // سعر البيع
+    const buyPrice = p.buyPrice || 0; // سعر الشراء
+    const unit = p.unit || "-";
+
+    const total = currentQty * buyPrice;
+    grandTotal += total;
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
-  <td>${p.name}</td>
-  <td>${currentQty}</td>
-  <td>${p.price.toFixed(2)}</td>
-  <td class="actions">
-    <button class="btn btn-edit" onclick="openEditModal(${index})">✏️</button>
-    <button class="btn btn-delete" onclick="openDeleteModal(${index})">🗑️</button>
-    <button class="btn btn-info" onclick="openProductMovement(${index})">📄</button>
-  </td>
-`;
+      <td>${index + 1}</td>
+      <td>${p.name}</td>
+      <td>${currentQty}</td>
+      <td>${unit}</td>
+      <td>${sellPrice.toFixed(2)}</td>
+      <td>${buyPrice.toFixed(2)}</td>
+      <td>${total.toFixed(2)}</td>
+      <td class="actions">
+        <button class="btn btn-edit" onclick="openEditModal(${index})">✏️</button>
+        <button class="btn btn-delete" onclick="openDeleteModal(${index})">🗑️</button>
+        <button class="btn btn-info" onclick="openProductMovement(${index})">📄</button>
+      </td>
+    `;
 
     tbody.appendChild(tr);
   });
+
+  /* صف الإجمالي العام */
+  if (products.length) {
+    const trTotal = document.createElement("tr");
+    trTotal.style.background = "#f4f6f8";
+    trTotal.style.fontWeight = "bold";
+
+    trTotal.innerHTML = `
+      <td colspan="6">إجمالي قيمة المخزون (بسعر الشراء)</td>
+      <td>${grandTotal.toFixed(2)}</td>
+      <td>—</td>
+    `;
+
+    tbody.appendChild(trTotal);
+  }
 }
 
 // البحث في المنتجات
@@ -94,9 +131,13 @@ document.getElementById("searchProduct").addEventListener("input", function () {
 function openEditModal(index) {
   editIndex = index;
   const p = products[index];
+
   document.getElementById("editProductName").value = p.name;
-  document.getElementById("editProductQty").value = p.openingQty; // الرصيد الافتتاحي
+  document.getElementById("editProductQty").value = p.openingQty;
   document.getElementById("editProductPrice").value = p.price;
+  document.getElementById("editProductBuyPrice").value = p.buyPrice || 0;
+  document.getElementById("editProductUnit").value = p.unit || "قطعة";
+
   document.getElementById("editModal").style.display = "flex";
 }
 
@@ -106,12 +147,19 @@ function saveProductEdit() {
   const name = document.getElementById("editProductName").value.trim();
   const openingQty = +document.getElementById("editProductQty").value;
   const price = +document.getElementById("editProductPrice").value;
+  const buyPrice = +document.getElementById("editProductBuyPrice").value;
+  const unit = document.getElementById("editProductUnit").value;
 
   if (!name) return showModal("من فضلك أدخل اسم المنتج");
 
-  products[editIndex].name = name;
-  products[editIndex].openingQty = openingQty;
-  products[editIndex].price = price;
+  products[editIndex] = {
+    ...products[editIndex],
+    name,
+    openingQty,
+    price,
+    buyPrice,
+    unit,
+  };
 
   saveData();
   renderProducts();
