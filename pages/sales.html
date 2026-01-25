@@ -204,6 +204,32 @@
         border-radius: 8px;
         cursor: pointer;
       }
+
+      @media screen and (max-width: 600px) {
+        label {
+          display: block;
+          text-align: right;
+          width: 100%;
+          margin: 0 !important;
+          padding: 0 !important;
+          box-sizing: border-box;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        /* فورم إضافة المنتج في فاتورة المبيعات فقط */
+        #invoiceItems .form-row {
+          display: flex;
+          justify-content: center; /* سنتر أفقي */
+          align-items: center; /* سنتر رأسي */
+          gap: 8px;
+        }
+
+        #invoiceItems .form-row select,
+        #invoiceItems .form-row input {
+          max-width: 50%;
+        }
+      }
     </style>
   </head>
 
@@ -235,7 +261,7 @@
 
         <!-- صف اختيار العميل + رصيده + إضافة منتج -->
         <div class="form-row">
-          <label for="invoiceCustomer">اختر العميل:</label>
+          <label for="invoiceCustomer">إختر العميل:</label>
           <select id="invoiceCustomer"></select>
 
           <label for="customerBalance">الرصيد السابق:</label>

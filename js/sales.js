@@ -49,7 +49,7 @@ function addInvoiceItem() {
 
   row.innerHTML = `
     <select class="itemProduct">
-    <option value="">اضف منتج</option>
+    <option value="">إختر منتج</option>
       ${products.map((p, i) => `<option value="${i}">${p.name}</option>`).join("")}
     </select>
     <input type="number" class="itemQty" placeholder="الكمية" min="1">
