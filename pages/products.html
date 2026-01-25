@@ -283,14 +283,19 @@
         <div class="form-row">
           <input type="text" id="productName" placeholder="اسم المنتج" />
 
-          <input type="number" id="productQty" placeholder="الرصيد الإفتتاحي" />
+          <input type="number" id="productQty" placeholder="رصيد أول المده" />
 
           <select id="productUnit">
             <option value="">الوحدة</option>
+            <option value="جنية">جنية</option>
             <option value="قطعة">قطعة</option>
+            <option value="علبة">علبة</option>
             <option value="كرتونة">كرتونة</option>
+            <option value="شرنك">شرنك</option>
+            <option value="خرطوشة">خرطوشة</option>
             <option value="كجم">كجم</option>
             <option value="لتر">لتر</option>
+            <option value="برطمان">برطمان</option>
           </select>
 
           <input type="number" id="productPrice" placeholder="سعر البيع" />
@@ -359,15 +364,20 @@
         <label>اسم المنتج</label>
         <input type="text" id="editProductName" />
 
-        <label>الرصيد الافتتاحي</label>
+        <label>رصيد أول المدة</label>
         <input type="number" id="editProductQty" />
 
         <label>الوحدة</label>
         <select id="editProductUnit">
-          <option value="قطعة">قطعة</option>
-          <option value="كرتونة">كرتونة</option>
-          <option value="كجم">كجم</option>
-          <option value="لتر">لتر</option>
+            <option value="جنية">جنية</option>
+            <option value="قطعة">قطعة</option>
+            <option value="علبة">علبة</option>
+            <option value="كرتونة">كرتونة</option>
+            <option value="شرنك">شرنك</option>
+            <option value="خرطوشة">خرطوشة</option>
+            <option value="كجم">كجم</option>
+            <option value="لتر">لتر</option>
+            <option value="برطمان">برطمان</option>
         </select>
 
         <label>سعر البيع</label>

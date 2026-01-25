@@ -115,7 +115,7 @@ function renderProducts(searchQuery = "") {
     trTotal.innerHTML = `
       <td colspan="6">إجمالي قيمة المخزون (بسعر الشراء)</td>
       <td>${grandTotal.toFixed(2)}</td>
-      <td>—</td>
+      <td></td>
     `;
 
     tbody.appendChild(trTotal);

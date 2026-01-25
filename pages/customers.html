@@ -293,11 +293,11 @@
       <div class="card">
         <h3>➕ إضافة عميل جديد</h3>
         <div class="form-row">
-          <input type="text" id="customerName" placeholder="اسم العميل" />
+          <input type="text" id="customerName" placeholder="اسم العميل أو المورد" />
           <input
             type="number"
             id="openingBalance"
-            placeholder="الرصيد الافتتاحي"
+            placeholder="الرصيد السابق"
           />
           <button class="btn-add" id="addCustomerBtn">✚ إضافة</button>
         </div>
@@ -324,11 +324,13 @@
         <table id="customersTable">
           <thead>
             <tr>
+              <th>#</th>
               <th>الاسم</th>
               <th>الرصيد</th>
               <th>إجراءات</th>
             </tr>
           </thead>
+
           <tbody></tbody>
         </table>
 

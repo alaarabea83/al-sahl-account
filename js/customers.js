@@ -81,14 +81,16 @@ function renderCustomers(searchQuery = "") {
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${c.name}</td>
-      <td>${currentBalance.toFixed(2)}</td>
-      <td class="actions">
-        <button class="btn-primary" onclick="openStatementModal(${index})">📄</button>
-        <button class="btn-edit" onclick="openEditModal(${index})">✏️</button>
-        <button class="btn-delete" onclick="deleteCustomer(${index})">🗑️</button>
-      </td>
-    `;
+  <td>${index + 1}</td>
+  <td>${c.name}</td>
+  <td>${currentBalance.toFixed(2)}</td>
+  <td class="actions">
+    <button class="btn-primary" onclick="openStatementModal(${index})">📄</button>
+    <button class="btn-edit" onclick="openEditModal(${index})">✏️</button>
+    <button class="btn-delete" onclick="deleteCustomer(${index})">🗑️</button>
+  </td>
+`;
+
     tbody.appendChild(tr);
   });
 }
