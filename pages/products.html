@@ -194,7 +194,7 @@
       padding: 1.5rem;
       border-radius: 10px;
       text-align: center;
-      min-width: 300px;
+      min-width: 200px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
@@ -231,6 +231,14 @@
 
     .modal-box button.cancel {
       background: #dc3545;
+    }
+
+    @media (max-width: 600px) {
+      .modal-box {
+        margin: 30px;
+        width: calc(100% - 40px);
+        /* يمنع الخروج بره الشاشة */
+      }
     }
 
     #productsTable tbody tr:last-child {

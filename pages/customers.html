@@ -172,7 +172,6 @@
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
       align-items: center;
       justify-content: center;
       z-index: 999;
@@ -244,6 +243,15 @@
       color: #444;
       font-size: 14px;
     }
+
+    @media (max-width: 600px) {
+      .modal-card {
+        margin: 30px;
+        width: calc(100% - 40px);
+        /* يمنع الخروج بره الشاشة */
+      }
+    }
+
 
     .form-group {
       display: flex;
