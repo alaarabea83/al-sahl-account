@@ -33,7 +33,6 @@ function renderCustomerSelect() {
   if (!sel) return;
 
   sel.innerHTML =
-    `<option value="">إختر عميل</option>` +
     `<option value="">نقدي بدون عميل</option>` +
     customers.map((c, i) => `<option value="${i}">${c.name}</option>`).join("");
 }
@@ -165,6 +164,12 @@ function saveSale() {
 
   for (let i = 0; i < productEls.length; i++) {
     const pIndex = productEls[i].value;
+
+    if (pIndex === "") {
+      showModal("من فضلك اختر منتج لكل صف");
+      return;
+    }
+
     const qty = +qtyEls[i].value;
     const product = products[pIndex];
 
@@ -231,31 +236,30 @@ function saveSale() {
 // ===============================
 // عرض الفواتير
 // ===============================
-function renderSales() {
+function renderSales(data = sales) {
   const tbody = document.querySelector("#salesTable tbody");
   if (!tbody) return;
 
   tbody.innerHTML = "";
 
-  sales
+  data
     .sort((a, b) => (a.order || 0) - (b.order || 0))
     .forEach((invoice, index) => {
       const tr = document.createElement("tr");
-
       tr.innerHTML = `
-  <td>${index + 1}</td>
-  <td>${invoice.date}</td>
-  <td>${invoice.customer}</td>
-  <td>${invoice.total}</td>
-  <td>${invoice.paid}</td>
-  <td>${invoice.remaining}</td>
-  <td>${invoice.previousBalance || 0}</td>
-  <td>${invoice.newBalance || 0}</td>
-  <td>
-    <button class="btn-delete" onclick="confirmDeleteInvoice(${index})">🗑️</button>
-    <button class="btn-edit" onclick="editInvoice(${index})">✏️</button>
-  </td>
-`;
+        <td>${index + 1}</td>
+        <td>${invoice.date}</td>
+        <td>${invoice.customer}</td>
+        <td>${invoice.total}</td>
+        <td>${invoice.paid}</td>
+        <td>${invoice.remaining}</td>
+        <td>${invoice.previousBalance || 0}</td>
+        <td>${invoice.newBalance || 0}</td>
+        <td>
+          <button class="btn-delete" onclick="confirmDeleteInvoice(${index})">🗑️</button>
+          <button class="btn-edit" onclick="editInvoice(${index})">✏️</button>
+        </td>
+      `;
       tbody.appendChild(tr);
     });
 }
