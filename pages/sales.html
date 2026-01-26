@@ -21,10 +21,16 @@
       }
 
       header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 60px; /* خليها مطابق للارتفاع الحقيقي للهيدر */
+        line-height: 60px;
         background: #2e86c1;
         text-align: center;
-        padding: 1rem;
         color: #fff;
+        z-index: 1000;
       }
 
       h1,
@@ -32,13 +38,14 @@
       h3 {
         font-family: "Cairo", sans-serif;
         font-weight: 700;
-        margin: 10px;
+        margin: 5px;
       }
 
       /* ===== Layout ===== */
       section {
         max-width: 1000px;
         margin: 20px auto;
+        margin-top: 120px; /* المسافة فوق، خليها sum الهيدر + breadcrumbs + gap */
         background: #fff;
         padding: 20px;
         border-radius: 12px;
@@ -49,7 +56,7 @@
       }
 
       .t-container {
-        background: #fdfefe;
+        background: #f0fff4;
         border-radius: 12px;
         padding: 20px;
         border: 1px solid #e5e7e9;
@@ -242,84 +249,93 @@
   <body>
     <header>
       <h2>فواتير المبيعات</h2>
-      <nav class="breadcrumbs">
-        <a href="../index.html" class="home">الرئيسية</a>
-        <span class="separator">›</span>
-        <a href="../pages/customers.html" class="home">العملاء</a>
-        <span class="separator">›</span>
-        <a href="../pages/products.html" class="home">المنتجات</a>
-        <span class="separator">›</span>
-        <span class="current">المبيعات</span>
-        <span class="separator">›</span>
-        <a href="../pages/purchases.html" class="home"> المشتريات</a>
-        <span class="separator">›</span>
-        <a href="../pages/income.html" class="home">المقبوضات</a>
-        <span class="separator">›</span>
-        <a href="../pages/expenses.html" class="home">المدفوعات</a>
-        <span class="separator">›</span>
-        <a href="../pages/cash.html" class="home">الخزينة</a>
-      </nav>
     </header>
+    <nav class="breadcrumbs">
+      <a href="../index.html" class="home">الرئيسية</a>
+      <span class="separator">›</span>
+      <a href="../pages/customers.html" class="home">العملاء</a>
+      <span class="separator">›</span>
+      <a href="../pages/products.html" class="home">المنتجات</a>
+      <span class="separator">›</span>
+      <span class="current">المبيعات</span>
+      <span class="separator">›</span>
+      <a href="../pages/purchases.html" class="home"> المشتريات</a>
+      <span class="separator">›</span>
+      <a href="../pages/income.html" class="home">المقبوضات</a>
+      <span class="separator">›</span>
+      <a href="../pages/expenses.html" class="home">المدفوعات</a>
+      <span class="separator">›</span>
+      <a href="../pages/cash.html" class="home">الخزينة</a>
+    </nav>
 
     <section>
       <div class="t-container">
-        <h3 style="text-align: right">🧾 فاتورة بيع جديدة</h3>
+        <div
+          style="
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+          "
+          class="invoice-section"
+        >
+          <h3 style="text-align: right">🧾 فاتورة بيع جديدة</h3>
 
-        <!-- صف اختيار العميل + رصيده + إضافة منتج -->
-        <div class="form-row">
-          <label for="invoiceCustomer">إختر العميل:</label>
-          <select id="invoiceCustomer"></select>
+          <!-- صف اختيار العميل + رصيده + إضافة منتج -->
+          <div class="form-row">
+            <label for="invoiceCustomer">إختر العميل:</label>
+            <select id="invoiceCustomer"></select>
 
-          <label for="customerBalance">الرصيد السابق:</label>
-          <input
-            type="number"
-            id="customerBalance"
-            placeholder="الرصيد السابق للعميل"
-            readonly
-          />
+            <label for="customerBalance">الرصيد السابق:</label>
+            <input
+              type="number"
+              id="customerBalance"
+              placeholder="الرصيد السابق للعميل"
+              readonly
+            />
 
-          <button type="button" id="addItemBtn">✚ إضافة منتج</button>
-        </div>
+            <button type="button" id="addItemBtn">✚ إضافة منتج</button>
+          </div>
 
-        <!-- حاوية ديناميكية لصفوف المنتجات -->
-        <div id="invoiceItems"></div>
+          <!-- حاوية ديناميكية لصفوف المنتجات -->
+          <div id="invoiceItems"></div>
 
-        <!-- إجمالي الفاتورة + الإجمالي الكلي -->
-        <div class="form-row">
-          <label for="invoiceTotal">إجمالي الفاتورة:</label>
-          <input
-            type="number"
-            id="invoiceTotal"
-            placeholder="إجمالي الفاتورة"
-            readonly
-          />
+          <!-- إجمالي الفاتورة + الإجمالي الكلي -->
+          <div class="form-row">
+            <label for="invoiceTotal">إجمالي الفاتورة:</label>
+            <input
+              type="number"
+              id="invoiceTotal"
+              placeholder="إجمالي الفاتورة"
+              readonly
+            />
 
-          <label for="grandTotal">الإجمالي الكلي:</label>
-          <input
-            type="number"
-            id="grandTotal"
-            placeholder="الإجمالي الكلي"
-            readonly
-          />
-        </div>
+            <label for="grandTotal">الإجمالي الكلي:</label>
+            <input
+              type="number"
+              id="grandTotal"
+              placeholder="الإجمالي الكلي"
+              readonly
+            />
+          </div>
 
-        <!-- المدفوع + المتبقي -->
-        <div class="form-row">
-          <label for="paidAmount">المبلغ المدفوع:</label>
-          <input type="number" id="paidAmount" placeholder="المبلغ المدفوع" />
+          <!-- المدفوع + المتبقي -->
+          <div class="form-row">
+            <label for="paidAmount">المبلغ المدفوع:</label>
+            <input type="number" id="paidAmount" placeholder="المبلغ المدفوع" />
 
-          <label for="remainingAmount">المتبقي:</label>
-          <input
-            type="number"
-            id="remainingAmount"
-            placeholder="الرصيد الجديد للعميل"
-            readonly
-          />
-        </div>
+            <label for="remainingAmount">المتبقي:</label>
+            <input
+              type="number"
+              id="remainingAmount"
+              placeholder="الرصيد الجديد للعميل"
+              readonly
+            />
+          </div>
 
-        <!-- زر حفظ الفاتورة -->
-        <div class="form-row">
-          <button type="button" id="saveInvoiceBtn">💾 حفظ الفاتورة</button>
+          <!-- زر حفظ الفاتورة -->
+          <div class="form-row">
+            <button type="button" id="saveInvoiceBtn">💾 حفظ الفاتورة</button>
+          </div>
         </div>
       </div>
 
@@ -351,7 +367,9 @@
           </div>
 
           <button onclick="filterSalesByDate()">🔍 بحث</button>
-          <button type="button" onclick="resetSalesFilter()">🔄 عرض الكل</button>
+          <button type="button" onclick="resetSalesFilter()">
+            🔄 عرض الكل
+          </button>
         </div>
 
         <div class="table-scroll">
