@@ -99,7 +99,7 @@ function renderProducts(searchQuery = "") {
       <td class="actions">
         <button class="btn btn-edit" onclick="openEditModal(${index})">✏️ تعديل</button>
         <button class="btn btn-delete" onclick="openDeleteModal(${index})">🗑️ حذف</button>
-        <button class="btn btn-info" onclick="openProductMovement(${index})">📄 حركة الصنف</button>
+        <button class="btn btn-info" onclick="openProductMovement(${index})">📄 حركة صنف</button>
       </td>
     `;
 
