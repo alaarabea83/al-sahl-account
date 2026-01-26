@@ -21,12 +21,16 @@
       }
 
       header {
-        font-family: "Cairo", sans-serif;
-        font-weight: 700;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 60px; /* خليها مطابق للارتفاع الحقيقي للهيدر */
+        line-height: 60px;
         background: #2e86c1;
         text-align: center;
         color: #fff;
-        padding: 1rem;
+        z-index: 1000;
       }
 
       h1,
@@ -34,12 +38,14 @@
       h3 {
         font-family: "Cairo", sans-serif;
         font-weight: 700;
-        margin: 10px;
+        margin: 5px;
       }
 
+      /* ===== Layout ===== */
       section {
         max-width: 1000px;
         margin: 20px auto;
+        margin-top: 120px; /* المسافة فوق، خليها sum الهيدر + breadcrumbs + gap */
         background: #fff;
         padding: 20px;
         border-radius: 12px;
@@ -50,7 +56,7 @@
       }
 
       .t-container {
-        background: #fdfefe;
+        background: #f0fff4;
         border-radius: 12px;
         padding: 20px;
         border: 1px solid #e5e7e9;
@@ -252,65 +258,85 @@
         text-align: center;
         font-weight: bold;
       }
+
+      .addproduct {
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .product-menu {
+        padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
     </style>
   </head>
 
   <body>
     <header>
       <h2>إدارة المنتجات</h2>
-      <nav class="breadcrumbs">
-        <a href="../index.html" class="home">الرئيسية</a>
-        <span class="separator">›</span>
-        <a href="../pages/customers.html" class="home">العملاء</a>
-        <span class="separator">›</span>
-        <span class="current">المنتجات</span>
-        <span class="separator">›</span>
-        <a href="../pages/sales.html" class="home">المبيعات</a>
-        <span class="separator">›</span>
-        <a href="../pages/purchases.html" class="home"> المشتريات</a>
-        <span class="separator">›</span>
-        <a href="../pages/income.html" class="home">المقبوضات</a>
-        <span class="separator">›</span>
-        <a href="../pages/expenses.html" class="home">المدفوعات</a>
-        <span class="separator">›</span>
-        <a href="../pages/cash.html" class="home">الخزينة</a>
-      </nav>
     </header>
+
+    <nav class="breadcrumbs">
+      <a href="../index.html" class="home">الرئيسية</a>
+      <span class="separator">›</span>
+      <a href="../pages/customers.html" class="home">العملاء</a>
+      <span class="separator">›</span>
+      <span class="current">المنتجات</span>
+      <span class="separator">›</span>
+      <a href="../pages/sales.html" class="home">المبيعات</a>
+      <span class="separator">›</span>
+      <a href="../pages/purchases.html" class="home"> المشتريات</a>
+      <span class="separator">›</span>
+      <a href="../pages/income.html" class="home">المقبوضات</a>
+      <span class="separator">›</span>
+      <a href="../pages/expenses.html" class="home">المدفوعات</a>
+      <span class="separator">›</span>
+      <a href="../pages/cash.html" class="home">الخزينة</a>
+    </nav>
 
     <section>
       <div class="t-container">
-        <h3>📝 إضافة منتج جديد</h3>
-        <div class="form-row">
-          <input type="text" id="productName" placeholder="اسم المنتج" />
+        <div class="addproduct">
+          <h3>📝 إضافة منتج جديد</h3>
+          <div class="form-row">
+            <input type="text" id="productName" placeholder="اسم المنتج" />
 
-          <input
-            type="number"
-            id="productQty"
-            placeholder="رصيد أول المدة (ان وجد)"
-          />
+            <input
+              type="number"
+              id="productQty"
+              placeholder="رصيد أول المدة (ان وجد)"
+            />
 
-          <select id="productUnit">
-            <option value="">الوحدة</option>
-            <option value="جنية">جنية</option>
-            <option value="قطعة">قطعة</option>
-            <option value="علبة">علبة</option>
-            <option value="كرتونة">كرتونة</option>
-            <option value="شرنك">شرنك</option>
-            <option value="خرطوشة">خرطوشة</option>
-            <option value="كجم">كجم</option>
-            <option value="لتر">لتر</option>
-            <option value="برطمان">برطمان</option>
-          </select>
+            <select id="productUnit">
+              <option value="">الوحدة</option>
+              <option value="جنية">جنية</option>
+              <option value="قطعة">قطعة</option>
+              <option value="علبة">علبة</option>
+              <option value="كرتونة">كرتونة</option>
+              <option value="شرنك">شرنك</option>
+              <option value="خرطوشة">خرطوشة</option>
+              <option value="كجم">كجم</option>
+              <option value="لتر">لتر</option>
+              <option value="برطمان">برطمان</option>
+            </select>
 
-          <input type="number" id="productPrice" placeholder="سعر البيع" />
+            <input type="number" id="productPrice" placeholder="سعر البيع" />
 
-          <input type="number" id="productBuyPrice" placeholder="سعر الشراء" />
+            <input
+              type="number"
+              id="productBuyPrice"
+              placeholder="سعر الشراء"
+            />
 
-          <button id="addProductBtn">✚ إضافة</button>
+            <button id="addProductBtn">✚ إضافة</button>
+          </div>
         </div>
       </div>
 
       <div class="t-container">
+        <div class="product-menu">
         <h3>📋 قائمة المنتجات</h3>
         <!-- حقل البحث -->
         <input
@@ -346,6 +372,7 @@
 
             <tbody></tbody>
           </table>
+        </div>
         </div>
         <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
       </div>

@@ -20,23 +20,31 @@
       margin: 0;
     }
 
-    header {
-      background: #2e86c1;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-    }
+     header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 60px; /* خليها مطابق للارتفاع الحقيقي للهيدر */
+        line-height: 60px;
+        background: #2e86c1;
+        text-align: center;
+        color: #fff;
+        z-index: 1000;
+      }
+
 
     section {
       max-width: 1000px;
-      margin: 20px auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
+        margin: 20px auto;
+        margin-top: 120px; /* المسافة فوق، خليها sum الهيدر + breadcrumbs + gap */
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
     }
 
     h1,
@@ -308,6 +316,7 @@
 <body>
   <header>
     <h2>إدارة العملاء</h2>
+    </header>
     <nav class="breadcrumbs">
       <a href="../index.html" class="home">الرئيسية</a>
       <span class="separator">›</span>
@@ -329,7 +338,6 @@
       <span class="separator">›</span>
       <a href="../pages/profit.html" class="home">الإعدادات</a>
     </nav>
-  </header>
 
   <section>
     <div class="card">
