@@ -38,18 +38,21 @@
 
     section {
       max-width: 1000px;
-      margin: 2rem auto;
-      padding: 1rem;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 25px;
     }
 
     .t-container {
-      background: #fff;
-      padding: 1.5rem;
+      background: #fdfefe;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      border: 1px solid #e5e7e9;
     }
 
     .form-row {
@@ -271,7 +274,7 @@
       <div class="form-row">
         <input type="text" id="productName" placeholder="اسم المنتج" />
 
-        <input type="number" id="productQty" placeholder="رصيد أول المده" />
+        <input type="number" id="productQty" placeholder="رصيد أول المدة (إن وجد)" />
 
         <select id="productUnit">
           <option value="">الوحدة</option>
