@@ -211,7 +211,7 @@ function saveSale() {
     remaining: total - paid,
     previousBalance,
     newBalance,
-    date: new Date().toLocaleDateString(),
+    date: new Date().toISOString().slice(0, 10), // YYYY-MM-DD
     order,
   });
 
@@ -256,8 +256,6 @@ function renderSales() {
     <button class="btn-edit" onclick="editInvoice(${index})">✏️</button>
   </td>
 `;
-      tbody.appendChild(tr);
-
       tbody.appendChild(tr);
     });
 }
@@ -365,6 +363,33 @@ function confirmDeleteInvoice(index) {
     deleteInvoice(index);
     showModal("تم حذف الفاتورة وتحديث الخزنة بنجاح ✅", "نجاح");
   });
+}
+
+function filterSalesByDate() {
+  const from = document.getElementById("fromDate").value;
+  const to = document.getElementById("toDate").value;
+
+  if (!from && !to) {
+    renderSales();
+    return;
+  }
+
+  const filtered = sales.filter((invoice) => {
+    if (!invoice.date) return false;
+
+    if (from && invoice.date < from) return false;
+    if (to && invoice.date > to) return false;
+
+    return true;
+  });
+
+  renderSales(filtered);
+}
+
+function resetSalesFilter() {
+  document.getElementById("fromDate").value = "";
+  document.getElementById("toDate").value = "";
+  renderSales();
 }
 
 // ===============================

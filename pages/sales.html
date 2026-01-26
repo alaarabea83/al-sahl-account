@@ -339,6 +339,21 @@
 
       <div class="t-container">
         <h3 style="text-align: right">📋 الفواتير السابقة</h3>
+        <div class="form-row" style="gap: 10px; align-items: end">
+          <div>
+            <label>من تاريخ</label>
+            <input type="date" id="fromDate" />
+          </div>
+
+          <div>
+            <label>إلى تاريخ</label>
+            <input type="date" id="toDate" />
+          </div>
+
+          <button onclick="filterSalesByDate()">🔍 بحث</button>
+          <button onclick="resetSalesFilter()">🔄 عرض الكل</button>
+        </div>
+
         <div class="table-scroll">
           <table id="salesTable">
             <thead>
