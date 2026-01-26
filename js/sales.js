@@ -236,17 +236,16 @@ function saveSale() {
 // ===============================
 // عرض الفواتير
 // ===============================
-function renderSales(list = sales) {
+function renderSales(data = sales) {
   const tbody = document.querySelector("#salesTable tbody");
   if (!tbody) return;
 
   tbody.innerHTML = "";
 
-  list
+  data
     .sort((a, b) => (a.order || 0) - (b.order || 0))
     .forEach((invoice, index) => {
       const tr = document.createElement("tr");
-
       tr.innerHTML = `
         <td>${index + 1}</td>
         <td>${invoice.date}</td>
@@ -257,14 +256,13 @@ function renderSales(list = sales) {
         <td>${invoice.previousBalance || 0}</td>
         <td>${invoice.newBalance || 0}</td>
         <td>
-          <button onclick="confirmDeleteInvoice(${index})">🗑️</button>
-          <button onclick="editInvoice(${index})">✏️</button>
+          <button class="btn-delete" onclick="confirmDeleteInvoice(${index})">🗑️</button>
+          <button class="btn-edit" onclick="editInvoice(${index})">✏️</button>
         </td>
       `;
       tbody.appendChild(tr);
     });
 }
-
 
 // ===============================
 // تعديل فاتورة
@@ -375,6 +373,11 @@ function filterSalesByDate() {
   const from = document.getElementById("fromDate").value;
   const to = document.getElementById("toDate").value;
 
+  if (!from && !to) {
+    renderSales();
+    return;
+  }
+
   const filtered = sales.filter((invoice) => {
     if (!invoice.date) return false;
 
@@ -387,13 +390,11 @@ function filterSalesByDate() {
   renderSales(filtered);
 }
 
-
 function resetSalesFilter() {
   document.getElementById("fromDate").value = "";
   document.getElementById("toDate").value = "";
   renderSales();
 }
-
 
 // ===============================
 // مودال عام
