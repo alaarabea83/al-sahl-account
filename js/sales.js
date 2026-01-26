@@ -256,7 +256,8 @@ function renderSales(data = sales) {
         <td>${invoice.previousBalance || 0}</td>
         <td>${invoice.newBalance || 0}</td>
         <td>
-          <button class="btn-delete" onclick="confirmDeleteInvoice(${index})">🗑️</button>
+          <button class="btn-delete" onclick="confirmDeleteInvoice(${invoice.order})"
+>🗑️</button>
           <button class="btn-edit" onclick="editInvoice(${index})">✏️</button>
         </td>
       `;
@@ -362,28 +363,35 @@ function deleteInvoice(index) {
 // ===============================
 // مودال حذف وفقط
 // ===============================
-function confirmDeleteInvoice(index) {
-  showDeleteModal("هل أنت متأكد من حذف هذه الفاتورة؟ لا يمكن التراجع.", () => {
-    deleteInvoice(index);
-    showModal("تم حذف الفاتورة وتحديث الخزنة بنجاح ✅", "نجاح");
-  });
+function confirmDeleteInvoice(order) {
+  showDeleteModal(
+    "هل أنت متأكد من حذف هذه الفاتورة؟ لا يمكن التراجع.",
+    () => {
+      const index = sales.findIndex((s) => s.order === order);
+      if (index === -1) {
+        showModal("لم يتم العثور على الفاتورة");
+        return;
+      }
+      deleteInvoice(index);
+      showModal("تم حذف الفاتورة وتحديث الخزنة بنجاح ✅", "نجاح");
+    }
+  );
 }
 
-function filterSalesByDate() {
-  const from = document.getElementById("fromDate").value;
-  const to = document.getElementById("toDate").value;
 
-  if (!from && !to) {
-    renderSales();
-    return;
-  }
+function filterSalesByDate() {
+  const fromVal = document.getElementById("fromDate").value;
+  const toVal = document.getElementById("toDate").value;
+
+  const from = fromVal ? new Date(fromVal) : null;
+  const to = toVal ? new Date(toVal) : null;
 
   const filtered = sales.filter((invoice) => {
     if (!invoice.date) return false;
+    const d = new Date(invoice.date);
 
-    if (from && invoice.date < from) return false;
-    if (to && invoice.date > to) return false;
-
+    if (from && d < from) return false;
+    if (to && d > to) return false;
     return true;
   });
 
