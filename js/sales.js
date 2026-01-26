@@ -364,20 +364,16 @@ function deleteInvoice(index) {
 // مودال حذف وفقط
 // ===============================
 function confirmDeleteInvoice(order) {
-  showDeleteModal(
-    "هل أنت متأكد من حذف هذه الفاتورة؟ لا يمكن التراجع.",
-    () => {
-      const index = sales.findIndex((s) => s.order === order);
-      if (index === -1) {
-        showModal("لم يتم العثور على الفاتورة");
-        return;
-      }
-      deleteInvoice(index);
-      showModal("تم حذف الفاتورة وتحديث الخزنة بنجاح ✅", "نجاح");
+  showDeleteModal("هل أنت متأكد من حذف هذه الفاتورة؟ لا يمكن التراجع.", () => {
+    const index = sales.findIndex((s) => s.order === order);
+    if (index === -1) {
+      showModal("لم يتم العثور على الفاتورة");
+      return;
     }
-  );
+    deleteInvoice(index);
+    showModal("تم حذف الفاتورة وتحديث الخزنة بنجاح ✅", "نجاح");
+  });
 }
-
 
 function filterSalesByDate() {
   const fromVal = document.getElementById("fromDate").value;

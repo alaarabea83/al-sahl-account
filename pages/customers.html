@@ -56,7 +56,7 @@
     }
 
     .card {
-      background: #fdfefe;
+      background: #f0fff4;
       border-radius: 12px;
       padding: 20px;
       border: 1px solid #e5e7e9;
@@ -310,6 +310,18 @@
       font-weight: bold;
       border-top: 2px solid #2e86c1;
     }
+
+    .addCustomer {
+      padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .customerMenu {
+      padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
   </style>
 </head>
 
@@ -341,6 +353,7 @@
 
   <section>
     <div class="card">
+      <div class="addCustomer">
       <h3>🧑‍💼 إضافة عميل جديد</h3>
       <div class="form-row">
         <input type="text" id="customerName" placeholder="إسم العميل او المورد او الحساب" />
@@ -348,8 +361,10 @@
         <button class="btn-add" id="addCustomerBtn">✚ إضافة</button>
       </div>
     </div>
+    </div>
 
     <div class="card">
+      <div class="customerMenu">
       <h3>📋 قائمة العملاء</h3>
       <!-- حقل البحث -->
       <input type="text" id="searchCustomer" placeholder="🔍 ابحث باسم العميل..." style="
@@ -375,6 +390,7 @@
       </div>
       <tbody></tbody>
       </table>
+    </div>
     </div>
     <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
   </section>

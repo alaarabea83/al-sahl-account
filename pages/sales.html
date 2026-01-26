@@ -126,9 +126,23 @@
       }
 
       .table-scroll {
-        overflow-x: auto;
-        width: 100%;
-      }
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .table-scroll table {
+      min-width: 900px;
+      /* يمنع تكسير الأعمدة */
+    }
+
+    .table-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .table-scroll::-webkit-scrollbar-thumb {
+      background: #2e86c1;
+      border-radius: 10px;
+    }
 
       /* حاوية الأزرار داخل جدول الفواتير */
       td > .btn-delete,
@@ -200,6 +214,7 @@
         width: 90%;
         max-width: 400px;
         text-align: center;
+        margin: 5rem;
       }
 
       .modal-box h3 {
@@ -241,6 +256,11 @@
         #invoiceItems .form-row select,
         #invoiceItems .form-row input {
           max-width: 50%;
+        }
+        .previousInvoices {
+          padding: 1rem;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
       }
     </style>
@@ -354,42 +374,53 @@
       </style>
 
       <div class="t-container">
-        <h3 style="text-align: right">📋 الفواتير السابقة</h3>
-        <div class="form-row" style="gap: 10px; align-items: end">
-          <div>
-            <label>من تاريخ</label>
-            <input type="date" id="fromDate" />
+        <div class="previousInvoices">
+          <h3 style="text-align: right">📋 الفواتير السابقة</h3>
+          <div class="form-row" style="gap: 10px; align-items: end">
+            <div>
+              <label>من تاريخ</label>
+              <input type="date" id="fromDate" />
+            </div>
+
+            <div>
+              <label>إلى تاريخ</label>
+              <input type="date" id="toDate" />
+            </div>
+
+            <button
+              style="padding: 8px 16px; font-size: 14px; border-radius: 8px"
+              onclick="filterSalesByDate()"
+            >
+              🔍 بحث
+            </button>
+            <button
+              style="padding: 8px 16px; font-size: 14px; border-radius: 8px"
+              type="button"
+              onclick="resetSalesFilter()"
+            >
+              🔄 عرض الكل
+            </button>
           </div>
 
-          <div>
-            <label>إلى تاريخ</label>
-            <input type="date" id="toDate" />
+          <div class="table-scroll">
+            <table id="salesTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>التاريخ</th>
+                  <th>العميل</th>
+                  <th>إجمالي الفاتورة</th>
+                  <th>المدفوع</th>
+                  <th>المتبقي</th>
+                  <th>الرصيد السابق</th>
+                  <th>الرصيد الجديد</th>
+                  <th>إجراءات</th>
+                </tr>
+              </thead>
+
+              <tbody></tbody>
+            </table>
           </div>
-
-          <button onclick="filterSalesByDate()">🔍 بحث</button>
-          <button type="button" onclick="resetSalesFilter()">
-            🔄 عرض الكل
-          </button>
-        </div>
-
-        <div class="table-scroll">
-          <table id="salesTable">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>التاريخ</th>
-                <th>العميل</th>
-                <th>إجمالي الفاتورة</th>
-                <th>المدفوع</th>
-                <th>المتبقي</th>
-                <th>الرصيد السابق</th>
-                <th>الرصيد الجديد</th>
-                <th>إجراءات</th>
-              </tr>
-            </thead>
-
-            <tbody></tbody>
-          </table>
         </div>
         <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
       </div>
@@ -408,35 +439,34 @@
         <p id="modalMessage">الرسالة هنا</p>
         <div
           class="modal-actions"
-          style="display: flex; gap: 10px; margin-top: 15px"
+          style="display: flex; gap: 8px; justify-content: center"
         >
           <!-- أزرار تأكيد الحذف -->
           <button
             id="modalCancelBtn"
             style="
-              flex: 1;
-              padding: 10px;
-              border-radius: 10px;
+              padding: 6px 10px;
+              font-size: 12px;
+              border-radius: 6px;
               border: none;
               background: #ecf0f1;
               color: #333;
               cursor: pointer;
-              justify-content: center;
             "
           >
             إلغاء
           </button>
+
           <button
             id="modalConfirmBtn"
             style="
-              flex: 1;
-              padding: 10px;
-              border-radius: 10px;
+              padding: 6px 10px;
+              font-size: 12px;
+              border-radius: 6px;
               border: none;
               background: #e74c3c;
               color: #fff;
               cursor: pointer;
-              justify-content: center;
             "
           >
             حذف
