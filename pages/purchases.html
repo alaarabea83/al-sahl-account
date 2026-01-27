@@ -1,31 +1,35 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="icon" type="image/png" href="../icons/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
 
-    <title>سهل لإدارة الحسابات</title>
-    <style>
-      body {
-        font-family: "Tajawal", Arial, sans-serif;
-        background: #f4f6f8;
-        margin: 0;
-      }
-      header {
-        background: #ffc107;
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="../icons/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <title>سهل لإدارة الحسابات</title>
+  <style>
+    body {
+      font-family: "Tajawal", Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+    }
+
+    header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 60px; /* خليها مطابق للارتفاع الحقيقي للهيدر */
+        line-height: 60px;
+        background: #2e86c1;
         text-align: center;
-        padding: 1px;
-      }
-      header h1::before {
-        content: "";
+        color: #fff;
+        z-index: 1000;
       }
 
       h1,
@@ -33,161 +37,161 @@
       h3 {
         font-family: "Cairo", sans-serif;
         font-weight: 700;
-        color: black;
+        margin: 5px;
       }
 
+      /* ===== Layout ===== */
       section {
-        max-width: 900px;
-        margin: 0 auto;
+        max-width: 1000px;
+        margin: 20px auto;
+        margin-top: 120px; /* المسافة فوق، خليها sum الهيدر + breadcrumbs + gap */
         background: #fff;
-        color: #fff;
-        padding: 1rem;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      }
-
-      .form-row {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        width: 100%;
-        justify-content: center;
-      }
-
-      .form-row select,
-      .form-row button {
-        padding: 0.5rem;
-        font-size: 1rem;
-      }
-
-      .form-row input {
-        flex: 1;
-        min-width: 180px;
-        padding: 0.5rem;
-        font-size: 1rem;
-        border-radius: 5px;
-        border: none;
-      }
-
-      .form-row button {
-        padding: 0.5rem 1.2rem;
-        font-size: 1rem;
-        background: #2e86c1;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-
-      .t-container {
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         display: flex;
         flex-direction: column;
-        background-color: #ffc107;
-        justify-content: center;
-        align-items: center;
-        padding: 15px;
-        border-radius: 10px;
+        gap: 25px;
       }
 
-      .table-scroll {
-        overflow-x: auto;
-        width: 100%;
-      }
+    .form-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 1rem;
-        background-color: #fff;
-      }
-      th {
-        background: #2e86c1;
-        color: #fff;
-        padding: 0.6rem;
-      }
-      td {
-        text-align: center;
-        color: black;
-        padding: 0.6rem;
-        border-bottom: 1px solid #e0e0e0;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h3>فواتير المشتريات</h3>
-      <nav class="breadcrumbs">
-      <a href="../index.html" class="home">الرئيسية</a>
-      <span class="separator">›</span>
-      <a href="../pages/customers.html" class="home">العملاء</a>
-      <span class="separator">›</span>
-      <a href="../pages/products.html" class="home">المنتجات</a>
-      <span class="separator">›</span>
-      <a href="../pages/sales.html" class="home"> المبيعات</a>
-      <span class="separator">›</span>
-      <span class="current">المشتريات</span>
-      <span class="separator">›</span>
-      <a href="../pages/income.html" class="home">المقبوضات</a>
-      <span class="separator">›</span>
-      <a href="../pages/expenses.html" class="home">المدفوعات</a>
-      <span class="separator">›</span>
-      <a href="../pages/cash.html" class="home">الخزينة</a>
-    </header>
+    .form-row select,
+    .form-row button {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
 
-    <section>
-      <div class="t-container">
-        <h3>فاتورة شراء جديدة</h3>
-        <div class="form-row">
-          <select id="purchaseCustomer"></select>
-          <select id="purchaseProduct"></select>
-          <input type="number" id="purchaseQty" placeholder="الكمية" min="0" />
-          <input
-            type="number"
-            id="purchasePrice"
-            placeholder="سعر الوحدة"
-            min="0"
-          />
-          <input
-            type="number"
-            id="purchasePaid"
-            placeholder="المدفوع"
-            min="0"
-          />
-          <button id="savePurchaseBtn">حفظ الفاتورة</button>
-        </div>
+    .form-row input {
+      flex: 1;
+      min-width: 180px;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .form-row button {
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      background: #2e86c1;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .t-container {
+      display: flex;
+      flex-direction: column;
+      background-color: #ffc107;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+      width: 100%;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background-color: #fff;
+    }
+
+    th {
+      background: #2e86c1;
+      color: #fff;
+      padding: 0.6rem;
+    }
+
+    td {
+      text-align: center;
+      color: black;
+      padding: 0.6rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2>فواتير المشتريات</h2>
+  </header>
+  <nav class="breadcrumbs">
+    <a href="../index.html" class="home">الرئيسية</a>
+    <span class="separator">›</span>
+    <a href="../pages/customers.html" class="home">العملاء</a>
+    <span class="separator">›</span>
+    <a href="../pages/products.html" class="home">المنتجات</a>
+    <span class="separator">›</span>
+    <a href="../pages/sales.html" class="home"> المبيعات</a>
+    <span class="separator">›</span>
+    <span class="current">المشتريات</span>
+    <span class="separator">›</span>
+    <a href="../pages/income.html" class="home">المقبوضات</a>
+    <span class="separator">›</span>
+    <a href="../pages/expenses.html" class="home">المدفوعات</a>
+    <span class="separator">›</span>
+    <a href="../pages/cash.html" class="home">الخزينة</a>
+  </nav>
+
+  <section>
+    <div class="t-container">
+      <h3>فاتورة شراء جديدة</h3>
+      <div class="form-row">
+        <select id="purchaseCustomer"></select>
+        <select id="purchaseProduct"></select>
+        <input type="number" id="purchaseQty" placeholder="الكمية" min="0" />
+        <input type="number" id="purchasePrice" placeholder="سعر الوحدة" min="0" />
+        <input type="number" id="purchasePaid" placeholder="المدفوع" min="0" />
+        <button id="savePurchaseBtn">حفظ الفاتورة</button>
       </div>
-      <div style="height: 20px"></div>
-      <div class="t-container">
-        <h3>الفواتير السابقة</h3>
-        <div class="table-scroll">
-          <table id="purchasesTable">
-            <thead>
-              <tr>
-                <th>العميل</th>
-                <th>المنتج</th>
-                <th>الكمية</th>
-                <th>السعر</th>
-                <th>المدفوع</th>
-                <th>المتبقي</th>
-                <th>التاريخ</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-
-        <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
+    </div>
+    <div style="height: 20px"></div>
+    <div class="t-container">
+      <h3>الفواتير السابقة</h3>
+      <div class="table-scroll">
+        <table id="purchasesTable">
+          <thead>
+            <tr>
+              <th>العميل</th>
+              <th>المنتج</th>
+              <th>الكمية</th>
+              <th>السعر</th>
+              <th>المدفوع</th>
+              <th>المتبقي</th>
+              <th>التاريخ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
-    </section>
 
-    <div id="appModal" class="modal-overlay">
-  <div class="modal-box">
-    <h3 id="modalTitle">تنبيه</h3>
-    <p id="modalMessage"></p>
-    <button onclick="closeModal()">حسناً</button>
+      <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
+    </div>
+  </section>
+
+  <div id="appModal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 id="modalTitle">تنبيه</h3>
+      <p id="modalMessage"></p>
+      <button onclick="closeModal()">حسناً</button>
+    </div>
   </div>
-</div>
 
-    <script src="../js/data.js"></script>
-    <script src="../js/purchases.js"></script>
-  </body>
+  <script src="../js/data.js"></script>
+  <script src="../js/purchases.js"></script>
+</body>
+
 </html>
