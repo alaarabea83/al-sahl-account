@@ -1,90 +1,102 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/icons/logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/style.css" />
 
-    <title>سهل لإدارة الحسابات</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/icons/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
 
-    <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: #f4f6f8;
-        margin: 0;
-        /* عدّل الرقم حسب ارتفاع الهيدر */
-      }
+  <title>سهل لإدارة الحسابات</title>
 
-      header {
-        background: #2e86c1;
-      color: #fff;
-      padding: 1rem;
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      /* عدّل الرقم حسب ارتفاع الهيدر */
+    }
+
+    header {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 60px;
+      /* خليها مطابق للارتفاع الحقيقي للهيدر */
+      line-height: 60px;
+      background: #2e86c1;
       text-align: center;
-      }
+      color: #fff;
+      z-index: 1000;
+    }
 
-      h1,
-      h2,
-      h3 {
-        font-family: "Cairo", sans-serif;
-        font-weight: 700;
-      }
+    h1,
+    h2,
+    h3 {
+      font-family: "Cairo", sans-serif;
+      font-weight: 700;
+      margin: 10px;
+    }
 
-      section {
-        display: block;
-        max-width: 100%;
-        margin: 2rem;
-        background: #fff;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-      }
-    </style>
-  </head>
+    section {
+      display: block;
+      text-align: center;
+      max-width: 1000px;
+      margin: 1rem auto;
+      margin-top: 140px;
+      /* المسافة فوق، خليها sum الهيدر + breadcrumbs + gap */
+      background: #fff;
+      padding: 20px;
+      border-radius: 140px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+  </style>
+</head>
 
-  <body>
-    <header>
-      <h3>سهل لإدارة الحسابات</h3>
-      <nav class="breadcrumbs">
-        <a href="../index.html" class="home">الرئيسية</a>
-        <span class="separator">›</span>
-        <a href="../pages/customers.html" class="home">العملاء</a>
-        <span class="separator">›</span>
-        <a href="../pages/products.html" class="home">المنتجات</a>
-        <span class="separator">›</span>
-        <a href="../pages/sales.html" class="home">المبيعات</a>
-        <span class="separator">›</span>
-        <a href="../pages/purchases.html" class="home"> المشتريات</a>
-        <span class="separator">›</span>
-        <a href="../pages/income.html" class="home">المقبوضات</a>
-        <span class="separator">›</span>
-        <a href="../pages/expenses.html" class="home">المدفوعات</a>
-        <span class="separator">›</span>
-        <a href="../pages/cash.html" class="home">الخزينة</a>
-        <span class="separator">›</span>
-        <a href="#" class="home">التقارير</a>
-        <span class="separator">›</span>
-        <a href="#" class="home">الإعدادات</a>
-      </nav>
-    </header>
-    <section id="aboutSec">
-      <h2>عن التطبيق</h2>
-      <p>
-        تطبيق "سهل لإدارة الحسابات" يساعدك على إدارة العملاء، المنتجات،
-        المبيعات، المشتريات، المقبوضات، المصروفات، والخزنة بكل سهولة.
-      </p>
-      <p>  هدفنا تقديم حلول بسيطة وفعّالة لإدارة الحسابات والمبيعات، لمساعدة أصحاب الأعمال على تنظيم بياناتهم واتخاذ قرارات أفضل بسهولة ودقة.
-نسعى دائمًا إلى تطوير أدواتنا لتواكب احتياجات المستخدمين وتسهّل عليهم إدارة أعمالهم اليومية.</p>
-      <p>الإصدار: 1.0.0</p>
-      <p>تطوير: علاء ربيع</p>
-      <p>01019065615</p>
-      <p>01011091802</p>
-    </section>
-  </body>
+<body>
+  <header>
+    <h2>سهل لإدارة الحسابات</h2>
+  </header>
+  <nav class="breadcrumbs">
+    <a href="../index.html" class="home">الرئيسية</a>
+    <span class="separator">›</span>
+    <a href="../pages/customers.html" class="home">العملاء</a>
+    <span class="separator">›</span>
+    <a href="../pages/products.html" class="home">المنتجات</a>
+    <span class="separator">›</span>
+    <a href="../pages/sales.html" class="home">المبيعات</a>
+    <span class="separator">›</span>
+    <a href="../pages/purchases.html" class="home"> المشتريات</a>
+    <span class="separator">›</span>
+    <a href="../pages/income.html" class="home">المقبوضات</a>
+    <span class="separator">›</span>
+    <a href="../pages/expenses.html" class="home">المدفوعات</a>
+    <span class="separator">›</span>
+    <a href="../pages/cash.html" class="home">الخزينة</a>
+    <span class="separator">›</span>
+    <a href="#" class="home">التقارير</a>
+    <span class="separator">›</span>
+    <a href="#" class="home">الإعدادات</a>
+  </nav>
+  <section id="aboutSec">
+    <h2>عن التطبيق</h2>
+    <p>
+      تطبيق "سهل لإدارة الحسابات" يساعدك على إدارة العملاء، المنتجات،
+      المبيعات، المشتريات، المقبوضات، المصروفات، والخزنة بكل سهولة.
+    </p>
+    <p> هدفنا تقديم حلول بسيطة وفعّالة لإدارة الحسابات والمبيعات، لمساعدة أصحاب الأعمال على تنظيم بياناتهم واتخاذ قرارات
+      أفضل بسهولة ودقة.
+      نسعى دائمًا إلى تطوير أدواتنا لتواكب احتياجات المستخدمين وتسهّل عليهم إدارة أعمالهم اليومية.</p>
+    <p>الإصدار: 1.0.0</p>
+    <p>تطوير: علاء ربيع</p>
+    <p>01019065615</p>
+    <p>01011091802</p>
+  </section>
+</body>
+
 </html>

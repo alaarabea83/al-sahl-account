@@ -15,15 +15,38 @@
 
   <style>
     body {
-      font-family: "Tajawal", Arial, sans-serif;
-      background: #f4f6f8;
+      font-family: "Tajawal", sans-serif;
+      background: #f4f6f9;
       margin: 0;
     }
 
     header {
-      background: #ffc107;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 60px;
+      /* خليها مطابق للارتفاع الحقيقي للهيدر */
+      line-height: 60px;
+      background: #2e86c1;
       text-align: center;
-      padding: 1px;
+      color: #fff;
+      z-index: 1000;
+    }
+
+
+    section {
+      max-width: 1000px;
+      margin: 20px auto;
+      margin-top: 120px;
+      /* المسافة فوق، خليها sum الهيدر + breadcrumbs + gap */
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
     }
 
     h1,
@@ -31,14 +54,7 @@
     h3 {
       font-family: "Cairo", sans-serif;
       font-weight: 700;
-    }
-
-    section {
-      max-width: 900px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 1rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      margin: 10px;
     }
 
     .t-container {
@@ -127,24 +143,29 @@
 
 <body>
   <header>
-    <h3>حركة الخزينة</h3>
-    <nav class="breadcrumbs">
-      <a href="../index.html" class="home">الرئيسية</a>
-      <span class="separator">›</span>
-      <a href="../pages/customers.html" class="home">العملاء</a>
-      <span class="separator">›</span>
-      <a href="../pages/products.html" class="home">المنتجات</a>
-      <span class="separator">›</span>
-      <a href="../pages/sales.html" class="home"> المبيعات</a>
-      <span class="separator">›</span>
-      <a href="../pages/purchases.html" class="home">المشتريات</a>
-      <span class="separator">›</span>
-      <a href="../pages/income.html" class="home">المقبوضات</a>
-      <span class="separator">›</span>
-      <a href="../pages/expenses.html" class="home">المدفوعات</a>
-      <span class="separator">›</span>
-      <span class="current">الخزينة</span>
+    <h2>حركة الخزينة</h2>
   </header>
+  <nav class="breadcrumbs">
+    <a href="../index.html" class="home">الرئيسية</a>
+    <span class="separator">›</span>
+    <a href="../pages/customers.html" class="home">العملاء</a>
+    <span class="separator">›</span>
+    <a href="../pages/products.html" class="home">المنتجات</a>
+    <span class="separator">›</span>
+    <a href="../pages/sales.html" class="home"> المبيعات</a>
+    <span class="separator">›</span>
+    <a href="../pages/purchases.html" class="home">المشتريات</a>
+    <span class="separator">›</span>
+    <a href="../pages/income.html" class="home">المقبوضات</a>
+    <span class="separator">›</span>
+    <a href="../pages/expenses.html" class="home">المدفوعات</a>
+    <span class="separator">›</span>
+    <span class="current">الخزينة</span>
+    <span class="separator">›</span>
+    <a href="../pages/profit.html" class="home">التقارير</a>
+    <span class="separator">›</span>
+    <a href="../pages/profit.html" class="home">الإعدادات</a>
+  </nav>
 
   <section>
     <div class="t-container">
@@ -204,8 +225,8 @@
         </table>
       </div>
       <div style="text-align: center; margin: 10px 0;">
-  <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
-</div>
+        <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
+      </div>
     </div>
   </section>
   <script src="../js/data.js"></script>
