@@ -87,9 +87,9 @@ function renderCustomers(searchQuery = "") {
       <td>${c.name}</td>
       <td>${currentBalance.toFixed(2)}</td>
       <td class="actions">
-        <button class="btn-primary" onclick="openStatementModal(${index})">📄 كشف حساب</button>
-        <button class="btn-edit" onclick="openEditModal(${index})">✏️ تعديل</button>
-        <button class="btn-delete" onclick="deleteCustomer(${index})">🗑️ حذف</button>
+        <button class="btn-primary" onclick="openStatementModal(${index})">كشف حساب</button>
+        <button class="btn-edit" onclick="openEditModal(${index})">تعديل</button>
+        <button class="btn-delete" onclick="deleteCustomer(${index})">حذف</button>
       </td>
     `;
     tbody.appendChild(tr);

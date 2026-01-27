@@ -220,8 +220,8 @@ function renderSales(data = sales) {
         <td>${inv.previousBalance}</td>
         <td>${inv.newBalance}</td>
         <td>
-          <button class="btn-edit" onclick="editInvoice(${i})">✏️</button>
-          <button class="btn-delete" onclick="confirmDeleteInvoice(${inv.order})">🗑️</button>
+          <button class="btn-edit" onclick="editInvoice(${i})">تعديل الفاتورة</button>
+          <button class="btn-delete" onclick="confirmDeleteInvoice(${inv.order})">حذف الفاتورة</button>
         </td>
       </tr>`;
   });
