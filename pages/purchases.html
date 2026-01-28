@@ -20,39 +20,41 @@
     }
 
     header {
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        height: 60px; /* خليها مطابق للارتفاع الحقيقي للهيدر */
-        line-height: 60px;
-        background: #2e86c1;
-        text-align: center;
-        color: #fff;
-        z-index: 1000;
-      }
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 60px;
+      /* خليها مطابق للارتفاع الحقيقي للهيدر */
+      line-height: 60px;
+      background: #2e86c1;
+      text-align: center;
+      color: #fff;
+      z-index: 1000;
+    }
 
-      h1,
-      h2,
-      h3 {
-        font-family: "Cairo", sans-serif;
-        font-weight: 700;
-        margin: 5px;
-      }
+    h1,
+    h2,
+    h3 {
+      font-family: "Cairo", sans-serif;
+      font-weight: 700;
+      margin: 5px;
+    }
 
-      /* ===== Layout ===== */
-      section {
-        max-width: 1000px;
-        margin: 20px auto;
-        margin-top: 120px; /* المسافة فوق، خليها sum الهيدر + breadcrumbs + gap */
-        background: #fff;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-      }
+    /* ===== Layout ===== */
+    section {
+      max-width: 1000px;
+      margin: 20px auto;
+      margin-top: 120px;
+      /* المسافة فوق، خليها sum الهيدر + breadcrumbs + gap */
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
 
     .form-row {
       display: flex;
@@ -62,64 +64,108 @@
       justify-content: center;
     }
 
-    .form-row select,
-    .form-row button {
-      padding: 0.5rem;
-      font-size: 1rem;
-    }
-
-    .form-row input {
+   .form-row input,
+    .form-row select {
       flex: 1;
       min-width: 180px;
-      padding: 0.5rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 15px;
     }
 
     .form-row button {
-      padding: 0.5rem 1.2rem;
-      font-size: 1rem;
       background: #2e86c1;
       color: #fff;
       border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 5px;
+      transition: 0.2s;
+      font-size: 15px;
+    }
+
+    .form-row button:hover {
+      background: #21618c;
     }
 
     .t-container {
       display: flex;
       flex-direction: column;
-      background-color: #ffc107;
+      background-color: #f0fff4;
       justify-content: center;
       align-items: center;
       padding: 15px;
       border-radius: 10px;
     }
 
-    .table-scroll {
+    .purchaseInvoice {
       overflow-x: auto;
+      scrollbar-width: none;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .invoicesMenu {
+      width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      background-color: #f0fff4;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .table-scroll {
       width: 100%;
+      padding: 1px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1rem;
-      background-color: #fff;
+      background-color: #f0fff4;;
     }
 
-    th {
+    thead th {
       background: #2e86c1;
       color: #fff;
-      padding: 0.6rem;
+      padding: 12px;
+      font-size: 14px;
     }
 
-    td {
+    tbody td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
       text-align: center;
-      color: black;
-      padding: 0.6rem;
-      border-bottom: 1px solid #e0e0e0;
+    }
+
+    tbody tr:hover {
+      background: #f4f6f8;
+    }
+
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .table-scroll table {
+      min-width: 900px;
+      /* يمنع تكسير الأعمدة */
+    }
+
+    .table-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .table-scroll::-webkit-scrollbar-thumb {
+      background: #2e86c1;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -154,19 +200,22 @@
 
   <section>
     <div class="t-container">
-      <h3>فاتورة شراء جديدة</h3>
-      <div class="form-row">
-        <select id="purchaseCustomer"></select>
-        <select id="purchaseProduct"></select>
-        <input type="number" id="purchaseQty" placeholder="الكمية" min="0" />
-        <input type="number" id="purchasePrice" placeholder="سعر الوحدة" min="0" />
-        <input type="number" id="purchasePaid" placeholder="المدفوع" min="0" />
-        <button id="savePurchaseBtn">حفظ الفاتورة</button>
+      <div class="purchaseInvoice">
+        <h3>🧾 فاتورة مشتريات جديدة</h3>
+        <div class="form-row">
+          <select id="purchaseCustomer"></select>
+          <select id="purchaseProduct"></select>
+          <input type="number" id="purchaseQty" placeholder="الكمية" min="0" />
+          <input type="number" id="purchasePrice" placeholder="سعر الوحدة" min="0" />
+          <input type="number" id="purchasePaid" placeholder="المدفوع" min="0" />
+          <button id="savePurchaseBtn">حفظ الفاتورة</button>
+        </div>
       </div>
     </div>
-    <div style="height: 20px"></div>
+
     <div class="t-container">
-      <h3>الفواتير السابقة</h3>
+      <div class="invoicesMenu">
+      <h3>📋 الفواتير السابقة</h3>
       <div class="table-scroll">
         <table id="purchasesTable">
           <thead>
@@ -182,6 +231,7 @@
           </thead>
           <tbody></tbody>
         </table>
+      </div>
       </div>
 
       <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>

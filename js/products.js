@@ -1,3 +1,6 @@
+console.log("Products after loadData:", products);
+console.log("Customers after loadData:", customers);
+
 let editIndex = null;
 let deleteIndex = null;
 
