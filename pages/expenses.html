@@ -57,71 +57,105 @@
     }
 
     .t-container {
-      display: flex;
-      flex-direction: column;
-      background-color: #ffc107;
-      justify-content: center;
-      align-items: center;
-      padding: 15px;
-      border-radius: 10px;
+      background: #f0fff4;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid #e5e7e9;
     }
 
+    /* ===== Form ===== */
     .form-row {
       display: flex;
-      gap: 0.5rem;
+      gap: 10px;
       flex-wrap: wrap;
-      width: 100%;
       justify-content: center;
+      margin-bottom: 10px;
     }
 
-    .form-row select,
-    .form-row button {
-      padding: 0.5rem;
-      font-size: 1rem;
-    }
-
-    .form-row input {
+    .form-row input,
+    .form-row select {
       flex: 1;
       min-width: 180px;
-      padding: 0.5rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 15px;
     }
 
     .form-row button {
-      padding: 0.5rem 1.2rem;
-      font-size: 1rem;
       background: #2e86c1;
       color: #fff;
       border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 5px;
+      transition: 0.2s;
+      font-size: 15px;
+    }
+
+    .form-row button:hover {
+      background: #21618c;
+    }
+
+    /* ===== Table ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #f0fff4;
+    }
+
+    thead th {
+      background: #2e86c1;
+      color: #fff;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    tbody td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    tbody tr:hover {
+      background: #f4f6f8;
     }
 
     .table-scroll {
+      width: 100%;
       overflow-x: auto;
-      width: 100%;
     }
 
-    table {
-      width: 100%;
-      background-color: #fff;
-      border-collapse: collapse;
-      margin-top: 1rem;
+    .table-scroll table {
+      min-width: 900px;
+      /* يمنع تكسير الأعمدة */
     }
 
-    th {
+    .table-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .table-scroll::-webkit-scrollbar-thumb {
       background: #2e86c1;
-      color: #fff;
-      padding: 0.6rem;
+      border-radius: 10px;
     }
 
-    td {
-      text-align: center;
-      color: black;
-      padding: 0.6rem;
-      border-bottom: 1px solid #e0e0e0;
+    .expenseReciept {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      background-color: #f0fff4;
+    }
+
+    .expenseMenu {
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      background-color: #f0fff4;
     }
   </style>
 </head>
@@ -157,33 +191,34 @@
   <section>
     <!-- صندوق إضافة سند الدفع -->
     <div class="t-container">
-      <h3>إضافة سند دفع</h3>
-      <div class="form-row">
-        <input type="text" id="expenseTitle" placeholder="البيان" />
-        <input type="number" id="expenseAmount" placeholder="المبلغ" min="0" />
-        <select id="expenseCustomer"></select>
-        <button id="addExpenseBtn">إضافة</button>
+      <div class="expenseReciept">
+        <h3>💸 إضافة سند دفع</h3>
+        <div class="form-row">
+          <input type="text" id="expenseTitle" placeholder="البيان" />
+          <input type="number" id="expenseAmount" placeholder="المبلغ" min="0" />
+          <select id="expenseCustomer"></select>
+          <button id="addExpenseBtn">إضافة</button>
+        </div>
       </div>
     </div>
 
-    <!-- مسافة بين الصناديق -->
-    <div style="height: 20px"></div>
-
     <!-- صندوق سجل المصروفات -->
     <div class="t-container">
-      <h3>سجل المدفوعات</h3>
-      <div class="table-scroll">
-        <table id="expenseTable">
-          <thead>
-            <tr>
-              <th>البيان</th>
-              <th>المبلغ</th>
-              <th>العميل</th>
-              <th>التاريخ</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div class="expenseMenu">
+        <h3>📋 سجل المدفوعات</h3>
+        <div class="table-scroll">
+          <table id="expenseTable">
+            <thead>
+              <tr>
+                <th>البيان</th>
+                <th>المبلغ</th>
+                <th>العميل</th>
+                <th>التاريخ</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
       <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
     </div>
