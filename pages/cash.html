@@ -153,11 +153,17 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       background-color: #f0fff4;
     }
+
     .cashMovement {
       padding: 1rem;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       background-color: #f0fff4;
+    }
+
+    #cashStatementTable tfoot:last-child {
+      border-top: 2px solid #f4f6f8;
+      height: 50px;
     }
   </style>
 </head>
@@ -193,63 +199,63 @@
   <section>
     <div class="t-container">
       <div class="cashSummary">
-      <h3>ملخص حركة الخزينة</h3>
-      <table class="summary-table">
-        <tbody>
-          <tr>
-            <td>الرصيد الافتتاحي</td>
-            <td id="cashOpening">0</td>
-          </tr>
-          <tr>
-            <td>إجمالي المقبوضات</td>
-            <td id="cashIncome">0</td>
-          </tr>
-          <tr>
-            <td>إجمالي المصروفات</td>
-            <td id="cashExpenses">0</td>
-          </tr>
-          <tr>
-            <td>الرصيد الختامي</td>
-            <td id="cashFinal">0</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        <h3>ملخص حركة الخزينة</h3>
+        <table class="summary-table">
+          <tbody>
+            <tr>
+              <td>الرصيد الافتتاحي</td>
+              <td id="cashOpening">0</td>
+            </tr>
+            <tr>
+              <td>إجمالي المقبوضات</td>
+              <td id="cashIncome">0</td>
+            </tr>
+            <tr>
+              <td>إجمالي المصروفات</td>
+              <td id="cashExpenses">0</td>
+            </tr>
+            <tr>
+              <td>الرصيد الختامي</td>
+              <td id="cashFinal">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="t-container">
       <div class="cashMovement">
-      <h3>كشف حركات الخزينة</h3>
+        <h3>كشف حركات الخزينة</h3>
 
-      <div class="filters">
-        <label>من:</label>
-        <input type="date" id="cashFromDate" />
-        <label>إلى:</label>
-        <input type="date" id="cashToDate" />
-        <label>العميل:</label>
-        <select id="cashCustomerFilter" style="min-width:150px; padding:0.5rem; font-size:1rem;">
-          <option value="">إختر العميل</option>
-        </select>
-        <button id="filterCashBtn">عرض الكشف</button>
-      </div>
+        <div class="filters">
+          <label>من:</label>
+          <input type="date" id="cashFromDate" />
+          <label>إلى:</label>
+          <input type="date" id="cashToDate" />
+          <label>العميل:</label>
+          <select id="cashCustomerFilter" style="min-width:150px; padding:0.5rem; font-size:1rem;">
+            <option value="">إختر العميل</option>
+          </select>
+          <button id="filterCashBtn">عرض الكشف</button>
+        </div>
 
 
-      <div class="t-scroll">
-        <table id="cashStatementTable">
-          <thead>
-            <tr>
-              <th>التاريخ</th>
-              <th>العميل</th>
-              <th>البيان</th>
-              <th>مدين</th>
-              <th>دائن</th>
-              <th>الرصيد</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-          <tfoot></tfoot>
-        </table>
-      </div>
+        <div class="t-scroll">
+          <table id="cashStatementTable">
+            <thead>
+              <tr>
+                <th>التاريخ</th>
+                <th>العميل</th>
+                <th>البيان</th>
+                <th>مدين</th>
+                <th>دائن</th>
+                <th>الرصيد</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+          </table>
+        </div>
       </div>
       <div style="text-align: center; margin: 10px 0;">
         <a href="../index.html" class="back-btn">🏠 عودة للرئيسية</a>
