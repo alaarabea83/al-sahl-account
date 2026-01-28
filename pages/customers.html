@@ -21,16 +21,18 @@
     }
 
     header {
+      width: 100%;
+      max-width: 1000px;
       position: fixed;
-      left: 0;
-      right: 0;
+      left: 50%;
+      transform: translateX(-50%);
       top: 0;
+      padding: 1px 20px;
       height: 60px;
-      /* خليها مطابق للارتفاع الحقيقي للهيدر */
       line-height: 60px;
-      background: #2e86c1;
+      background: linear-gradient(135deg, #1f2d3a, #2c3e50);
       text-align: center;
-      color: #fff;
+      color: #ecf0f1;
       z-index: 1000;
     }
 
@@ -39,7 +41,6 @@
       max-width: 1000px;
       margin: 20px auto;
       margin-top: 120px;
-      /* المسافة فوق، خليها sum الهيدر + breadcrumbs + gap */
       background: #fff;
       padding: 20px;
       border-radius: 12px;
@@ -58,13 +59,10 @@
     }
 
     .card {
-      background: #f0fff4;
+      background: linear-gradient(135deg, #34495e, #2c3e50);
+      color: #ecf0f1;
       border-radius: 12px;
       padding: 15px;
-      border: 1px solid #e5e7e9;
-    }
-
-    .card h3 {
       border: 1px solid #e5e7e9;
     }
 
@@ -90,6 +88,37 @@
       cursor: pointer;
       font-size: 14px;
       transition: 0.2s;
+    }
+
+     .form-row input,
+    .form-row select {
+      background: #22313f;
+      color: #ecf0f1;
+      flex: 1;
+      min-width: 180px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      font-size: 15px;
+      border-radius: 10px;
+    }
+
+    input::placeholder {
+      color: #fff;
+    }
+
+    .form-row button {
+      background: #2e86c1;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 15px;
+    }
+
+    .form-row button:hover {
+      background: #21618c;
     }
 
     .btn-add {
@@ -119,7 +148,7 @@
     }
 
     tbody tr:hover {
-      background: #f4f6f8;
+      background: #065bb1;
     }
 
     .table-scroll {
@@ -137,7 +166,7 @@
     }
 
     .table-scroll::-webkit-scrollbar-thumb {
-      background: #2e86c1;
+      background: #ffef0e;
       border-radius: 10px;
     }
 
@@ -313,6 +342,7 @@
 
     #customersTable tbody tr:last-child {
       background-color: #eef2f7;
+      color: #000;
       font-weight: bold;
       border-top: 2px solid #2e86c1;
     }
@@ -361,7 +391,7 @@
         <h3>🧑‍💼 إضافة عميل جديد</h3>
         <div class="form-row">
           <input type="text" id="customerName" placeholder="إسم العميل او المورد او الحساب" />
-          <input type="number" id="openingBalance" placeholder="الرصيد السابق (ان وجد)" />
+          <input type="number" id="openingBalance" placeholder="الرصيد الإفتتاحي" />
           <button class="btn-add" id="addCustomerBtn">✚ إضافة</button>
         </div>
       </div>
