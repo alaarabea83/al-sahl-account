@@ -2,138 +2,235 @@
 <html lang="ar" dir="rtl">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/icons/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;500&display=swap"
-    rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>لوحة التحكم</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="dashboard.css">
 
-  <title>سهل لإدارة الحسابات</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    body {
-      font-family: "Tajawal", Arial, sans-serif;
-      background: #f4f6f8;
-      margin: 0;
-      padding-top: 100px;
-      /* عدّل الرقم حسب ارتفاع الهيدر */
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Cairo", sans-serif;
+        }
 
-    header {
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 60px;
-      line-height: 60px;
-      background: linear-gradient(135deg, green, #ffd54f);
-      text-align: center;
-      color: #ecf0f1;
-      z-index: 1000;
-    }
+        body {
+            margin: 0;
+            background: #1b2631;
+            color: #ecf0f1;
+        }
 
-    h1,
-    h2,
-    h3 {
-      font-family: "Cairo", sans-serif;
-      font-weight: 700;
-      margin: 5px;
-    }
+        /* Header */
+        .header {
+            background: #1f2d3a;
+            padding: 16px 24px;
+        }
 
-    .card {
-      font-family: "Tajawal", sans-serif;
-      font-weight: 500;
-    }
+        /* Breadcrumbs */
+        .breadcrumb {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            padding: 12px 20px;
+            margin: 16px;
+            border-radius: 12px;
+        }
 
-    section {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      padding: 0 20px;
-    }
+        .breadcrumb a {
+            color: #5dade2;
+            text-decoration: none;
+        }
 
-    .card {
-      background: linear-gradient(135deg, green, #ffd54f);
-      color: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
-      padding: 1.5rem;
-      text-align: center;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: 0.3s;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+        .breadcrumb .active {
+            color: #bdc3c7;
+        }
 
-    .card img {
-      width: 60px;
-      height: 60px;
-      margin-bottom: 0.8rem;
-    }
+        /* Dashboard Grid */
 
-    .card:hover {
-      background: #ffd54f;
-    }
+        /* Container */
+        .dashboard-wrapper {
+            max-width: 1100px;
+            /* تحكم في عرض الكروت */
+            margin: auto;
+        }
 
-    /* Responsive - كرتين على الموبايل */
-    @media (max-width: 600px) {
-      section {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-  </style>
+        /* Grid */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Card */
+        .card-main {
+            min-height: 160px;
+            padding: 20px 16px;
+            border-radius: 18px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .card-main i {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .card-main h3 {
+            font-size: 16px;
+            margin: 6px 0;
+        }
+
+        .card-main p {
+            font-size: 14px;
+            margin: 0;
+            opacity: .9;
+        }
+
+        /* Hover */
+        .card-main:hover {
+            transform: translateY(-4px);
+        }
+
+        /* رابط */
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        /* Card Colors */
+        .card-main.income {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        .card-main.expense {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .card-main.products {
+            background: linear-gradient(135deg, #3498db, #2c80b4);
+        }
+
+        .card-main.customers {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card-link:hover {
+            color: inherit;
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <h2>"سهل لإدارة الحسابات"</h2>
-  </header>
 
-  <section>
-    <a class="card" href="pages/customers.html">
-      <img src="icons/customer.png" alt="العملاء" />
-      العملاء
-    </a>
-    <a class="card" href="pages/products.html">
-      <img src="icons/cubes.png" alt="المنتجات" />
-      المنتجات
-    </a>
-    <a class="card" href="pages/sales.html">
-      <img src="icons/invoice.png" alt="المبيعات" />
-      المبيعات
-    </a>
-    <a class="card" href="pages/purchases.html">
-      <img src="icons/shopping-cart .png" alt="المشتريات" />
-      المشتريات
-    </a>
-    <a class="card" href="pages/income.html">
-      <img src="icons/incomes.png" alt="المقبوضات" />
-      المقبوضات
-    </a>
-    <a class="card" href="pages/expenses.html">
-      <img src="icons/spending-money.png" alt="المدفوعات" />
-      المدفوعات
-    </a>
-    <a class="card" href="pages/cash.html">
-      <img src="icons/money.png" alt="الخزينة" />
-      الخزينة
-    </a>
-    <a class="card" href="#">
-      <img src="icons/profit-margin.png" alt="الأرباح" />
-      تقرير الأرباح
-    </a>
-    <a class="card" href="pages/about.html">
-      <img src="icons/information-button.png" alt="about" />
-      عن التطبيق
-    </a>
-  </section>
+    <!-- Header -->
+    <header class="header">
+        <h2>سهل لإدارة الحسابات</h2>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb">
+        <a href="#">الرئيسية</a> /
+        <span class="active">لوحة التحكم</span>
+    </nav>
+
+    <!-- Main Cards -->
+
+    <div class="dashboard-wrapper">
+        <section class="dashboard">
+
+            <a href="pages/customers.html" class="card-link">
+                <div class="card-main customers">
+                    <i class="fa-solid fa-users"></i>
+                    <h3>العملاء</h3>
+                    <p>قائمة العملاء</p>
+                </div>
+            </a>
+
+            <a href="pages/products.html" class="card-link">
+                <div class="card-main products">
+                    <i class="fa-solid fa-box"></i>
+                    <h3>المنتجات</h3>
+                    <p>إدارة المخزون</p>
+                </div>
+            </a>
+
+            <a href="pages/sales.html" class="card-link">
+                <div class="card-main income">
+                    <i class="fa-solid fa-receipt"></i>
+                    <h3>المبيعات</h3>
+                    <p>فواتير المبيعات</p>
+                </div>
+            </a>
+
+            <a href="pages/purchases.html" class="card-link">
+                <div class="card-main expense">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <h3>المشتريات</h3>
+                    <p>فواتير الشراء</p>
+                </div>
+            </a>
+            <a href="pages/income.html" class="card-link">
+                <div class="card-main income">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <h3>سندات القبض</h3>
+                    <p>المقبوضات</p>
+                </div>
+            </a>
+
+            <a href="pages/expenses.html" class="card-link">
+                <div class="card-main expense">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <h3>سندات الدفع</h3>
+                    <p>المدفوعات</p>
+                </div>
+            </a>
+
+
+            <a href="pages/about.html" class="card-link">
+                <div class="card-main income">
+                    <i class="fa-solid fa-gear"></i>
+                    <h3>الإعدادات</h3>
+                    <p>إعداد النظام</p>
+                </div>
+            </a>
+
+            <a href="pages/cash.html" class="card-link">
+                <div class="card-main expense">
+                    <i class="fa-solid fa-wallet"></i>
+                    <h3>الخزنة</h3>
+                    <p>حركة الخزنة</p>
+                </div>
+            </a>
+
+            <a href="#" class="card-link">
+                <div class="card-main customers">
+                    <i class="fa-solid fa-truck"></i>
+                    <h3>الموردين</h3>
+                    <p>إدارة الموردين</p>
+                </div>
+            </a>
+
+            <a href="#" class="card-link">
+                <div class="card-main products">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h3>التقارير</h3>
+                    <p>عرض التقارير</p>
+                </div>
+            </a>
+
+        </section>
+    </div>
 </body>
 
 </html>
